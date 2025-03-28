@@ -1,11 +1,11 @@
 | **Field**           | **Details**                                                                 |
 |----------------------|-----------------------------------------------------------------------------|
-| **Meeting times**    | TBD                                                                         |
+| **Meeting times**    | Thursdays from 2 -- 3:30, Fridays from 3 -- 4:30                                                                         |
 | **Classroom**        | TBD                                                                         |
 | **Instructor**       | Dr. Jeremy R. Manning                                                      |
 | **Email**            | [jeremy@dartmouth.edu](mailto:jeremy@dartmouth.edu)                        |
 | **Office location**  | 349 Moore Hall                                                             |
-| **Office hours**     | By appointment                                                             |
+| **Office hours**     | [By appointment](https://context-lab.youcanbook.me)                                                             |
 
 ## Course Description
 Knowing how our brains organize and spontaneously retrieve memories is at the heart of understanding the basis of the ongoing internal dialog of our conscious thoughts.  Put simply, our memories make us _who we are_.  In this course, we will use readings, discussions, and hands-on demonstrations to explore historical approaches, current approaches, and hints about the "next generation" of computational (mathematical) models of learning and memory.
