@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Assignment 2: Search of Associative Memory (SAM) Model &#8212; Computational memory Models</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'assignments/Assignment_2:Search_of_Associative_Memory_Model/README';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Assignment 3: Context Maintenance and Retrieval (CMR)" href="../Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html" />
+    <link rel="prev" title="Assignment 1: Hopfield Networks" href="../Assignment_1%3AHopfield_Networks/README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/ContextLab/memory-models-course/main/admin/readme_robot.png" class="logo__image only-light" alt="Computational memory Models - Home"/>
+    <script>document.write(`<img src="https://raw.githubusercontent.com/ContextLab/memory-models-course/main/admin/readme_robot.png" class="logo__image only-dark" alt="Computational memory Models - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Models of Memory
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../instructions.html">Student instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin/syllabus.html">Course Description</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../slides/README.html">Course topics</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Assignments</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Assignment_1%3AHopfield_Networks/README.html">Assignment 1: Hopfield Networks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Assignment 2: Search of Associative Memory (SAM) Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Assignment_4%3A_Laplace_Temporal_Context_Model/README.html">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Final_Project/README.html">Final Project: Open-Ended Exploration of Memory Models</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ContextLab/memory-models-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ContextLab/memory-models-course/issues/new?title=Issue%20on%20page%20%2Fassignments/Assignment_2:Search_of_Associative_Memory_Model/README.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/assignments/Assignment_2:Search_of_Associative_Memory_Model/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Assignment 2: Search of Associative Memory (SAM) Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-and-preprocessing">Data Format and Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-description">Model Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-stage-memory-storage">1. <strong>Encoding Stage: Memory Storage</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-rules"><strong>Encoding Rules</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-stage-memory-search">2. <strong>Retrieval Stage: Memory Search</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-probability"><strong>Retrieval Probability</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#search-dynamics"><strong>Search Dynamics</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model">3. <strong>Fitting the Model</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-tasks">Implementation Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-implement-memory-encoding"><strong>Step 1: Implement Memory Encoding</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-implement-retrieval-process"><strong>Step 2: Implement Retrieval Process</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-load-and-process-data"><strong>Step 3: Load and Process Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-fit-model-parameters"><strong>Step 4: Fit Model Parameters</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-key-plots"><strong>Step 5: Generate Key Plots</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-1-probability-of-first-recall-as-a-function-of-serial-position"><strong>Plot 1: Probability of First Recall as a Function of Serial Position</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-2-conditional-recall-probability-as-a-function-of-lag"><strong>Plot 2: Conditional Recall Probability as a Function of Lag</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-3-overall-probability-of-recall-as-a-function-of-serial-position"><strong>Plot 3: Overall Probability of Recall as a Function of Serial Position</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-evaluate-the-model"><strong>Step 6: Evaluate the Model</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-criteria">Grading Criteria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission Instructions</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="assignment-2-search-of-associative-memory-sam-model">
+<h1>Assignment 2: Search of Associative Memory (SAM) Model<a class="headerlink" href="#assignment-2-search-of-associative-memory-sam-model" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this assignment, you will implement the <strong>Search of Associative Memory (SAM) model</strong> as described in <a class="reference external" href="https://www.dropbox.com/scl/fi/rpllozjcv704okckjdy5k/AtkiShif68.pdf?rlkey=i0azhj9mqxws7bxocbl65j88d&amp;amp;dl=1">Atkinson &amp; Shiffrin (1968)</a>. The SAM model is a probabilistic model of free recall that assumes items are stored in <strong>short-term memory (STS)</strong> and <strong>long-term memory (LTS)</strong>, with retrieval governed by associative processes. You will fit your implementation to <a class="reference external" href="https://www.dropbox.com/scl/fi/k7jc1b6uua4m915maglpl/Murd62.pdf?rlkey=i5nc7lzb2pw8dxc6xc72r5r5i&amp;amp;dl=1">Murdock (1962)</a> free recall data and evaluate how well the model explains the observed recall patterns.</p>
+</section>
+<section id="data-format-and-preprocessing">
+<h2>Data Format and Preprocessing<a class="headerlink" href="#data-format-and-preprocessing" title="Link to this heading">#</a></h2>
+<p>The dataset consists of sequences of recalled items from multiple trials of a free recall experiment. Each row represents a participant’s recall sequence from a single list presentation.</p>
+<ul>
+<li><p><strong>Numbers (1, 2, …, N)</strong>: Serial position of recalled items.</p></li>
+<li><p><strong>88</strong>: Denotes errors (recalls of items that were never presented)</p></li>
+<li><p><strong>Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">7</span> <span class="mi">10</span> <span class="mi">2</span> <span class="mi">8</span>  
+<span class="mi">10</span> <span class="mi">9</span> <span class="mi">6</span> <span class="mi">8</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">88</span>  
+<span class="mi">10</span> <span class="mi">7</span> <span class="mi">9</span> <span class="mi">8</span> <span class="mi">1</span>  
+</pre></div>
+</div>
+<p>This represents three recall trials. Each row contains the order in which items were recalled for one list.</p>
+</li>
+</ul>
+</section>
+<section id="model-description">
+<h2>Model Description<a class="headerlink" href="#model-description" title="Link to this heading">#</a></h2>
+<p>You will implement and fit a <strong>Search of Associative Memory (SAM)</strong> model that consists of:</p>
+<section id="encoding-stage-memory-storage">
+<h3>1. <strong>Encoding Stage: Memory Storage</strong><a class="headerlink" href="#encoding-stage-memory-storage" title="Link to this heading">#</a></h3>
+<p>When an item is presented, it is stored in <strong>both STS and LTS</strong>:</p>
+<ul class="simple">
+<li><p><strong>STS (Short-Term Store)</strong>: Holds a <strong>limited</strong> number of items (size <span class="math notranslate nohighlight">\(S\)</span>), with older items <strong>displaced</strong> as new ones enter.</p></li>
+<li><p><strong>LTS (Long-Term Store)</strong>: Each item is encoded with a <strong>strength</strong> <span class="math notranslate nohighlight">\(S_i\)</span> that depends on:</p>
+<ul>
+<li><p>The <strong>number of times it was rehearsed in STS</strong>.</p></li>
+<li><p>A decay function over time.</p></li>
+</ul>
+</li>
+</ul>
+<section id="encoding-rules">
+<h4><strong>Encoding Rules</strong><a class="headerlink" href="#encoding-rules" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Rehearsal Buffer Size (<span class="math notranslate nohighlight">\(S\)</span>)</strong>: At any time, only <strong><span class="math notranslate nohighlight">\(S\)</span> most recent items</strong> are actively rehearsed.</p></li>
+<li><p><strong>Probability of Rehearsal (<span class="math notranslate nohighlight">\(P_r\)</span>)</strong>: Given by:</p>
+<div class="math notranslate nohighlight">
+\[P_r(i) = \frac{R_i}{\sum_j R_j}\]</div>
+<p>where <span class="math notranslate nohighlight">\(R_i\)</span> is the number of times item <span class="math notranslate nohighlight">\(i\)</span> was rehearsed.</p>
+</li>
+<li><p><strong>Strength in LTS (<span class="math notranslate nohighlight">\(S_i\)</span>)</strong>: Memory strength decays with time and interference:</p>
+<div class="math notranslate nohighlight">
+\[S_i = \alpha \cdot R_i \cdot e^{-\beta (T - t_i)}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is the <strong>encoding rate parameter</strong> (controls how well rehearsed items are stored).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the <strong>decay rate</strong> (how quickly memory strength fades over time).</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> is the time since the start of the list, and <span class="math notranslate nohighlight">\(t_i\)</span> is when the item was last rehearsed.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="retrieval-stage-memory-search">
+<h3>2. <strong>Retrieval Stage: Memory Search</strong><a class="headerlink" href="#retrieval-stage-memory-search" title="Link to this heading">#</a></h3>
+<p>The recall process is modeled as a <strong>probabilistic search</strong> through LTS.</p>
+<section id="retrieval-probability">
+<h4><strong>Retrieval Probability</strong><a class="headerlink" href="#retrieval-probability" title="Link to this heading">#</a></h4>
+<p>Each item’s <strong>retrievability</strong> depends on its memory strength:</p>
+<div class="math notranslate nohighlight">
+\[P_{\text{recall}}(i) = \frac{S_i}{\sum_j S_j}\]</div>
+<ul class="simple">
+<li><p>Items with higher <strong><span class="math notranslate nohighlight">\(S_i\)</span></strong> are <strong>more likely</strong> to be retrieved.</p></li>
+<li><p>Retrieval <strong>stochasticity</strong> is modeled via a <strong>retrieval threshold</strong>—if an item’s strength is too low, recall terminates.</p></li>
+</ul>
+</section>
+<section id="search-dynamics">
+<h4><strong>Search Dynamics</strong><a class="headerlink" href="#search-dynamics" title="Link to this heading">#</a></h4>
+<ul>
+<li><p>Recall <strong>starts with a high-probability item</strong> (often first or last presented).</p></li>
+<li><p><strong>Associative transitions</strong> determine what item comes next:</p>
+<ul class="simple">
+<li><p>If item <span class="math notranslate nohighlight">\(i\)</span> was just recalled, the next recall follows a probability based on the similarity (lag) between memories.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[P(l) = \frac{S_{i+l}}{\sum_j S_j}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(l\)</span> is the <strong>lag</strong> (distance in serial position from the previously recalled item).</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{i+l}\)</span> represents memory strength at that position.</p></li>
+</ul>
+</li>
+<li><p>Recall <strong>continues</strong> until a failure occurs (e.g., no item surpasses a retrieval threshold).</p></li>
+</ul>
+</section>
+</section>
+<section id="fitting-the-model">
+<h3>3. <strong>Fitting the Model</strong><a class="headerlink" href="#fitting-the-model" title="Link to this heading">#</a></h3>
+<p>You will fit <strong>three key parameters</strong> to optimize the match to human recall data:</p>
+<ol class="arabic simple">
+<li><p><strong>Rehearsal Buffer Size <span class="math notranslate nohighlight">\(S\)</span></strong>: Number of items actively rehearsed in STS.</p></li>
+<li><p><strong>Encoding Rate <span class="math notranslate nohighlight">\(\alpha\)</span></strong>: Governs how well rehearsed items are stored in LTS.</p></li>
+<li><p><strong>Decay Rate <span class="math notranslate nohighlight">\(\beta\)</span></strong>: Controls how quickly memory traces degrade over time.</p></li>
+</ol>
+</section>
+</section>
+<section id="implementation-tasks">
+<h2>Implementation Tasks<a class="headerlink" href="#implementation-tasks" title="Link to this heading">#</a></h2>
+<section id="step-1-implement-memory-encoding">
+<h3><strong>Step 1: Implement Memory Encoding</strong><a class="headerlink" href="#step-1-implement-memory-encoding" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Create an STS buffer of size <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p>Assign memory strengths <span class="math notranslate nohighlight">\(S_i\)</span> to each item based on rehearsal frequency.</p></li>
+<li><p>Implement the decay function for LTS.</p></li>
+</ul>
+</section>
+<section id="step-2-implement-retrieval-process">
+<h3><strong>Step 2: Implement Retrieval Process</strong><a class="headerlink" href="#step-2-implement-retrieval-process" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use probabilistic sampling to simulate recall.</p></li>
+<li><p>Implement stopping rules for retrieval failures.</p></li>
+<li><p>Simulate <strong>associative transitions</strong> in recall.</p></li>
+</ul>
+</section>
+<section id="step-3-load-and-process-data">
+<h3><strong>Step 3: Load and Process Data</strong><a class="headerlink" href="#step-3-load-and-process-data" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Read in the recall dataset and parse trials correctly.</p></li>
+<li><p>Compute observed recall probabilities.</p></li>
+</ul>
+</section>
+<section id="step-4-fit-model-parameters">
+<h3><strong>Step 4: Fit Model Parameters</strong><a class="headerlink" href="#step-4-fit-model-parameters" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Adjust <span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(\alpha\)</span>, and <span class="math notranslate nohighlight">\(\beta\)</span> to optimize match to observed data.</p></li>
+</ul>
+</section>
+<section id="step-5-generate-key-plots">
+<h3><strong>Step 5: Generate Key Plots</strong><a class="headerlink" href="#step-5-generate-key-plots" title="Link to this heading">#</a></h3>
+<p>For each combination of <strong>list length</strong> and <strong>presentation rate</strong>, generate the following plots:</p>
+<section id="plot-1-probability-of-first-recall-as-a-function-of-serial-position">
+<h4><strong>Plot 1: Probability of First Recall as a Function of Serial Position</strong><a class="headerlink" href="#plot-1-probability-of-first-recall-as-a-function-of-serial-position" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>X-axis:</strong> Serial position in the presented list.</p></li>
+<li><p><strong>Y-axis:</strong> Probability that the item is the <strong>first item</strong> recalled.</p></li>
+<li><p>Overlay <strong>model predictions</strong> on observed data.</p></li>
+</ul>
+</section>
+<section id="plot-2-conditional-recall-probability-as-a-function-of-lag">
+<h4><strong>Plot 2: Conditional Recall Probability as a Function of Lag</strong><a class="headerlink" href="#plot-2-conditional-recall-probability-as-a-function-of-lag" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>X-axis:</strong> Lag (<span class="math notranslate nohighlight">\(l\)</span>) (distance between successive recalls).</p></li>
+<li><p><strong>Y-axis:</strong> Probability of recalling an item at position <span class="math notranslate nohighlight">\(i+l\)</span> after recalling <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p>Overlay <strong>model predictions</strong> on observed data.</p></li>
+</ul>
+</section>
+<section id="plot-3-overall-probability-of-recall-as-a-function-of-serial-position">
+<h4><strong>Plot 3: Overall Probability of Recall as a Function of Serial Position</strong><a class="headerlink" href="#plot-3-overall-probability-of-recall-as-a-function-of-serial-position" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>X-axis:</strong> Serial position in the presented list.</p></li>
+<li><p><strong>Y-axis:</strong> Probability of recall at <strong>any output position</strong>.</p></li>
+<li><p>Overlay <strong>model predictions</strong> on observed data.</p></li>
+</ul>
+<p>Each plot should include:</p>
+<ul class="simple">
+<li><p><strong>Observed human recall data</strong> (solid line).</p></li>
+<li><p><strong>Model predictions</strong> (dashed line).</p></li>
+<li><p><strong>Error bars</strong> (95% confidence intervals).</p></li>
+</ul>
+</section>
+</section>
+<section id="step-6-evaluate-the-model">
+<h3><strong>Step 6: Evaluate the Model</strong><a class="headerlink" href="#step-6-evaluate-the-model" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Write a <strong>brief discussion</strong> (3-5 sentences) addressing:</p>
+<ul>
+<li><p><strong>Does the model explain the data well?</strong></p></li>
+<li><p><strong>Which patterns are well captured?</strong></p></li>
+<li><p><strong>Where does the model fail, and why?</strong></p></li>
+<li><p><strong>Potential improvements or limitations of SAM.</strong></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="grading-criteria">
+<h2>Grading Criteria<a class="headerlink" href="#grading-criteria" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Model Implementation (50%)</strong>:</p>
+<ul>
+<li><p>Correct encoding, retrieval, and stopping rule logic.</p></li>
+<li><p>Accurate probability calculations.</p></li>
+<li><p>Clear and well-documented code.</p></li>
+</ul>
+</li>
+<li><p><strong>Plot Accuracy (45%)</strong>:</p>
+<ul>
+<li><p><strong>15%</strong> for each of the three required plots.</p></li>
+<li><p>Must correctly overlay observed data and model predictions.</p></li>
+</ul>
+</li>
+<li><p><strong>Interpretation and Discussion (5%)</strong>:</p>
+<ul>
+<li><p>Thoughtful analysis of model fit.</p></li>
+<li><p>Identifies strengths and weaknesses of SAM.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="submission-instructions">
+<h2>Submission Instructions<a class="headerlink" href="#submission-instructions" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Submit a <strong>Google Colaboratory notebook</strong> (or similar) that includes:</p>
+<ul>
+<li><p>Your <strong>full implementation</strong> of the SAM model.</p></li>
+<li><p><strong>Markdown cells</strong> explaining your code, methodology, and results.</p></li>
+<li><p><strong>All required plots</strong> comparing model predictions to observed data.</p></li>
+<li><p><strong>A short written interpretation</strong> of model performance.</p></li>
+</ul>
+</li>
+</ul>
+<p>Good luck, and happy modeling!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./assignments/Assignment_2:Search_of_Associative_Memory_Model"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Assignment_1%3AHopfield_Networks/README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Assignment 1: Hopfield Networks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Assignment 3: Context Maintenance and Retrieval (CMR)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-and-preprocessing">Data Format and Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-description">Model Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-stage-memory-storage">1. <strong>Encoding Stage: Memory Storage</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-rules"><strong>Encoding Rules</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-stage-memory-search">2. <strong>Retrieval Stage: Memory Search</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-probability"><strong>Retrieval Probability</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#search-dynamics"><strong>Search Dynamics</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model">3. <strong>Fitting the Model</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-tasks">Implementation Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-implement-memory-encoding"><strong>Step 1: Implement Memory Encoding</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-implement-retrieval-process"><strong>Step 2: Implement Retrieval Process</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-load-and-process-data"><strong>Step 3: Load and Process Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-fit-model-parameters"><strong>Step 4: Fit Model Parameters</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-key-plots"><strong>Step 5: Generate Key Plots</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-1-probability-of-first-recall-as-a-function-of-serial-position"><strong>Plot 1: Probability of First Recall as a Function of Serial Position</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-2-conditional-recall-probability-as-a-function-of-lag"><strong>Plot 2: Conditional Recall Probability as a Function of Lag</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-3-overall-probability-of-recall-as-a-function-of-serial-position"><strong>Plot 3: Overall Probability of Recall as a Function of Serial Position</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-evaluate-the-model"><strong>Step 6: Evaluate the Model</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-criteria">Grading Criteria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission Instructions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremy Manning
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025 -.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

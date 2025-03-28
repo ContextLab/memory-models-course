@@ -1,0 +1,678 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Course Description &#8212; Computational memory Models</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'admin/syllabus';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Course topics" href="../slides/README.html" />
+    <link rel="prev" title="Student instructions" href="../instructions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/ContextLab/memory-models-course/main/admin/readme_robot.png" class="logo__image only-light" alt="Computational memory Models - Home"/>
+    <script>document.write(`<img src="https://raw.githubusercontent.com/ContextLab/memory-models-course/main/admin/readme_robot.png" class="logo__image only-dark" alt="Computational memory Models - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Models of Memory
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../instructions.html">Student instructions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Course Description</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../slides/README.html">Course topics</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../assignments/README.html">Assignments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/Assignment_1%3AHopfield_Networks/README.html">Assignment 1: Hopfield Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/README.html">Assignment 2: Search of Associative Memory (SAM) Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/Assignment_4%3A_Laplace_Temporal_Context_Model/README.html">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/Final_Project/README.html">Final Project: Open-Ended Exploration of Memory Models</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ContextLab/memory-models-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ContextLab/memory-models-course/issues/new?title=Issue%20on%20page%20%2Fadmin/syllabus.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/admin/syllabus.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Course Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Course Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-goals">Course Goals</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-requisites">Pre-Requisites</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-materials">Course Materials</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#format-and-overview">Format and Overview</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#platforms-and-tools">Platforms and Tools</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">Grading</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#late-policy">Late Policy</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-honor-principle">Academic Honor Principle</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-generative-ai">Use of Generative AI</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scheduling-conflicts">Scheduling Conflicts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#student-needs">Student Needs</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Field</strong></p></th>
+<th class="head"><p><strong>Details</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Meeting times</strong></p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Classroom</strong></p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Instructor</strong></p></td>
+<td><p>Dr. Jeremy R. Manning</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Email</strong></p></td>
+<td><p><a class="reference external" href="mailto:jeremy&#37;&#52;&#48;dartmouth&#46;edu">jeremy<span>&#64;</span>dartmouth<span>&#46;</span>edu</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Office location</strong></p></td>
+<td><p>349 Moore Hall</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Office hours</strong></p></td>
+<td><p>By appointment</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="course-description">
+<h1>Course Description<a class="headerlink" href="#course-description" title="Link to this heading">#</a></h1>
+<p>Knowing how our brains organize and spontaneously retrieve memories is at the heart of understanding the basis of the ongoing internal dialog of our conscious thoughts.  Put simply, our memories make us <em>who we are</em>.  In this course, we will use readings, discussions, and hands-on demonstrations to explore historical approaches, current approaches, and hints about the “next generation” of computational (mathematical) models of learning and memory.</p>
+</section>
+<section id="course-goals">
+<h1>Course Goals<a class="headerlink" href="#course-goals" title="Link to this heading">#</a></h1>
+<p>This course is intended to train students to:</p>
+<ul class="simple">
+<li><p>Explore a variety of approaches to building memory models, including neural network models, cognitive process models, and biologically inspired models.  Students will implement and train these models, largely from scratch, to gain a deep understanding of how they work.</p></li>
+<li><p>Understand different classic and modern approaches to characterizing memory (with a focus on human memory).  Students will read primary sources and explore real and synthetic datasets.</p></li>
+<li><p>Critically evaluate computational models, construct appropriate tests, and choose appropriate datasets for testing</p></li>
+</ul>
+</section>
+<section id="pre-requisites">
+<h1>Pre-Requisites<a class="headerlink" href="#pre-requisites" title="Link to this heading">#</a></h1>
+<p>Students <em>must</em> have prior experience with Python programming in order to do well in this course.  Prior coursework on statistics or probability is also highly recommended.  Additional prior coursework and/or experience with linguistics, linear algebra, statistics, machine learning, artificial intelligence, data science, philosophy of mind, and/or cognitive models will all be useful, but are not required.</p>
+</section>
+<section id="course-materials">
+<h1>Course Materials<a class="headerlink" href="#course-materials" title="Link to this heading">#</a></h1>
+<p><strong>We will use a variety of <em>freely available</em> online materials and research papers, which will be provided throughout the course.</strong> You will also need an internet-enabled computer or tablet capable of displaying and outputting graphics and running a standard web browser (e.g., Chrome or Firefox).</p>
+</section>
+<section id="format-and-overview">
+<h1>Format and Overview<a class="headerlink" href="#format-and-overview" title="Link to this heading">#</a></h1>
+<p>This course follows an <strong>experiential learning</strong> model. Students will engage with lecture materials through hands-on programming exercises, experiments with models and tools, and group discussions. Problem sets will deepen your understanding of the course material, and small projects will allow you to apply concepts to real-world research problems in the relevant domains.</p>
+<p>Classes will include:</p>
+<ul class="simple">
+<li><p><strong>Discussions</strong>: Discussions on foundational topics, understanding and implementing models, experiments, and datasets.  Class discussions will be recorded, transcribed, anonymized, summarized, and shared with the group.  (Note: if you want to bring something up in class that you do not want included in the summary, please let me know either in the moment so that I can pause the recording, or after class so that I can manually scrub it from the final summary.)</p></li>
+<li><p><strong>Hands-on Labs</strong>: Experimenting with data, designing simple models, and conducting research using these models.  All demos will run in Google Colaboratory notebooks.</p></li>
+<li><p><strong>Problem Sets and Projects</strong>: Bi-weekly problem sets to apply what you’ve learned.  These will typically take the form of small-scale “research” projects where you implement a computational memory model and analyze its behavior using real or synthetic data.</p></li>
+</ul>
+</section>
+<section id="platforms-and-tools">
+<h1>Platforms and Tools<a class="headerlink" href="#platforms-and-tools" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://colab.research.google.com/"><strong>Google Colaboratory</strong></a>: For developing and running Python code.  You may use other programming languages if you prefer, but all in-class coding will be done in Python using Colaboratory.</p></li>
+<li><p><a class="reference external" href="https://github.com/"><strong>GitHub</strong></a>: Used for managing and sharing code, data, and project work.</p></li>
+<li><p><a class="reference external" href="https://discord.gg/R6kM9bjpFj"><strong>Discord</strong></a>: To facilitate discussions outside of class, share ideas, and collaborate on projects.</p></li>
+</ul>
+</section>
+<section id="grading">
+<h1>Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h1>
+<p>Grades will be based on the following components:</p>
+<ul class="simple">
+<li><p><strong>Problem Sets</strong> (60%): A total of 4 problem sets designed to reinforce key concepts (each is worth 15% of the final course grade).</p></li>
+<li><p><strong>Final Project</strong> (40%): You will carry out a larger scale (relative to the problem sets) “research” project on a topic of your choosing.  This will include:</p>
+<ul>
+<li><p>Python code, organized as a Colaboratory notebook.  (Or equivalent if you use another language.)</p></li>
+<li><p>A “presentation” to the class, along with an in-class discussion of your project</p></li>
+<li><p>A brief (2–5 page) writeup of the main approach and key findings or takeaways</p></li>
+</ul>
+</li>
+</ul>
+<p>Students may work together on any of the assignments, unless otherwise noted in class or in the assignment instructions.  However, <strong>each student must submit their own problem set and indicate who they worked with</strong>.  Final projects will (typically) be completed in groups of 2–3 students, with the entire group turning in the same project (and receiving the same grade for it).</p>
+<p><em>Graduate Grading</em>: If you are a graduate student enrolled in the course, you will very likely receive a “P” (Pass), assuming you come to (and participate in) class (with rare exceptions for emergencies or planned absences) and complete all of the assignments.  In rare cases, and at the discretion of the instructor, you will earn an “HP” (High Pass) if your work (or participation) goes substantially “above and beyond” what is expected.  Conversely, you will earn a “LP” (Low Pass) or “NC” (No Credit) if you do not come to most classes and/or do not complete all of the assignments.  My approach to graduate grading is that the onus is on <strong>you</strong> as the student to decide how much you want to get out of the course.  If you put in a lot of effort and work hard, you will learn more.  If you seek specific feedback, I will provide it.  However, it is certainly possible to pass this course as a graduate student with only a modest effort.</p>
+<p><em>Undergraduate Grading</em>: If you are an undergraduate student enrolled in the course, my grading policy is to simply assign you a letter grade based on the numerical scores you receive on your assignments, weighted as described above.  The numbers in parentheses reflect percentages of the total number of possible points: A (93–100), A- (90–92), B+ (87–89), B (83–86), B- (80–82), C+ (77–79), C (73–76), C- (70–72), D (60–69), E (0–59).  All grades will be rounded to the nearest integer (e.g., a 92.5 average will result in a final grade of “A”, whereas a 92.4999 average will result in a final grade of “A-“).  Out of fairness to all students in the course, there will be no “negotiations” about grading– e.g., your grade will be determined solely by your numerical score.  Grading on individual assignments will be assigned as follows (for undergraduate students only):</p>
+<ul class="simple">
+<li><p>A: well above and beyond what is expected for the assignment, all components done correctly, well-organized code, clear documentation and explanations, easy-to-read figures, and so on.</p></li>
+<li><p>B: default grade, denoting “solid” work– demonstrates clear understanding of the material and meets all expectations for the assignment, with perhaps a few minor errors or other issues.</p></li>
+<li><p>C: mostly correct but with a few substantive conceptual or implementation errors.</p></li>
+<li><p>D: assignment contains major errors and/or missing components.</p></li>
+<li><p>E: either did not turn in the assignment, or did not complete any substantitive part of the assignment.</p></li>
+</ul>
+<p>Detailed feedback will not typically be provided on individual submissions, but you will have the opportunity to raise any issues or questions in class or during my office hours.</p>
+<section id="late-policy">
+<h2>Late Policy<a class="headerlink" href="#late-policy" title="Link to this heading">#</a></h2>
+<p>For graduate students, problem sets must be submitted prior to the end of the term.  To receive specific feedback on the assignment, you must submit it on time (otherwise I will simply mark it as “complete” or “incomplete”).</p>
+<p>For undergraduates, problem sets will receive a 10% deduction for each week late, rounded <strong>up</strong> to the nearest whole week (e.g., from a grading standpoint submitting an assignment 1 minute late is the same as submitting it 1 day late, is the same as submitting it 6 days late).</p>
+<p>For both graduate and undergraduate students, your final project <strong>must be submitted on time</strong> (by 11:59PM on the last day of class) in order to receive credit for it.  This will ensure that I have time to compile your grades before I need to send them to the registrar.</p>
+<p>I strongly encourage you to submit your assignments <em>before</em> the last possible moment to avoid grading penalties, unexpected circumstances (e.g., illness, emergencies, etc.).</p>
+</section>
+</section>
+<section id="academic-honor-principle">
+<h1>Academic Honor Principle<a class="headerlink" href="#academic-honor-principle" title="Link to this heading">#</a></h1>
+<p>Students are expected to adhere to Dartmouth’s Academic Honor Principle. You are encouraged to collaborate and discuss ideas with classmates, but all submitted work must be your own (aside from the final projects, which will be completed in small groups). If you’re unsure about what constitutes a violation, please ask for clarification.</p>
+</section>
+<section id="use-of-generative-ai">
+<h1>Use of Generative AI<a class="headerlink" href="#use-of-generative-ai" title="Link to this heading">#</a></h1>
+<p>The point of this course is for <strong>you</strong> to learn the material, not to show that you can prompt an LLM to complete your assignments on your behalf.  Therefore my strong <em>recommendation</em> (if you actually want to learn this stuff!) is to <strong>not</strong> use LLMs for your assignments.  However, I won’t police your work or even attempt to guess whether or not you secretly used Generative AI.  Therefore there are just two official “rules” about using Generative AI:</p>
+<ul class="simple">
+<li><p>Most importantly, <strong>you</strong> are responsible for the content of your assignments, whether written by you “from scratch” or with the help of an LLM (or similar).</p></li>
+<li><p>Second, you are bound by the Academic Honor Principle to acknowledge any use of AI in your work.  This can be done by either using a brief comment in your code, by explicitly citing the tools you use, or by adding a note to the relevant section(s) of your assignment.  Each situation is unique, but you need to make it clear exactly what work is your own vs. produced by AI.  You must also include a chat history (including any prompts you used) as an addendum to your assignment(s).</p></li>
+</ul>
+</section>
+<section id="scheduling-conflicts">
+<h1>Scheduling Conflicts<a class="headerlink" href="#scheduling-conflicts" title="Link to this heading">#</a></h1>
+<p>Attendance is expected for all classes unless previously arranged. A critical part of the course is the in-class discussions and demos, and those will only work if you are physically present in class.  If you anticipate any conflicts due to religious observances or other commitments, please inform the instructor by Week 2 to make appropriate arrangements.</p>
+</section>
+<section id="student-needs">
+<h1>Student Needs<a class="headerlink" href="#student-needs" title="Link to this heading">#</a></h1>
+<p>We strive to create an inclusive learning environment where all students feel supported and engaged. If you require any accommodations, please contact the Student Accessibility Services office, or discuss your needs with the instructor privately.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./admin"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../instructions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Student instructions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../slides/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Course topics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Course Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-goals">Course Goals</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-requisites">Pre-Requisites</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-materials">Course Materials</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#format-and-overview">Format and Overview</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#platforms-and-tools">Platforms and Tools</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">Grading</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#late-policy">Late Policy</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-honor-principle">Academic Honor Principle</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-generative-ai">Use of Generative AI</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scheduling-conflicts">Scheduling Conflicts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#student-needs">Student Needs</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremy Manning
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025 -.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
