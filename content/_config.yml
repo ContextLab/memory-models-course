@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Computational memory Models
-author: [Jeremy R. Manning](https://context-lab.com)
+author: Jeremy R. Manning
 copyright: 2025
 logo: https://raw.githubusercontent.com/ContextLab/memory-models-course/main/admin/readme_robot.png
 

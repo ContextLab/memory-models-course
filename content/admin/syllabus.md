@@ -1,7 +1,7 @@
 | **Field**           | **Details**                                                                 |
 |----------------------|-----------------------------------------------------------------------------|
 | **Meeting times**    | Thursdays from 2 -- 3:30, Fridays from 3 -- 4:30                                                                         |
-| **Classroom**        | TBD                                                                         |
+| **Classroom**        | Moore Library                                                                         |
 | **Instructor**       | Dr. Jeremy R. Manning                                                      |
 | **Email**            | [jeremy@dartmouth.edu](mailto:jeremy@dartmouth.edu)                        |
 | **Office location**  | 349 Moore Hall                                                             |
