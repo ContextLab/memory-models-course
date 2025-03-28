@@ -1,4 +1,6 @@
-# Course topics
+# Annotated Course Schedule and Outline
+
+Note: papers that report on models we will be implementing in the assignments are denoted by asterisks.
 
 ## Week 1: Introduction, Hopfield Networks
   - Discussions:
@@ -6,7 +8,7 @@
     - What does it mean to build a "model" of memory?
     - Are neural networks like biological brains?
   - Hebbian learning and Hopfield networks
-    - Reading: [Hopfield (1982)](https://www.pnas.org/doi/abs/10.1073/pnas.79.8.2554)
+    - Reading: [Hopfield (1982)](https://www.pnas.org/doi/abs/10.1073/pnas.79.8.2554)*
   - Discussion: Hopfield network simulations (storage capacity, cued recall, contextual drift)
   - **Assignment 1**: [Explore Hopfield Networks](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%201%3A%20Hopfield%20Networks)
 
@@ -16,7 +18,7 @@
     - free recall and memory search
     - naturalistic memory tasks
   - Readings:
-    - [Atkinson and Shiffrin (1968)](https://www.dropbox.com/scl/fi/rpllozjcv704okckjdy5k/AtkiShif68.pdf?rlkey=i0azhj9mqxws7bxocbl65j88d&dl=1)
+    - [Atkinson and Shiffrin (1968)](https://www.dropbox.com/scl/fi/rpllozjcv704okckjdy5k/AtkiShif68.pdf?rlkey=i0azhj9mqxws7bxocbl65j88d&dl=1)*
     - [Chen et al. (2016)](https://www.dropbox.com/scl/fi/wg6fledn7g88ig5mk3kob/ChenEtal16.pdf?rlkey=9jqu7y2apqv2hrj8qepn4alwa&dl=1)
     - [Heusser et al. (2021)](https://www.dropbox.com/scl/fi/w7z2yvdfzmhowh5hvg53e/HeusEtal21.pdf?rlkey=omad9klqeiu2kc71w7guc5xxq&dl=1)
   - Data science primer:
@@ -31,7 +33,7 @@
 - Discussion: the temporal scales of memory, event boundaries, and situation models
 - Readings:
   - [Howard and Kahana (2002)](https://www.dropbox.com/scl/fi/yjnusbmoixbf4aen1mkx8/HowaKaha02.pdf?rlkey=ktt245cw09szubjnoe4cco1tz&dl=1)
-  - [Polyn et al. (2009)](https://www.dropbox.com/scl/fi/98pui63j3o62xu96ciwhy/PolyEtal09.pdf?rlkey=42sc17ll573sm83g4q8q9x9nq&dl=1)
+  - [Polyn et al. (2009)](https://www.dropbox.com/scl/fi/98pui63j3o62xu96ciwhy/PolyEtal09.pdf?rlkey=42sc17ll573sm83g4q8q9x9nq&dl=1)*
   - [Baldassano et al. (2017)](https://www.dropbox.com/scl/fi/wgn96xni9fevoo6h1yngn/BaldEtal17.pdf?rlkey=wg9qugm1szfw50xao6k9047j6&dl=1)
   - [Honey et al. (2012)](https://www.dropbox.com/scl/fi/l3vzzc56jjhq9tc4cheev/HoneEtal12.pdf?rlkey=56wf835omj2i6gkdh0b8n38cx&dl=1)
   - [Manning et al. (2014)](https://www.dropbox.com/scl/fi/a1zltxk43dn8qmm7puaql/MannEtal14d.pdf?rlkey=wg2ikym1svvl68hbuw4f5cpax&dl=1)
@@ -46,7 +48,7 @@
 - Discussion: is TCM *really* multi-timescale?
 - Discussion: Introduction to the Laplace Transform (and its inverse) and its relevance to memory
 - Readings:
-  - [Shankar and Howard (2012)](https://www.dropbox.com/scl/fi/cqh37rsdn11f6egdiskvf/ShanHowa12.pdf?rlkey=45qhdi5u2fmlxd4azq8is3j89&dl=1)
+  - [Shankar and Howard (2012)](https://www.dropbox.com/scl/fi/cqh37rsdn11f6egdiskvf/ShanHowa12.pdf?rlkey=45qhdi5u2fmlxd4azq8is3j89&dl=1)*
   - [Manning (2024)](https://www.dropbox.com/scl/fi/9amk5mlgeop0srtpwqesg/Mann23.pdf?rlkey=lc785xhq1pcjqdtarn692e21k&dl=1)
 - **Assignment 4**: [Implement the Laplace Temporal Context Model](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%204%3Laplace%20Temporal%20Context%20Model)
 

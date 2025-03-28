@@ -1,3 +1,33 @@
 # Assignments
 
-Include general information about assignments here.
+Assignments are intended to strengthen your understanding of the material, and to develop your ability to implement, explore, and rigorously test computational models using primary sources and real datasets.
+
+## Recommended approach to all assignments
+
+1. Read the original paper.  In your first pass, skip over any sections that you find confusing or difficult to parse; your goal is to get a high-level understanding.  You can also use tools like [NotebookLM](https://notebooklm.google.com/) or [ChatGPT](https://chatgpt.com/) to help you summarize the material or present it in an easily digestible format.  If there are additional "background" papers, read those (for a high-level understanding) too.  Focus on the Abstract, Introduction, and Discussion sections.
+2. Read the primary paper again.  Focus on the Results section and identify the most important results.  Decide what it would mean to "replicate" the core findings in the paper.  Usually this means reproducing one or more of the figures.  Or sometimes it can mean generating new figures that evaluate, test, or examine the content in a new way.  Sometimes this could entail running one or more statistical tests.  Sketch out (in a notebook, or wherever you) what your target figures or analyses are.  In assignments for this course, the "core results" will generally be given to you in the assignment instructions.  But in the general case (i.e., in "real life") you'll need to figure this out yourself.
+3. Do a *third* pass through the paper.  This is the big one.  Read the the Results and Methods sections very carefully, sentence by sentence.  Highlight any sentence or phrase that is directly relevant to reproducing the paper's core findings.  These could include things like equations, diagrams (graphical models, flow charts), descriptions of implementation details, code or algorithms (snippets or pseudocode), key terms, and other stuff along those lines.  Make sure you understand *every single one of the things you highlighted*.  Use any resource at your disposal to gain a deep understanding:
+
+    - Ask an AI tool to help you get started.  Important caveat: LLMs are very likely to make up information that "seems right."  So you need to be very careful about relying too much on LLMs if you want to build up an *accurate* understanding.
+    - Do a web search to find other articles, blog posts, tutorials, videos, or other relevant resources.
+    - If the authors have shared their code and/or data, try running it yourself.  Go through the relevant parts of the code line-by-line to make sure you understand what it's doing.
+    - Ask another person for help (in this course, our [Discord workspace](https://discord.gg/R6kM9bjpFj) can be a good forum for asking questions!)
+    - Take plenty of notes to help you remember the important ideas later, and to help organize your thinking.
+
+4. Use the highlighted text and your notes to start a todo list.  List every single step you think will be needed to reproduce the paper's core findings.  I suggest that you start with larger tasks (e.g., write a Python function that implements Equation 3) and then, as you start to work on them, break them down into smaller sub-tasks as needed.  I like to organize my todo list digitally so that I can easily shift things around.  If you are using a GitHub repository to organize your code, [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects) can be a nice way of tracking and managing your task list.  Something simpler like a text file or Google Doc with a numbered list can also work well.  I also sometimes find it useful to write out my todo lists on a digital tablet (I use a [reMarkable](https://remarkable.com)), since I often "think better" when I write things out manually instead of typing them.
+
+As you're going through your task list, if your experience is like mine often are, you may realize that some detail isn't actually as clear as you had initially thought it was.  If so, you'll want to make sure you understand it before completing the relevant task.  It's important not to take shortcuts; implementing a model incorrectly doesn't help anyone!
+
+You may also find that there's some detail that is *missing* from the paper.  Unfortunately this is actually fairly common.  When I think some detail is missing, the steps I like to take are:
+  - Carefully re-read the relevant text to make sure I didn't just miss it in my previous readings.  Sometimes there's important detail hidden in footnotes, parenthetical statements, or even seemingly minor phrasing choices.
+  - Take a look at the paper's supplemental materials, if there are any.  That's another standard hiding place for low-level details.
+  - If the authors have shared their code, you may be able to piece together the missing information from that.
+  - If all else fails, try emailing the authors directly!  The corresponding author's email address is usually listed in the papers Author Information section.  Or if you know of other people working on the same model (ideally direct comparisons or follow-ups that would have required them to use a correct implementation), sometimes that will work.  Importantly:
+    - Organize your thoughts and ask all of your questions up front (it's fine to have follow-up questions, but it can be off-putting if you send a flurry of partially thought through emails in rapid succession).
+    - Keep your email as brief as possible.  If you absolutely must write out a detailed explanation, then also include an initial paragraph to orient the recipient (e.g., tell them that you have some questions about their paper, and say that details are included below).
+
+## Be kind to yourself (and your brain)!
+
+Implementing models from scratch, and piecing research together directly from primary sources, is hard!  It's helpful to give yourself plenty of time, maintain a positive attitude, ask for help when you need it, and just keep pushing it forward one tiny step at a time.  If you find yourself completely stuck, try doing some sort of mindless exercise (walks are great!), meditate, take a nap (or go to sleep), have a snack, or anything else that will give your mind a break.  Then, when you're feeling fresher, re-review your notes and see if you can push forward a tiny bit more.
+
+When I am *really* stuck, my other often-used trick is to explain (usually to my wife, or even just talking out loud to myself!) what is so confusion, or why I'm stuck.  The act of forcing yourself to talk through the nitty gritty details of how something "should" work vs. how it "does" work can sometimes be enough to uncover where the blocks are.

@@ -1,4 +1,4 @@
-# Student instructions
+# Getting started
 
 ## Overview
 We will use the following tools in this course:
