@@ -2,8 +2,8 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Computational memory Models
-author: Jeremy Manning
-copyright: 2025 -
+author: [Jeremy R. Manning](https://context-lab.com)
+copyright: 2025
 logo: https://raw.githubusercontent.com/ContextLab/memory-models-course/main/admin/readme_robot.png
 
 # Force re-execution of notebooks on each build.
@@ -27,7 +27,7 @@ sphinx:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/ContextLab/memory-models-course  # Online location of your book
-  path_to_book: ccm_course  # Optional path to your book, relative to the repository root
+  path_to_book: content  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
@@ -35,4 +35,3 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
-  
