@@ -21,7 +21,7 @@ chapters:
 - file: slides/themes/deep_networks
 - file: slides/themes/final_projects/README
   sections:
-  - file: slides/themes/placeholder.md
+  - file: slides/themes/final_projects/placeholder.md
 - file: assignments/README
   sections:
   - file: assignments/Assignment_1:Hopfield_Networks/README
