@@ -25,6 +25,7 @@ parts:
       sections:
       - file: slides/themes/final_projects/placeholder.md
   - caption: Assignments
+    chapters:
     - file: assignments/README
       sections:
       - file: assignments/Assignment_1:Hopfield_Networks/README
