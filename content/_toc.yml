@@ -6,8 +6,7 @@ chapters:
 - file: slides/README
   sections:
   - file: slides/themes/intro
-    sections: 
-    - file: slides/themes/hopfield_networks
+  - file: slides/themes/hopfield_networks
   - file: slides/themes/free_recall
     sections:
     - file: slides/themes/sam_model

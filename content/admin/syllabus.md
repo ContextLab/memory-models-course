@@ -1,4 +1,5 @@
-# PSYC 133: Models of Memory
+# Course Description
+Knowing how our brains organize and spontaneously retrieve memories is at the heart of understanding the basis of the ongoing internal dialog of our conscious thoughts.  Put simply, our memories make us _who we are_.  In this course, we will use readings, discussions, and hands-on demonstrations to explore historical approaches, current approaches, and hints about the "next generation" of computational (mathematical) models of learning and memory.
 
 |                      |                                                                            |
 |----------------------|----------------------------------------------------------------------------|
@@ -9,8 +10,7 @@
 | **Office location**  | 349 [Moore Hall](https://pbs.dartmouth.edu/department/department-psychological-and-brain-sciences)                                                        |
 | **Office hours**     | [By appointment](https://context-lab.youcanbook.me)                        |
 
-# Course Description
-Knowing how our brains organize and spontaneously retrieve memories is at the heart of understanding the basis of the ongoing internal dialog of our conscious thoughts.  Put simply, our memories make us _who we are_.  In this course, we will use readings, discussions, and hands-on demonstrations to explore historical approaches, current approaches, and hints about the "next generation" of computational (mathematical) models of learning and memory.
+
 
 
 ## Course Goals
