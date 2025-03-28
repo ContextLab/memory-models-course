@@ -1,31 +1,34 @@
 format: jb-book
 root: README
-chapters:
-- file: instructions
-- file: admin/syllabus
-- file: slides/outline
-- file: slides/themes/intro
-- file: slides/themes/hopfield_networks
-- file: slides/themes/free_recall
-  sections:
-  - file: slides/themes/sam_model
-  - file: slides/themes/data_science_primer
-- file: slides/themes/memory_timescales_i
-  sections:
-  - file: slides/themes/temporal_context_model
-- file: slides/themes/memory_timescales_ii
-  sections:
-  - file: slides/themes/laplace_transform
-  - file: slides/themes/laplace_tcm
-- file: slides/themes/biologically_inspired_networks
-- file: slides/themes/deep_networks
-- file: slides/themes/final_projects/README
-  sections:
-  - file: slides/themes/final_projects/placeholder.md
-- file: assignments/README
-  sections:
-  - file: assignments/Assignment_1:Hopfield_Networks/README
-  - file: assignments/Assignment_2:Search_of_Associative_Memory_Model/README
-  - file: assignments/Assignment_3:Context_Maintenance_and_Retrieval_Model/README
-  - file: assignments/Assignment_4:_Laplace_Temporal_Context_Model/README
-  - file: assignments/Final_Project/README
+parts:
+  - caption: Main Content
+    chapters:
+    - file: instructions
+    - file: admin/syllabus
+    - file: slides/outline
+    - file: slides/themes/intro
+    - file: slides/themes/hopfield_networks
+    - file: slides/themes/free_recall
+      sections:
+      - file: slides/themes/sam_model
+    - file: slides/themes/data_science_primer
+    - file: slides/themes/memory_timescales_i
+      sections:
+      - file: slides/themes/temporal_context_model
+    - file: slides/themes/memory_timescales_ii
+      sections:
+      - file: slides/themes/laplace_transform
+      - file: slides/themes/laplace_tcm
+    - file: slides/themes/biologically_inspired_networks
+    - file: slides/themes/deep_networks
+    - file: slides/themes/final_projects/README
+      sections:
+      - file: slides/themes/final_projects/placeholder.md
+  - caption: Assignments
+    - file: assignments/README
+      sections:
+      - file: assignments/Assignment_1:Hopfield_Networks/README
+      - file: assignments/Assignment_2:Search_of_Associative_Memory_Model/README
+      - file: assignments/Assignment_3:Context_Maintenance_and_Retrieval_Model/README
+      - file: assignments/Assignment_4:_Laplace_Temporal_Context_Model/README
+      - file: assignments/Final_Project/README
