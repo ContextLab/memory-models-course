@@ -36,7 +36,7 @@ In this assignment, you will explore computational memory models by implementing
   \xi^1 = [1, -1, 1, -1, 1]
   $$
   $$
-  \xi^2 = [-1, 1, -1, 1, -1]
+  \xi^2 = [1, 1, -1, 1, -1]
   $$
   
   - Store these memories using the Hebbian rule.
