@@ -1,4 +1,6 @@
-# Week 1: Introduction, Hopfield Networks
+# Course topics
+
+## Week 1: Introduction, Hopfield Networks
   - Discussions:
     - What is memory?
     - What does it mean to build a "model" of memory?
@@ -9,7 +11,7 @@
   - **Assignment 1**: [Explore Hopfield Networks](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%201%3A%20Hopfield%20Networks)
 
 
-# Weeks 2--3: Free recall, Short Term and Long Term Memory
+## Weeks 2--3: Free recall, Short Term and Long Term Memory
   - Discussions:
     - free recall and memory search
     - naturalistic memory tasks
@@ -25,7 +27,7 @@
   - **Assignment 2**: [Build the Search of Associative Memory Model](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%202%3A%20Search%20of%20Associative%20Memory%20Model)
 
 
-# Weeks 4--5: Temporal Context and Multi-Timescale Models
+## Weeks 4--5: Temporal Context and Multi-Timescale Models
 - Discussion: the temporal scales of memory, event boundaries, and situation models
 - Readings:
   - [Howard and Kahana (2002)](https://www.dropbox.com/scl/fi/yjnusbmoixbf4aen1mkx8/HowaKaha02.pdf?rlkey=ktt245cw09szubjnoe4cco1tz&dl=1)
@@ -40,7 +42,7 @@
   - [Brunec et al. (2018)](https://www.dropbox.com/scl/fi/1eu28rpwyp8eg2sn4fgau/BrunEtal18b.pdf?rlkey=64dnn3onc90o59fuv33peil6g&dl=1)
 - **Assignemnt 3**: [Build the Context Maintenance and Retrieval Model](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%203%3A%20Context%20Maintenance%20and%20Retrieval%20Model)
 
-# Week 6--7: Laplace Transforms
+## Week 6--7: Laplace Transforms
 - Discussion: is TCM *really* multi-timescale?
 - Discussion: Introduction to the Laplace Transform (and its inverse) and its relevance to memory
 - Readings:
@@ -48,7 +50,7 @@
   - [Manning (2024)](https://www.dropbox.com/scl/fi/9amk5mlgeop0srtpwqesg/Mann23.pdf?rlkey=lc785xhq1pcjqdtarn692e21k&dl=1)
 - **Assignment 4**: [Implement the Laplace Temporal Context Model](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%204%3Laplace%20Temporal%20Context%20Model)
 
-# Week 8: Biologically Inspired Network Models
+## Week 8: Biologically Inspired Network Models
 - Discussion: what does "biologically inspired" mean in practice?
 - Readings:
   - [McClelland et al. (1995)](https://imss-www.upmf-grenoble.fr/prevert/MasterICA/SpecialiteSC/FichiersPDF/Why%20there%20are%20complementary%20learning%20systems%20in%20the%20hippocampus%20and%20neocortex%20insights%20from%20th.pdf)
@@ -56,7 +58,7 @@
   - [O'Reilly and Norman (2002)](http://www.princeton.edu/~compmem/normorei02.pdf)
   - [Schapiro et al. (2017)](https://www.dropbox.com/scl/fi/no2647c2witr2knb76gs2/SchaEtal17.pdf?rlkey=bpon63fy8g2rl3y9csabq748o&dl=1)
 
-# Week 9: Recurrent networks, LSTM networks, Transformers
+## Week 9: Recurrent networks, LSTM networks, Transformers
 - Readings:
   - [Schuster and Paliwal (1997)](https://www.dropbox.com/scl/fi/0guahq2kcbria108xyb9j/SchuPali97.pdf?rlkey=yp1a8272qhljeob68amdpxjki&dl=1)
   - [Hochreiter and Schmidhuber (1997)](https://deeplearning.cs.cmu.edu/S23/document/readings/LSTM.pdf)
@@ -64,6 +66,6 @@
     - Tutorial video: [Let's build GPT: from scratch, in code, spelled out](https://www.youtube.com/watch?v=kCc8FmEb1nY)
 - **Assignment 5**: [Final Project](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Final%20Project)
 
-# Week 10: Final project presentations
+## Week 10: Final project presentations
 - Discussion: ad-hoc discussions and demos of final projects
 - **Final projects are due on the last day of class at 11:59PM Eastern Time**

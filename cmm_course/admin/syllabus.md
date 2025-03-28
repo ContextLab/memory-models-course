@@ -1,32 +1,11 @@
----
-title: "PSYC 133: Models of Memory"
-geometry: margin=1in
-header-includes:
-  - \usepackage{fontspec}
-  - \usepackage{booktabs}
-  - \setmainfont{Berkeley Mono} 
-output: pdf
----
-
-\setlength{\arrayrulewidth}{0.5mm}
-\vspace{-0.75in}
-\begin{center}
-\begin{tabular}{|p{1.25in}|p{2in}|}
-\hline
-\textbf{Meeting times}   & TBD                       \\
-\hline
-\textbf{Classroom}       & TBD                       \\
-\hline
-\textbf{Instructor}      & Dr. Jeremy R. Manning      \\
-\hline
-\textbf{Email}           & \href{mailto:jeremy@dartmouth.edu}{jeremy@dartmouth.edu} \\
-\hline
-\textbf{Office location} & 349 Moore Hall            \\
-\hline
-\textbf{Office hours}    & By appointment            \\
-\hline
-\end{tabular}
-\end{center}
+| **Field**           | **Details**                                                                 |
+|----------------------|-----------------------------------------------------------------------------|
+| **Meeting times**    | TBD                                                                         |
+| **Classroom**        | TBD                                                                         |
+| **Instructor**       | Dr. Jeremy R. Manning                                                      |
+| **Email**            | [jeremy@dartmouth.edu](mailto:jeremy@dartmouth.edu)                        |
+| **Office location**  | 349 Moore Hall                                                             |
+| **Office hours**     | By appointment                                                             |
 
 ## Course Description
 Knowing how our brains organize and spontaneously retrieve memories is at the heart of understanding the basis of the ongoing internal dialog of our conscious thoughts.  Put simply, our memories make us _who we are_.  In this course, we will use readings, discussions, and hands-on demonstrations to explore historical approaches, current approaches, and hints about the "next generation" of computational (mathematical) models of learning and memory.
