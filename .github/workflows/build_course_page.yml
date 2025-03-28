@@ -31,10 +31,10 @@ jobs:
     # Build the page
     - name: Build the course page
       run: |
-        jupyter-book build cmm_course/
+        jupyter-book build content/
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./cmm_course/_build/html
+        publish_dir: ./content/_build/html
