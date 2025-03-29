@@ -48,7 +48,11 @@ $$
 S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \right)
 $$
 
-Here, $S_i \in \{-1, +1\}$ is the current state of neuron $i$.
+Here, $S_i \in \{-1, +1\}$ is the current state of neuron $i$.  To "retrieve" a memory:
+  - Start by setting all of the neural activations to the **cue**.
+  - Loop through all neurons (in a random order), updating one at a time according to the above equation, given the weight matrix ($J$) and the current activities of each of the other neurons.
+  - Continue looping until either (a) you have "updated" every neuron in the latest loop, but no activities have changed, or (b) a maximum number of iterations is reached.
+  - Return the current state of the network as the retrieved memory.
 
 ---
 
