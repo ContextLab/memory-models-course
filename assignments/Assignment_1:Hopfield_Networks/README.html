@@ -469,10 +469,10 @@ document.write(`
 <p><strong>Objective:</strong> Write functions that implement the core operations of a Hopfield network.</p>
 <ul>
 <li><p><strong>Memory Storage:</strong> Implement the Hebbian learning rule to compute the weight matrix, given a set of network configurations (memories). This is described in <strong>Equation 1.5</strong> of the paper:</p>
-<p>Let ( p ) be the number of patterns, ( N ) the number of neurons, and ( \xi_i^\mu \in {-1, +1} ) the value of neuron ( i ) in pattern ( \mu ). The synaptic coupling between neurons ( i ) and ( j ) is:</p>
+<p>Let ( p ) be the number of patterns and ( \xi_i^\mu \in {-1, +1} ) the value of neuron ( i ) in pattern ( \mu ). The synaptic coupling between neurons ( i ) and ( j ) is:</p>
 <div class="math notranslate nohighlight">
 \[
-  J_{ij} = \frac{1}{N} \sum_{\mu=1}^p \xi_i^\mu \xi_j^\mu
+  J_{ij} = \sum_{\mu=1}^p \xi_i^\mu \xi_j^\mu
   \]</div>
 <p>Note that the matrix is symmetric ( J_{ij} = J_{ji} ), and there are no self-connections by definition ( J_{ii} = 0 ).</p>
 </li>

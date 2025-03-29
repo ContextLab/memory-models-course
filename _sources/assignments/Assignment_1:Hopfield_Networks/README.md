@@ -22,10 +22,10 @@ You should start by reading [Amit et al. (1985)](https://www.dropbox.com/scl/fi/
 
 - **Memory Storage:** Implement the Hebbian learning rule to compute the weight matrix, given a set of network configurations (memories). This is described in **Equation 1.5** of the paper:
 
-  Let \( p \) be the number of patterns, \( N \) the number of neurons, and \( \xi_i^\mu \in \{-1, +1\} \) the value of neuron \( i \) in pattern \( \mu \). The synaptic coupling between neurons \( i \) and \( j \) is:
+  Let \( p \) be the number of patterns and \( \xi_i^\mu \in \{-1, +1\} \) the value of neuron \( i \) in pattern \( \mu \). The synaptic coupling between neurons \( i \) and \( j \) is:
 
   $$
-  J_{ij} = \frac{1}{N} \sum_{\mu=1}^p \xi_i^\mu \xi_j^\mu
+  J_{ij} = \sum_{\mu=1}^p \xi_i^\mu \xi_j^\mu
   $$
 
   Note that the matrix is symmetric \( J_{ij} = J_{ji} \), and there are no self-connections by definition \( J_{ii} = 0 \).
