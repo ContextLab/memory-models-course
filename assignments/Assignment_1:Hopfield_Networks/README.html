@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Assignment 2: Search of Associative Memory (SAM) Model" href="../Assignment_2%3ASearch_of_Associative_Memory_Model/README.html" />
-    <link rel="prev" title="Assignments" href="../README.html" />
+    <link rel="prev" title="Overview" href="../README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,7 +211,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Assignments</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Overview</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Assignment 1: Hopfield Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Assignment_2%3ASearch_of_Associative_Memory_Model/README.html">Assignment 2: Search of Associative Memory (SAM) Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
@@ -417,13 +417,25 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-memory-storage-and-retrieval">1. Implement Memory Storage and Retrieval</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-with-a-small-network-5-of-grade">2. Test with a Small Network (5% of Grade)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-with-a-small-network">2. Test with a Small Network</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-storage-capacity">3. Evaluate Storage Capacity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-cued-recall">4. Simulate Cued Recall</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-contextual-drift">5. Simulate Contextual Drift</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-cued-recall">4. Simulate Cued Recall</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-ab-pair-structure">Setup: A–B Pair Structure</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-procedure">Simulation Procedure</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extensions">Optional Extensions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-criteria">Grading Criteria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-contextual-drift">5. Simulate Contextual Drift</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-itemcontext-representation">Setup: Item–Context Representation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Simulation Procedure</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Optional Extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission Instructions</a></li>
 </ul>
             </nav>
@@ -440,149 +452,265 @@ document.write(`
 <h1>Assignment 1: Hopfield Networks<a class="headerlink" href="#assignment-1-hopfield-networks" title="Link to this heading">#</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>In this assignment, you will explore computational memory models by implementing a Hopfield network. You will first read the primary research article (attached) and then code up the model in a Google Colaboratory notebook. Your implementation will allow you to study various aspects of memory storage and retrieval using a network of binary neurons.</p>
+<p>In this assignment, you will explore computational memory models by implementing a Hopfield network.</p>
+<p>In the original article (<a class="reference external" href="https://www.dropbox.com/scl/fi/iw9wtr3xjvrbqtk38obid/Hopf82.pdf?rlkey=x3my329oj9952er68sr28c7xc&amp;amp;dl=1">Hopfield, 1982</a>), neuronal activations were set to either 0 (“not firing”) or 1 (“firing”). Modern Hopfield networks nearly always follow an updated implementation, first proposed by <a class="reference external" href="https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&amp;amp;dl=1">Amit et al. (1985)</a>. In their framing, neurons take on activation values of either –1 (“down state”) or +1 (“up state”). This has three important benefits:</p>
+<ul class="simple">
+<li><p>It provides a cleaner way to implement the Hebbian learning rule (i.e., without subtracting means or shifting values).</p></li>
+<li><p>It avoids a bias toward 0 (i.e., +1 and –1 are equally “attractive,” whereas 0-valued neurons have a stronger “pull”).</p></li>
+<li><p>The energy function (which describes the attractor dynamics of the network) can be directly mapped onto the <a class="reference external" href="https://en.wikipedia.org/wiki/Ising_model">Ising model</a> from statistical physics.</p></li>
+</ul>
+<p>You should start by reading <a class="reference external" href="https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&amp;amp;dl=1">Amit et al. (1985)</a> closely. Then implement the model in a Google Colaboratory notebook. Unless otherwise noted, all references to “the paper” refer to Amit et al. (1985).</p>
 </section>
+<hr class="docutils" />
 <section id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Link to this heading">#</a></h2>
 <section id="implement-memory-storage-and-retrieval">
 <h3>1. Implement Memory Storage and Retrieval<a class="headerlink" href="#implement-memory-storage-and-retrieval" title="Link to this heading">#</a></h3>
+<p><strong>Objective:</strong> Write functions that implement the core operations of a Hopfield network.</p>
 <ul>
-<li><p><strong>Objective:</strong> Write functions that implement the core operations of a Hopfield network:</p>
-<ul>
-<li><p><strong>Memory Storage:</strong> Implement the Hebbian learning rule to compute the weight matrix (<span class="math notranslate nohighlight">\(W\)</span>). The weight matrix should be computed as:</p>
+<li><p><strong>Memory Storage:</strong> Implement the Hebbian learning rule to compute the weight matrix, given a set of network configurations (memories). This is described in <strong>Equation 1.5</strong> of the paper:</p>
+<p>Let ( p ) be the number of patterns, ( N ) the number of neurons, and ( \xi_i^\mu \in {-1, +1} ) the value of neuron ( i ) in pattern ( \mu ). The synaptic coupling between neurons ( i ) and ( j ) is:</p>
 <div class="math notranslate nohighlight">
 \[
-    W_{ij} = \frac{1}{N} \sum_{\mu=1}^{P} \xi_i^\mu \xi_j^\mu
-    \]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p>(<span class="math notranslate nohighlight">\(N\)</span>) is the number of neurons,</p></li>
-<li><p>($$) is the number of stored memories,</p></li>
-<li><p>(<span class="math notranslate nohighlight">\(\xi^\mu\)</span>) represents a stored binary memory pattern ((<span class="math notranslate nohighlight">\(\pm1\)</span>)),</p></li>
-<li><p>(<span class="math notranslate nohighlight">\(W_{ii} = 0\)</span>) (no self-connections).</p></li>
-</ul>
+  J_{ij} = \frac{1}{N} \sum_{\mu=1}^p \xi_i^\mu \xi_j^\mu
+  \]</div>
+<p>Note that the matrix is symmetric ( J_{ij} = J_{ji} ), and there are no self-connections by definition ( J_{ii} = 0 ).</p>
 </li>
-<li><p><strong>Memory Retrieval:</strong> Implement the asynchronous update rule:</p>
+<li><p><strong>Memory Retrieval:</strong> Implement the retrieval rule using <strong>Equation 1.3</strong> and surrounding discussion. At each time step, each neuron updates according to its <strong>local field</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
-    V_i^{t+1} = \text{sign} \left( \sum_{j} W_{ij} V_j^t \right)
-    \]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p>(<span class="math notranslate nohighlight">\(V^t\)</span>) is the current state of the network,</p></li>
-<li><p>The sign function ensures binary activation ((<span class="math notranslate nohighlight">\(\pm1\)</span>)).</p></li>
-</ul>
-</li>
-</ul>
+  h_i = \sum_{j=1}^N J_{ij} S_j
+  \]</div>
+<p>The neuron updates its state to align with the sign of the field:</p>
+<div class="math notranslate nohighlight">
+\[
+  S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \right)
+  \]</div>
+<p>Here ( S_i \in {-1, +1} ) is the current state of neuron ( i ).</p>
 </li>
 </ul>
 </section>
-<section id="test-with-a-small-network-5-of-grade">
-<h3>2. Test with a Small Network (5% of Grade)<a class="headerlink" href="#test-with-a-small-network-5-of-grade" title="Link to this heading">#</a></h3>
-<ul>
-<li><p><strong>Objective:</strong> Encode the following test memories in a small Hopfield network with ( N = 5 ) neurons:</p>
+<hr class="docutils" />
+<section id="test-with-a-small-network">
+<h3>2. Test with a Small Network<a class="headerlink" href="#test-with-a-small-network" title="Link to this heading">#</a></h3>
+<p>Encode the following test memories in a Hopfield network with ( N = 5 ) neurons:</p>
 <div class="math notranslate nohighlight">
-\[
-  \xi^1 = [1, -1, 1, -1, 1]
-  \]</div>
-<div class="math notranslate nohighlight">
-\[
-  \xi^2 = [1, 1, -1, 1, -1]
-  \]</div>
+\[\begin{split}
+\xi^1 = [+1, -1, +1, -1, +1] \\
+\xi^2 = [-1, +1, -1, +1, -1]
+\end{split}\]</div>
 <ul class="simple">
 <li><p>Store these memories using the Hebbian rule.</p></li>
-<li><p>Test memory retrieval by presenting the network with noisy versions of the stored patterns (e.g., flipping one bit).</p></li>
-<li><p>Discuss the results and provide insights into how the network behaves.</p></li>
+<li><p>Test retrieval by presenting the network with noisy versions (e.g., flipping a sign, or setting some entries to 0).</p></li>
+<li><p>Briefly discuss your observations. You can write a few sentences, sketch/code a figure, or combine both.</p></li>
 </ul>
-</li>
+<p>Questions to consider:</p>
+<ul class="simple">
+<li><p>Can you tell how and why the network stores memories?</p></li>
+<li><p>Why do some memories interfere while others don’t?</p></li>
+<li><p>Can you construct memory sets that do or don’t work in a small network?</p></li>
+<li><p>What factors do you think affect the <strong>capacity</strong> of the network?</p></li>
 </ul>
 </section>
+<hr class="docutils" />
 <section id="evaluate-storage-capacity">
 <h3>3. Evaluate Storage Capacity<a class="headerlink" href="#evaluate-storage-capacity" title="Link to this heading">#</a></h3>
+<p><strong>Objective:</strong> Determine how memory recovery degrades as you vary:</p>
 <ul class="simple">
-<li><p><strong>Objective:</strong> Determine how the ability to recover memories degrades as you vary:</p>
-<ul>
-<li><p><strong>Network Size:</strong> The total number of neurons in the network.</p></li>
-<li><p><strong>Number of Stored Memories:</strong> The number of patterns stored in the network.</p></li>
+<li><p><strong>Network Size</strong> (number of neurons)</p></li>
+<li><p><strong>Number of Stored Memories</strong></p></li>
 </ul>
-</li>
-<li><p><strong>Method:</strong></p>
-<ul>
-<li><p>For each configuration, run multiple trials to compute the proportion of times that at least 99% of a memory is accurately recovered.</p></li>
-<li><p><strong>Visualization:</strong> Create a heatmap where one axis represents the network size and the other represents the number of stored memories, with the color indicating the recovery accuracy.</p></li>
+<p>To generate ( m ) memories ( \xi_1, \dots, \xi_m ) for a network of size ( N ), use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p><strong>Method:</strong></p>
+<ul class="simple">
+<li><p>For each configuration, run multiple trials.</p></li>
+<li><p>For each trial, measure whether <strong>at least 99%</strong> of the memory is recovered.</p></li>
 </ul>
-</li>
+<p><strong>Visualization 1:</strong><br />
+Create a heatmap:</p>
+<ul class="simple">
+<li><p>( x )-axis: network size</p></li>
+<li><p>( y )-axis: number of stored memories</p></li>
+<li><p>Color: proportion of memories retrieved with ≥99% accuracy</p></li>
+</ul>
+<p><strong>Visualization 2:</strong><br />
+Plot the expected number of accurately retrieved memories vs. network size:</p>
+<p>Let:</p>
+<ul class="simple">
+<li><p>( P[m, N] \in [0, 1] ): proportion of ( m ) memories accurately retrieved in a network of size ( N )</p></li>
+<li><p>( \mathbb{E}[R_N] ): expected number of successfully retrieved memories</p></li>
+</ul>
+<p>Then:
+$<span class="math notranslate nohighlight">\(
+\mathbb{E}[R_N] = \sum_{m=1}^{M} m \cdot P[m, N]
+\)</span>$</p>
+<p>Where ( M ) is the maximum number of memories tested.</p>
+<p><strong>Follow-Up:</strong></p>
+<ul class="simple">
+<li><p>What relationship (if any) emerges between network size and capacity?</p></li>
+<li><p>Can you develop rules or intuitions that help predict a network’s capacity?</p></li>
 </ul>
 </section>
+<hr class="docutils" />
 <section id="simulate-cued-recall">
 <h3>4. Simulate Cued Recall<a class="headerlink" href="#simulate-cued-recall" title="Link to this heading">#</a></h3>
+<p><strong>Objective:</strong> Evaluate how the network performs associative recall when only a <strong>cue</strong> is presented.</p>
+<section id="setup-ab-pair-structure">
+<h4>Setup: A–B Pair Structure<a class="headerlink" href="#setup-ab-pair-structure" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p><strong>Objective:</strong> Explore how the network handles paired associations:</p>
+<li><p>Each memory consists of two parts:</p>
 <ul>
-<li><p><strong>Setup:</strong> Divide the neuron features into two halves, where the first half represents the “cue” (A) and the second half represents the “response” (B) in an A-B pair.</p></li>
-<li><p><strong>Task:</strong> For each trial, present the network with a cue and measure the proportion of times the corresponding response is recovered with at least 99% accuracy.</p></li>
-<li><p><strong>Visualization:</strong> Generate a heatmap that shows the accuracy of cued recall as a function of network size and the number of stored memories.</p></li>
+<li><p>First half: <strong>Cue</strong> (( A ))</p></li>
+<li><p>Second half: <strong>Response</strong> (( B ))</p></li>
 </ul>
 </li>
 </ul>
+<p>If ( N ) is odd:</p>
+<ul class="simple">
+<li><p>Let cue length = ( \lfloor N/2 \rfloor )</p></li>
+<li><p>Let response length = ( \lceil N/2 \rceil )</p></li>
+</ul>
+<p>Each full memory:
+$<span class="math notranslate nohighlight">\(
+\xi^\mu = \begin{bmatrix} A^\mu \\ B^\mu \end{bmatrix}
+\)</span>$</p>
 </section>
+<section id="simulation-procedure">
+<h4>Simulation Procedure<a class="headerlink" href="#simulation-procedure" title="Link to this heading">#</a></h4>
+<p>For each trial:</p>
+<ol class="arabic simple">
+<li><p><strong>Choose a memory</strong> ( \xi^\mu )</p></li>
+<li><p><strong>Construct initial state</strong> ( x ):</p>
+<ul class="simple">
+<li><p>Cue half: set to ( A^\mu )</p></li>
+<li><p>Response half: set to 0</p></li>
+</ul>
+</li>
+<li><p><strong>Evolve the network</strong> using the update rule:
+$<span class="math notranslate nohighlight">\(
+x_i \leftarrow \text{sign} \left( \sum_j J_{ij} x_j \right)
+\)</span>$</p>
+<ul class="simple">
+<li><p>Optionally: <strong>clamp</strong> the cue (i.e., hold cue values fixed)</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluate success</strong>:</p>
+<ul class="simple">
+<li><p>Compare recovered response to ( B^\mu )</p></li>
+<li><p>Mark as successful if ≥99% of bits match:
+$<span class="math notranslate nohighlight">\(
+\frac{1}{|B|} \sum_{i \in \text{response}} \mathbb{1}[x^*_i = B^\mu_i] \geq 0.99
+\)</span>$</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="analysis">
+<h4>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Repeat across many ( A )–( B ) pairs</p></li>
+<li><p>For each network size ( N ), compute the <strong>expected number</strong> of correctly retrieved responses</p></li>
+<li><p>Plot this value as a function of ( N )</p></li>
+</ul>
+</section>
+<section id="optional-extensions">
+<h4>Optional Extensions<a class="headerlink" href="#optional-extensions" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Compare performance with and without clamping the cue</p></li>
+<li><p>Try cueing with noisy or partial versions of ( A )</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
 <section id="simulate-contextual-drift">
 <h3>5. Simulate Contextual Drift<a class="headerlink" href="#simulate-contextual-drift" title="Link to this heading">#</a></h3>
+<p><strong>Objective:</strong> Investigate how gradual changes in <strong>context</strong> influence which memories are recalled.</p>
+<section id="setup-itemcontext-representation">
+<h4>Setup: Item–Context Representation<a class="headerlink" href="#setup-itemcontext-representation" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p><strong>Objective:</strong> Investigate how context perturbations affect memory retrieval:</p>
+<li><p>Use a Hopfield network with 100 neurons.</p></li>
+<li><p>Each memory:</p>
 <ul>
-<li><p><strong>Setup:</strong> Use a network with 100 neurons and encode a sequence of 10 memories. In this simulation:</p>
-<ul>
-<li><p>Half of the neuron features represent the item.</p></li>
-<li><p>The other half represent the “context” (initialized randomly, with a small proportion of features perturbed each time a new memory is stored).</p></li>
-</ul>
-</li>
-<li><p><strong>Task:</strong> When the network is cued with the context of memory <em>i</em>, determine the probability of retrieving any memory as a function of its position relative to <em>i</em>.</p></li>
-<li><p><strong>Visualization:</strong> Create a plot with 95% confidence interval error bars showing the retrieval probability versus the relative position in the sequence.</p></li>
+<li><p>First 50 neurons: <strong>Item</strong></p></li>
+<li><p>Last 50 neurons: <strong>Context</strong></p></li>
 </ul>
 </li>
 </ul>
-</section>
-</section>
-<section id="grading-criteria">
-<h2>Grading Criteria<a class="headerlink" href="#grading-criteria" title="Link to this heading">#</a></h2>
+<p>Create a <strong>sequence of 10 memories</strong>:
+$<span class="math notranslate nohighlight">\(
+\xi^t = \begin{bmatrix} \text{item}^t \\ \text{context}^t \end{bmatrix}
+\)</span>$</p>
+<p>Context drift:</p>
 <ul class="simple">
-<li><p><strong>Accuracy of Implementation (45%)</strong></p>
-<ul>
-<li><p>Correct implementation of the storage/retrieval functions and simulation tasks.</p></li>
+<li><p>Set ( \text{context}^1 ) randomly</p></li>
+<li><p>For each subsequent ( \text{context}^{t+1} ), copy ( \text{context}^t ) and flip ~5% of the bits</p></li>
+</ul>
+</section>
+<section id="id1">
+<h4>Simulation Procedure<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Store all 10 memories in the network.</p></li>
+<li><p>For each memory ( i = 1, \dots, 10 ):</p>
+<ul class="simple">
+<li><p>Cue the network with ( \text{context}^i )</p></li>
+<li><p>Set item neurons to 0</p></li>
+<li><p>Run until convergence</p></li>
+<li><p>For each stored memory ( j ), compare recovered item to ( \text{item}^j )</p></li>
+<li><p>If ≥99% of bits match, record ( j ) as retrieved</p></li>
+<li><p>Record ( \Delta = j - i ) (relative offset)</p></li>
 </ul>
 </li>
-<li><p><strong>Small Network Example (5%)</strong></p>
+</ol>
+</section>
+<section id="id2">
+<h4>Analysis<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Repeat the procedure (e.g., 100 trials)</p></li>
+<li><p>For each ( \Delta \in [-9, +9] ), compute:</p>
 <ul>
-<li><p>Accurate construction of the weight matrix and correct retrieval of stored memories.</p></li>
-</ul>
-</li>
-<li><p><strong>Code Quality (25%)</strong></p>
-<ul>
-<li><p>Clear, well-documented, and efficient code.</p></li>
-</ul>
-</li>
-<li><p><strong>Correctness of Results (25%)</strong></p>
-<ul>
-<li><p><strong>10% each:</strong> For the two heatmaps (storage capacity and cued recall).</p></li>
-<li><p><strong>5%:</strong> For the contextual drift simulation plot.</p></li>
+<li><p>Probability of retrieval</p></li>
+<li><p>95% confidence interval</p></li>
 </ul>
 </li>
 </ul>
 </section>
+<section id="visualization">
+<h4>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h4>
+<p>Create a line plot:</p>
+<ul class="simple">
+<li><p>( x )-axis: Relative position ( \Delta )</p></li>
+<li><p>( y )-axis: Retrieval probability</p></li>
+<li><p>Error bars: 95% confidence intervals</p></li>
+</ul>
+<p>Write a brief interpretation of the observed pattern.</p>
+</section>
+<section id="id3">
+<h4>Optional Extensions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Vary the drift rate and observe the effect</p></li>
+<li><p>Try random (non-gradual) context changes</p></li>
+<li><p>Explore links to recency effects or memory generalization</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
 <section id="submission-instructions">
 <h2>Submission Instructions<a class="headerlink" href="#submission-instructions" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Submit a single Google Colaboratory notebook that includes:</p>
+<li><p><a class="reference external" href="https://canvas.dartmouth.edu/courses/71051/assignments/517353">Submit</a> a single standalone Google Colaboratory notebook (or similar) that includes:</p>
 <ul>
-<li><p>Your full Python implementation.</p></li>
-<li><p>Markdown cells explaining your approach, methodology, and any design decisions.</p></li>
-<li><p>Plots and results for each simulation task.</p></li>
+<li><p>Your full model implementation</p></li>
+<li><p>Markdown cells explaining your methods, assumptions, and findings</p></li>
+<li><p>Plots and results for each section</p></li>
 </ul>
 </li>
-<li><p>Ensure that your notebook runs without errors in Google Colaboratory.</p></li>
+<li><p>Your notebook should run <strong>without errors</strong> in Google Colaboratory.</p></li>
 </ul>
-<p>Good luck, and be sure to thoroughly test your implementation!</p>
 </section>
 </section>
 
@@ -622,7 +750,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Assignments</p>
+        <p class="prev-next-title">Overview</p>
       </div>
     </a>
     <a class="right-next"
@@ -653,13 +781,25 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-memory-storage-and-retrieval">1. Implement Memory Storage and Retrieval</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-with-a-small-network-5-of-grade">2. Test with a Small Network (5% of Grade)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-with-a-small-network">2. Test with a Small Network</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-storage-capacity">3. Evaluate Storage Capacity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-cued-recall">4. Simulate Cued Recall</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-contextual-drift">5. Simulate Contextual Drift</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-cued-recall">4. Simulate Cued Recall</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-ab-pair-structure">Setup: A–B Pair Structure</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-procedure">Simulation Procedure</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extensions">Optional Extensions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-criteria">Grading Criteria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-contextual-drift">5. Simulate Contextual Drift</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-itemcontext-representation">Setup: Item–Context Representation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Simulation Procedure</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Optional Extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission Instructions</a></li>
 </ul>
   </nav></div>

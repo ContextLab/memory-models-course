@@ -1,4 +1,4 @@
-# Assignments
+# Overview
 
 Assignments are intended to strengthen your understanding of the material, and to develop your ability to implement, explore, and rigorously test computational models using primary sources and real datasets.
 

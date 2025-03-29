@@ -8,7 +8,11 @@ Note: papers that report on models we will be implementing in the assignments ar
     - What does it mean to build a "model" of memory?
     - Are neural networks like biological brains?
   - Hebbian learning and Hopfield networks
-    - Reading: [Hopfield (1982)](https://www.pnas.org/doi/abs/10.1073/pnas.79.8.2554)*
+    - Readings:
+      - [Hopfield (1982)](https://www.dropbox.com/scl/fi/iw9wtr3xjvrbqtk38obid/Hopf82.pdf?rlkey=x3my329oj9952er68sr28c7xc&dl=1)
+      - [Hopfield (1984)](https://www.dropbox.com/scl/fi/7wktieqztt60b8wyhg2au/Hopf84.pdf?rlkey=yi3baegby8x6olxznsvm8lyxz&dl=1)
+      - [Amit et al. (1985)](https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&dl=1)*
+
   - Discussion: Hopfield network simulations (storage capacity, cued recall, contextual drift)
   - **Assignment 1**: [Explore Hopfield Networks](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%201%3A%20Hopfield%20Networks)
 
