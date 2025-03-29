@@ -22,13 +22,13 @@ You should start by reading [Amit et al. (1985)](https://www.dropbox.com/scl/fi/
 
 - **Memory Storage:** Implement the Hebbian learning rule to compute the weight matrix, given a set of network configurations (memories). This is described in **Equation 1.5** of the paper:
 
-  Let \( p \) be the number of patterns and \( \xi_i^\mu \in \{-1, +1\} \) the value of neuron \( i \) in pattern \( \mu \). The synaptic coupling between neurons \( i \) and \( j \) is:
+  Let \$p\$ be the number of patterns and \$\xi_i^\mu \in \{-1, +1\}\$ the value of neuron \$i\$ in pattern \$\mu\$. The synaptic coupling between neurons \$i\$ and \$j\$ is:
 
   $$
   J_{ij} = \sum_{\mu=1}^p \xi_i^\mu \xi_j^\mu
   $$
 
-  Note that the matrix is symmetric \( J_{ij} = J_{ji} \), and there are no self-connections by definition \( J_{ii} = 0 \).
+  Note that the matrix is symmetric (\$J_{ij} = J_{ji}\$), and there are no self-connections by definition (\$J_{ii} = 0\$).
 
 - **Memory Retrieval:** Implement the retrieval rule using **Equation 1.3** and surrounding discussion. At each time step, each neuron updates according to its **local field**:
 
@@ -42,13 +42,13 @@ You should start by reading [Amit et al. (1985)](https://www.dropbox.com/scl/fi/
   S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \right)
   $$
 
-  Here \( S_i \in \{-1, +1\} \) is the current state of neuron \( i \).
+  Here \$S_i \in \{-1, +1\}\$ is the current state of neuron \$i\$.
 
 ---
 
 ### 2. Test with a Small Network
 
-Encode the following test memories in a Hopfield network with \( N = 5 \) neurons:
+Encode the following test memories in a Hopfield network with \$N = 5\$ neurons:
 
 $$
 \xi^1 = [+1, -1, +1, -1, +1] \\
@@ -75,7 +75,7 @@ Questions to consider:
 - **Network Size** (number of neurons)
 - **Number of Stored Memories**
 
-To generate \( m \) memories \( \xi_1, \dots, \xi_m \) for a network of size \( N \), use:
+To generate \$m\$ memories \$\xi_1, \dots, \xi_m\$ for a network of size \$N\$, use:
 
 ```python
 import numpy as np
@@ -89,28 +89,28 @@ xi = 2 * (np.random.rand(m, N) > 0.5) - 1
   
 **Visualization 1:**  
 Create a heatmap:
-- \( x \)-axis: network size
-- \( y \)-axis: number of stored memories
+- \$x\$-axis: network size  
+- \$y\$-axis: number of stored memories  
 - Color: proportion of memories retrieved with ≥99% accuracy
 
 **Visualization 2:**  
 Plot the expected number of accurately retrieved memories vs. network size:
 
 Let:
-- \( P[m, N] \in [0, 1] \): proportion of \( m \) memories accurately retrieved in a network of size \( N \)
-- \( \mathbb{E}[R_N] \): expected number of successfully retrieved memories
+- \$P[m, N] \in [0, 1]\$: proportion of \$m\$ memories accurately retrieved in a network of size \$N\$
+- \$\mathbb{E}[R_N]\$: expected number of successfully retrieved memories
 
 Then:
 $$
 \mathbb{E}[R_N] = \sum_{m=1}^{M} m \cdot P[m, N]
 $$
 
-Where \( M \) is the maximum number of memories tested.
+Where \$M\$ is the maximum number of memories tested.
 
 **Follow-Up:**
 
 - What relationship (if any) emerges between network size and capacity?
-- Can you develop rules or intuitions that help predict a network's capacity?
+- Can you develop rules or intuitions that help predict a network’s capacity?
 
 ---
 
@@ -121,12 +121,12 @@ Where \( M \) is the maximum number of memories tested.
 #### Setup: A–B Pair Structure
 
 - Each memory consists of two parts:
-  - First half: **Cue** (\( A \))
-  - Second half: **Response** (\( B \))
+  - First half: **Cue** (\$A\$)
+  - Second half: **Response** (\$B\$)
 
-If \( N \) is odd:
-- Let cue length = \( \lfloor N/2 \rfloor \)
-- Let response length = \( \lceil N/2 \rceil \)
+If \$N\$ is odd:
+- Let cue length = \$\lfloor N/2 \rfloor\$
+- Let response length = \$\lceil N/2 \rceil\$
 
 Each full memory:
 $$
@@ -137,9 +137,9 @@ $$
 
 For each trial:
 
-1. **Choose a memory** \( \xi^\mu \)
-2. **Construct initial state** \( x \):
-   - Cue half: set to \( A^\mu \)
+1. **Choose a memory** \$\xi^\mu\$
+2. **Construct initial state** \$x\$:
+   - Cue half: set to \$A^\mu\$
    - Response half: set to 0
 3. **Evolve the network** using the update rule:
    $$
@@ -147,7 +147,7 @@ For each trial:
    $$
    - Optionally: **clamp** the cue (i.e., hold cue values fixed)
 4. **Evaluate success**:
-   - Compare recovered response to \( B^\mu \)
+   - Compare recovered response to \$B^\mu\$
    - Mark as successful if ≥99% of bits match:
      $$
      \frac{1}{|B|} \sum_{i \in \text{response}} \mathbb{1}[x^*_i = B^\mu_i] \geq 0.99
@@ -155,14 +155,14 @@ For each trial:
 
 #### Analysis
 
-- Repeat across many \( A \)–\( B \) pairs
-- For each network size \( N \), compute the **expected number** of correctly retrieved responses
-- Plot this value as a function of \( N \)
+- Repeat across many \$A\$–\$B\$ pairs
+- For each network size \$N\$, compute the **expected number** of correctly retrieved responses
+- Plot this value as a function of \$N\$
 
 #### Optional Extensions
 
 - Compare performance with and without clamping the cue
-- Try cueing with noisy or partial versions of \( A \)
+- Try cueing with noisy or partial versions of \$A\$
 
 ---
 
@@ -184,24 +184,24 @@ $$
 
 Context drift:
 
-- Set \( \text{context}^1 \) randomly
-- For each subsequent \( \text{context}^{t+1} \), copy \( \text{context}^t \) and flip ~5% of the bits
+- Set \$\text{context}^1\$ randomly
+- For each subsequent \$\text{context}^{t+1}\$, copy \$\text{context}^t\$ and flip ~5% of the bits
 
 #### Simulation Procedure
 
 1. Store all 10 memories in the network.
-2. For each memory \( i = 1, \dots, 10 \):
-   - Cue the network with \( \text{context}^i \)
+2. For each memory \$i = 1, \dots, 10\$:
+   - Cue the network with \$\text{context}^i\$
    - Set item neurons to 0
    - Run until convergence
-   - For each stored memory \( j \), compare recovered item to \( \text{item}^j \)
-   - If ≥99% of bits match, record \( j \) as retrieved
-   - Record \( \Delta = j - i \) (relative offset)
+   - For each stored memory \$j\$, compare recovered item to \$\text{item}^j\$
+   - If ≥99% of bits match, record \$j\$ as retrieved
+   - Record \$\Delta = j - i\$ (relative offset)
 
 #### Analysis
 
 - Repeat the procedure (e.g., 100 trials)
-- For each \( \Delta \in [-9, +9] \), compute:
+- For each \$\Delta \in [-9, +9]\$, compute:
   - Probability of retrieval
   - 95% confidence interval
 
@@ -209,8 +209,8 @@ Context drift:
 
 Create a line plot:
 
-- \( x \)-axis: Relative position \( \Delta \)
-- \( y \)-axis: Retrieval probability
+- \$x\$-axis: Relative position \$\Delta\$
+- \$y\$-axis: Retrieval probability
 - Error bars: 95% confidence intervals
 
 Write a brief interpretation of the observed pattern.
