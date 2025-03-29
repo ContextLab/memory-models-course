@@ -54,6 +54,8 @@ Here, $S_i \in \{-1, +1\}$ is the current state of neuron $i$.  To "retrieve" a 
   - Continue looping until either (a) you have "updated" every neuron in the latest loop, but no activities have changed, or (b) a maximum number of iterations is reached.
   - Return the current state of the network as the retrieved memory.
 
+Optional: instead of always following the update rule, add "noise" to the network by (in a very small proportion of updates) randomly flipping the neuron's activity.  This can sometimes improve a network's performance by "kicking" the network out of local minima!  It can be instructive to explore a network's performance with vs. without noise, and/or as a function of how much noise is being added.
+
 ---
 
 ### 2. Test with a Small Network
