@@ -1,107 +1,134 @@
 # Assignment 1: Hopfield Networks
 
 ## Overview
-In this assignment, you will explore computational memory models by implementing a Hopfield network. In the original article ([Hopfield (1982)](https://www.dropbox.com/scl/fi/iw9wtr3xjvrbqtk38obid/Hopf82.pdf?rlkey=x3my329oj9952er68sr28c7xc&dl=1)), neuronal activations were set to either 0 ("not firing") or 1 ("firing").  Modern Hopfield networks nearly always follow an updated implementation, first proposed by [Amit et al. (1985)](https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&dl=1).  In Amit et al.'s framing, neurons take on activation values of either -1 ("down state") or +1 ("up state").  This has three important benefits over Hopfield's original implementation:
-  - It provides a cleaner way to implement the Hebbian learning rule (i.e., without subtracting means or shifting values).
-  - It avoids a bias towards 0 (i.e., +1 and -1 are equally "attractive" whereas 0-valued neurons have a stronger "pull").
-  - The energy function (i.e., a description of the attractor dynamics of the network) can be directly mapped onto the [Ising model](https://en.wikipedia.org/wiki/Ising_model) from statistical physics.
 
-You should start by reading [Amit et al. (1985)](https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&dl=1) closely.  Then you should code up the model in a Google Colaboratory notebook.  Unless otherwise noted, all references to "the paper" refer to Amit et al. (1985).
+In this assignment, you will explore computational memory models by implementing a Hopfield network.
+
+In the original article ([Hopfield, 1982](https://www.dropbox.com/scl/fi/iw9wtr3xjvrbqtk38obid/Hopf82.pdf?rlkey=x3my329oj9952er68sr28c7xc&dl=1)), neuronal activations were set to either 0 ("not firing") or 1 ("firing"). Modern Hopfield networks nearly always follow an updated implementation, first proposed by [Amit et al. (1985)](https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&dl=1). In their framing, neurons take on activation values of either –1 ("down state") or +1 ("up state"). This has three important benefits:
+
+- It provides a cleaner way to implement the Hebbian learning rule (i.e., without subtracting means or shifting values).
+- It avoids a bias toward 0 (i.e., +1 and –1 are equally "attractive," whereas 0-valued neurons have a stronger "pull").
+- The energy function (which describes the attractor dynamics of the network) can be directly mapped onto the [Ising model](https://en.wikipedia.org/wiki/Ising_model) from statistical physics.
+
+You should start by reading [Amit et al. (1985)](https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&dl=1) closely. Then implement the model in a Google Colaboratory notebook. Unless otherwise noted, all references to "the paper" refer to Amit et al. (1985).
+
+---
 
 ## Tasks
 
 ### 1. Implement Memory Storage and Retrieval
-- **Objective:** Write functions that implement the core operations of a Hopfield network:
-  - **Memory Storage:** Implement the Hebbian learning rule to compute the weight matrix, given a set of network configurations (memories).  This is described in **Equation 1.5** of the paper:
 
-  Let \($p$\) be the number of patterns, \($N$\) the number of neurons, and \($\xi_i^\mu \in \{-1, +1\}$\) the value of neuron \($i$\) in pattern \($\mu$\).
+**Objective:** Write functions that implement the core operations of a Hopfield network.
 
-  The synaptic coupling between neuron \($i$\) and \($j$\) is:
-  
+- **Memory Storage:** Implement the Hebbian learning rule to compute the weight matrix, given a set of network configurations (memories). This is described in **Equation 1.5** of the paper:
+
+  Let \( p \) be the number of patterns, \( N \) the number of neurons, and \( \xi_i^\mu \in \{-1, +1\} \) the value of neuron \( i \) in pattern \( \mu \). The synaptic coupling between neurons \( i \) and \( j \) is:
+
   $$
-  J_{ij} = \frac{1}{N} \sum_{\mu=1}^p \xi_i^\mu \xi_j^\mu.
+  J_{ij} = \frac{1}{N} \sum_{\mu=1}^p \xi_i^\mu \xi_j^\mu
   $$
 
-  Note that the matrix is symmetric \($J_{ij} = J_{ji}$\), and there are no self-connections allowed (by definition $J_{ii} = 0$).
+  Note that the matrix is symmetric \( J_{ij} = J_{ji} \), and there are no self-connections by definition \( J_{ii} = 0 \).
 
-  - **Memory Retrieval:** Implement the retrieval rule using **Equation (1.3)** and surrounding discussion.
+- **Memory Retrieval:** Implement the retrieval rule using **Equation 1.3** and surrounding discussion. At each time step, each neuron updates according to its **local field**:
 
-    At each time step, each neuron updates according to its **local field** \($h_i$\):
+  $$
+  h_i = \sum_{j=1}^N J_{ij} S_j
+  $$
 
-    $$
-    h_i = \sum_{j=1}^N J_{ij} S_j
-    $$
+  The neuron updates its state to align with the sign of the field:
 
-    The neuron updates its state to align with the sign of the field:
+  $$
+  S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \right)
+  $$
 
-    $$
-    S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \right)
-    $$
+  Here \( S_i \in \{-1, +1\} \) is the current state of neuron \( i \).
 
-    Note that \($S_i \in \{-1, +1\}$\) represents the state of neuron \($i$\).
+---
 
 ### 2. Test with a Small Network
 
-Encode the following test memories in a small Hopfield network with \( N = 5 \) neurons:
-  
-  $$
-  \xi^1 = [+1, -1, +1, -1, 1]
-  $$
-  $$
-  \xi^2 = [-1, +1, -1, +1, -1]
-  $$
-  
-  - Store these memories using the Hebbian rule.
-  - Test memory retrieval by presenting the network with noisy versions of the stored patterns (e.g., flipping one neuron's sign, setting one or more activation values to 0).
-  - Briefly discuss the results and provide insights into how the network behaves.  You might find Figure 3 from [Hopfield (1984)](https://www.dropbox.com/scl/fi/7wktieqztt60b8wyhg2au/Hopf84.pdf?rlkey=yi3baegby8x6olxznsvm8lyxz&dl=1) useful!  You can either write a paragraph or two, or sketch (or code up) a diagram or figure, or some combination.  In particular:
-    - Can you get a sense of how the network "works"-- i.e., why it stores memories?
-    - Why do some memories interfere and others don't?  Can you build up enough of an intuition that you can manually construct memories that can vs. can't be retrieved by a toy (small) network?
-    - Can you build up any intuitions about what sorts of factors might affect the "capacity" of the network?  (Capacity is the maximum number of memories that can be "successfully" retrieved).
+Encode the following test memories in a Hopfield network with \( N = 5 \) neurons:
+
+$$
+\xi^1 = [+1, -1, +1, -1, +1] \\
+\xi^2 = [-1, +1, -1, +1, -1]
+$$
+
+- Store these memories using the Hebbian rule.
+- Test retrieval by presenting the network with noisy versions (e.g., flipping a sign, or setting some entries to 0).
+- Briefly discuss your observations. You can write a few sentences, sketch/code a figure, or combine both.
+
+Questions to consider:
+
+- Can you tell how and why the network stores memories?
+- Why do some memories interfere while others don’t?
+- Can you construct memory sets that do or don’t work in a small network?
+- What factors do you think affect the **capacity** of the network?
+
+---
 
 ### 3. Evaluate Storage Capacity
-- **Objective:** Determine how the ability to recover memories degrades as you vary:
-  - **Network Size:** The total number of neurons in the network.
-  - **Number of Stored Memories:** The number of patterns stored in the network.
+
+**Objective:** Determine how memory recovery degrades as you vary:
+
+- **Network Size** (number of neurons)
+- **Number of Stored Memories**
+
+To generate \( m \) memories \( \xi_1, \dots, \xi_m \) for a network of size \( N \), use:
+
+```python
+import numpy as np
+xi = 2 * (np.random.rand(m, N) > 0.5) - 1
+```
+
+**Method:**
+
+- For each configuration, run multiple trials.
+- For each trial, measure whether **at least 99%** of the memory is recovered.
   
-  To generate $m$ memories \($\xi_1, ... \xi_m$\) for a network of $N$ neurons, you can use the following Python code; each row of the resulting matrix `xi` contains a single memory:
-  ```python
+**Visualization 1:**  
+Create a heatmap:
+- \( x \)-axis: network size
+- \( y \)-axis: number of stored memories
+- Color: proportion of memories retrieved with ≥99% accuracy
 
-  import numpy as np
-  xi = 2 * (np.random.rand(m, N) > 0.5) - 1
-  ```
+**Visualization 2:**  
+Plot the expected number of accurately retrieved memories vs. network size:
 
-- **Method:**
-  - For each configuration, run multiple trials to compute the proportion of times that at least 99% of a memory is accurately recovered.
-  - **Visualization 1:** Create a heatmap where the $x$-axis represents the network size, the $y$-axis represents the number of stored memories, and the color indicates the recovery accuracy.  Play around with this to decide on a range of network sizes and numbers of memories that adequately illustrates the system's behavior.
-  - **Visualization 2:** For each network size ($x$-axis), plot the expected number of memories that can be retrieved accurately ($y$-axis).  Let:
+Let:
+- \( P[m, N] \in [0, 1] \): proportion of \( m \) memories accurately retrieved in a network of size \( N \)
+- \( \mathbb{E}[R_N] \): expected number of successfully retrieved memories
 
-    - \($N$\): the number of neurons (network size)
-    - \($m$\): the number of stored memories
-    - \($P\left[m, N\right] \in \left[0, 1\right]$\): the empirically observed success rate (from your heatmap); i.e., the **proportion** of memories correctly retrieved with at least 99% accuracy, for a network of size \($N$\) and \($m$\) stored memories.
+Then:
+$$
+\mathbb{E}[R_N] = \sum_{m=1}^{M} m \cdot P[m, N]
+$$
 
-    Then the **expected number of successfully retrieved memories**, \($\mathbb{E}\left[R_N\right]$\), for each network size \($N$\) is given by:
+Where \( M \) is the maximum number of memories tested.
 
-    $$
-    \mathbb{E}\left[R_N\right] = \sum_{m=1}^{M} m \cdot P[m, N],
-    $$
-    where \($M$\) is the maximum number of stored memories you tested.
+**Follow-Up:**
 
-  - Is there any systematic relationship (between network size and capacity) that emerges?  Can you describe any intuitions and/or develop any "rules" that might enable you to estimate a network's capacity solely from its size?
+- What relationship (if any) emerges between network size and capacity?
+- Can you develop rules or intuitions that help predict a network's capacity?
+
+---
 
 ### 4. Simulate Cued Recall
-**Objective:** Evaluate how well the network performs associative recall when presented with only a partial input (a cue), and must recover the corresponding response.
+
+**Objective:** Evaluate how the network performs associative recall when only a **cue** is presented.
 
 #### Setup: A–B Pair Structure
 
-- Each stored memory is a concatenated pair of binary patterns:
-  - The first half of the neurons represents the **cue** \($A$\)
-  - The second half represents the **response** \($B$\)
+- Each memory consists of two parts:
+  - First half: **Cue** (\( A \))
+  - Second half: **Response** (\( B \))
 
-- If the total number of neurons \($N$\) is odd:
-  - Let the cue occupy the first $\lfloor N/2 \rfloor$ neurons
-  - Let the response occupy the remaining $\lceil N/2 \rceil$ neurons
+If \( N \) is odd:
+- Let cue length = \( \lfloor N/2 \rfloor \)
+- Let response length = \( \lceil N/2 \rceil \)
 
-Each full pattern \($\xi^\mu \in \{-1, +1\}^N$\) is defined as:
+Each full memory:
 $$
 \xi^\mu = \begin{bmatrix} A^\mu \\ B^\mu \end{bmatrix}
 $$
@@ -110,119 +137,96 @@ $$
 
 For each trial:
 
-  - **Choose a stored memory** \( \xi^\mu \)
-
-  - **Construct the initial network state \( x \)**:
-    - Set the cue half to match the stored pattern:  
-      $$
-      x_i = A^\mu_i \quad \text{for } i = 1, \dots, \lfloor N/2 \rfloor
-      $$
-    - Set the response half to zero (i.e., no initial information):  
-      $$
-      x_i = 0 \quad \text{for } i = \lfloor N/2 \rfloor + 1, \dots, N
-      $$
-
-  - **Evolve the network** until it reaches a stable state using the usual update rule:
-    $$
-    x_i \leftarrow \text{sign} \left( \sum_j J_{ij} x_j \right)
-    $$
-
-    You may choose whether to:
-    - Let the cue neurons update along with the rest of the network
-    - Or **clamp** the cue (i.e., keep \($x_i = A^\mu_i$\) fixed for the cue indices)
-
-  - **Evaluate accuracy**:
-    - Extract the response portion from the final state \($x^*$\)
-    - Compare it to the original response \($B^\mu$\)
-    - Mark as a **successful recall** if at least 99% of the bits match:
-      $$
-      \frac{1}{|B|} \sum_{i \in \text{response}} \mathbb{1}[x^*_i = B^\mu_i] \geq 0.99
-      $$
+1. **Choose a memory** \( \xi^\mu \)
+2. **Construct initial state** \( x \):
+   - Cue half: set to \( A^\mu \)
+   - Response half: set to 0
+3. **Evolve the network** using the update rule:
+   $$
+   x_i \leftarrow \text{sign} \left( \sum_j J_{ij} x_j \right)
+   $$
+   - Optionally: **clamp** the cue (i.e., hold cue values fixed)
+4. **Evaluate success**:
+   - Compare recovered response to \( B^\mu \)
+   - Mark as successful if ≥99% of bits match:
+     $$
+     \frac{1}{|B|} \sum_{i \in \text{response}} \mathbb{1}[x^*_i = B^\mu_i] \geq 0.99
+     $$
 
 #### Analysis
 
-- Repeat the simulation for multiple stored $A$–$B$ pairs
-- For each network size \($N$\), compute the **expected number of correctly recalled responses**
-- Plot this value as a function of \($N$\)
-
+- Repeat across many \( A \)–\( B \) pairs
+- For each network size \( N \), compute the **expected number** of correctly retrieved responses
+- Plot this value as a function of \( N \)
 
 #### Optional Extensions
 
-- Compare performance with and without clamping the cue neurons
-- Test whether cueing with partial or noisy \($A$\) patterns still leads to correct retrieval of \($B$\)
+- Compare performance with and without clamping the cue
+- Try cueing with noisy or partial versions of \( A \)
+
+---
 
 ### 5. Simulate Contextual Drift
 
-**Objective:** Explore how gradual changes in context influence which memories are retrieved. This models how temporal or environmental drift might bias recall toward memories with similar contexts.
+**Objective:** Investigate how gradual changes in **context** influence which memories are recalled.
 
-#### Setup: Item–Context Memory Representation
+#### Setup: Item–Context Representation
 
-- Use a Hopfield network with **100 neurons**.
-- Each memory is a combination of:
-  - **Item features**: 50 neurons (first half)
-  - **Context features**: 50 neurons (second half)
+- Use a Hopfield network with 100 neurons.
+- Each memory:
+  - First 50 neurons: **Item**
+  - Last 50 neurons: **Context**
 
-- Create a **sequence of 10 memories** \($\{\xi^1, \xi^2, \dots, \xi^{10}\}$\), each composed of:
-  $$
-  \xi^t = \begin{bmatrix} \text{item}^t \\ \text{context}^t \end{bmatrix}
-  $$
+Create a **sequence of 10 memories**:
+$$
+\xi^t = \begin{bmatrix} \text{item}^t \\ \text{context}^t \end{bmatrix}
+$$
 
-- Initialize the **context vector** for the first memory randomly (set it to a random vector of +1s and -1s).
-- For each subsequent memory \($t + 1$\), create a new context vector by:
-  - **Copying** the previous context
-  - **Perturbing** a small number of bits (e.g., 5% of context features flipped)
+Context drift:
 
-This creates a **drifting context** across the sequence.
+- Set \( \text{context}^1 \) randomly
+- For each subsequent \( \text{context}^{t+1} \), copy \( \text{context}^t \) and flip ~5% of the bits
 
 #### Simulation Procedure
 
-1. **Train the network** on all 10 memory patterns using Hebbian learning (encode them into a weight matrix, $J$)
-
-2. For each memory index \($i = 1, \dots, 10$\):
-
-   a. **Cue the network** with the **context vector** from \($\xi^i$\):
-   - Set the **context neurons** (second half) to match \($\text{context}^i$\)
-   - Set the **item neurons** (first half) to zero (i.e., no initial item input)
-
-   b. **Run the network dynamics** until convergence
-
-   c. **Compare the final state** to all 10 stored patterns:
-   - For each stored pattern \($\xi^j$\), extract the item portion and compare it to the final item state
-   - If the item portion of \($\xi^j$\) matches the recovered state with ≥99% accuracy, consider memory \( j \) to have been retrieved
-
-   d. Record the **retrieved index** (if any), and compute the **relative position**:
-   $$
-   \Delta = j - i
-   $$
-   (e.g., \($\Delta = 0$\) means the correct memory was retrieved; \($\Delta = 1$\) means the next one in the sequence was recalled, etc.)
+1. Store all 10 memories in the network.
+2. For each memory \( i = 1, \dots, 10 \):
+   - Cue the network with \( \text{context}^i \)
+   - Set item neurons to 0
+   - Run until convergence
+   - For each stored memory \( j \), compare recovered item to \( \text{item}^j \)
+   - If ≥99% of bits match, record \( j \) as retrieved
+   - Record \( \Delta = j - i \) (relative offset)
 
 #### Analysis
 
-- Repeat the simulation multiple times (e.g., 100 runs) to account for randomness
-- For each relative position \( \Delta \in [-9, +9] \), compute:
-  - The **probability** that a memory at offset \($\Delta$\) was retrieved when cueing from index \($i$\)
-  - A **95% confidence interval** for each probability estimate
+- Repeat the procedure (e.g., 100 trials)
+- For each \( \Delta \in [-9, +9] \), compute:
+  - Probability of retrieval
+  - 95% confidence interval
 
 #### Visualization
 
-Create a line plot where:
+Create a line plot:
 
-- $x$-axis: Relative position in the sequence \($\Delta$\)
-- $y$-axis: Probability of retrieval
+- \( x \)-axis: Relative position \( \Delta \)
+- \( y \)-axis: Retrieval probability
 - Error bars: 95% confidence intervals
 
-Write up a brief description of what you think is happening (and why).
+Write a brief interpretation of the observed pattern.
 
-#### Optional extensions
+#### Optional Extensions
 
-- Context drift simulates how memory might change over time or under shifting external conditions
-- You may adjust the context perturbation rate to see how sharply it affects retrieval
-- This model can be adapted to explore recency effects, intrusion errors, or generalization
+- Vary the drift rate and observe the effect
+- Try random (non-gradual) context changes
+- Explore links to recency effects or memory generalization
 
+---
 
 ## Submission Instructions
-- [Submit](https://canvas.dartmouth.edu/courses/71051/assignments/517353) a single stand-alone Google Colaboratory notebook (or similar) that includes:
-  - Your full model implementation.
-  - Markdown (text) cells explaining your approach, methodology, any design decisions you want to draw attention to, and discussion points.
-  - Plots and results for each simulation task.
-- Ensure that your notebook runs without errors in Google Colaboratory.
+
+- [Submit](https://canvas.dartmouth.edu/courses/71051/assignments/517353) a single standalone Google Colaboratory notebook (or similar) that includes:
+  - Your full model implementation
+  - Markdown cells explaining your methods, assumptions, and findings
+  - Plots and results for each section
+- Your notebook should run **without errors** in Google Colaboratory.
