@@ -509,7 +509,13 @@ h_i = \sum_{j=1}^N J_{ij} S_j
 \[
 S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \right)
 \]</div>
-<p>Here, <span class="math notranslate nohighlight">\(S_i \in \{-1, +1\}\)</span> is the current state of neuron <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Here, <span class="math notranslate nohighlight">\(S_i \in \{-1, +1\}\)</span> is the current state of neuron <span class="math notranslate nohighlight">\(i\)</span>.  To “retrieve” a memory:</p>
+<ul class="simple">
+<li><p>Start by setting all of the neural activations to the <strong>cue</strong>.</p></li>
+<li><p>Loop through all neurons (in a random order), updating one at a time according to the above equation, given the weight matrix (<span class="math notranslate nohighlight">\(J\)</span>) and the current activities of each of the other neurons.</p></li>
+<li><p>Continue looping until either (a) you have “updated” every neuron in the latest loop, but no activities have changed, or (b) a maximum number of iterations is reached.</p></li>
+<li><p>Return the current state of the network as the retrieved memory.</p></li>
+</ul>
 </section>
 </section>
 <hr class="docutils" />
