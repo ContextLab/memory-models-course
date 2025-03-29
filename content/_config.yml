@@ -35,3 +35,9 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+# correct latex parsing
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
