@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'assignments/Assignment_1:Hopfield_Networks/README';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Assignment 2: Search of Associative Memory (SAM) Model" href="../Assignment_2%3ASearch_of_Associative_Memory_Model/README.html" />
+    <link rel="next" title="Assignment 1: Hopfield Networks" href="hopfield_assignment_template.html" />
     <link rel="prev" title="Overview" href="../README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -212,7 +212,10 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Overview</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Assignment 1: Hopfield Networks</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Assignment 1: Hopfield Networks</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="hopfield_assignment_template.html">Assignment 1: Hopfield Networks</a></li>
+</ul>
+</details></li>
 <li class="toctree-l2"><a class="reference internal" href="../Assignment_2%3ASearch_of_Associative_Memory_Model/README.html">Assignment 2: Search of Associative Memory (SAM) Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Assignment_4%3A_Laplace_Temporal_Context_Model/README.html">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</a></li>
@@ -466,7 +469,7 @@ document.write(`
 <h1>Assignment 1: Hopfield Networks<a class="headerlink" href="#assignment-1-hopfield-networks" title="Link to this heading">#</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>In this assignment, you will explore computational memory models by implementing a Hopfield network.</p>
+<p>In this assignment, you will explore computational memory models by implementing a Hopfield network.  <a class="reference external" href="https://github.com/ContextLab/memory-models-course/blob/main/content/assignments/Assignment_1%3AHopfield_Networks/hopfield_assignment_template.ipynb">Here</a> is a suggested template to help get you started.</p>
 <p>In the original article (<a class="reference external" href="https://www.dropbox.com/scl/fi/iw9wtr3xjvrbqtk38obid/Hopf82.pdf?rlkey=x3my329oj9952er68sr28c7xc&amp;amp;dl=1">Hopfield, 1982</a>), neuronal activations were set to either 0 (“not firing”) or 1 (“firing”). Modern Hopfield networks nearly always follow an updated implementation, first proposed by <a class="reference external" href="https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&amp;amp;dl=1">Amit et al. (1985)</a>. In their framing, neurons take on activation values of either –1 (“down state”) or +1 (“up state”). This has three important benefits:</p>
 <ul class="simple">
 <li><p>It provides a cleaner way to implement the Hebbian learning rule (i.e., without subtracting means or shifting values).</p></li>
@@ -753,6 +756,8 @@ S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \righ
 <li><p>Your notebook should run <strong>without errors</strong> in Google Colaboratory.</p></li>
 </ul>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -795,11 +800,11 @@ S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \righ
       </div>
     </a>
     <a class="right-next"
-       href="../Assignment_2%3ASearch_of_Associative_Memory_Model/README.html"
+       href="hopfield_assignment_template.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assignment 2: Search of Associative Memory (SAM) Model</p>
+        <p class="prev-next-title">Assignment 1: Hopfield Networks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

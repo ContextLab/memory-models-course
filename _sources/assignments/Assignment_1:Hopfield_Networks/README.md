@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this assignment, you will explore computational memory models by implementing a Hopfield network.
+In this assignment, you will explore computational memory models by implementing a Hopfield network.  [Here](https://github.com/ContextLab/memory-models-course/blob/main/content/assignments/Assignment_1%3AHopfield_Networks/hopfield_assignment_template.ipynb) is a suggested template to help get you started.
 
 In the original article ([Hopfield, 1982](https://www.dropbox.com/scl/fi/iw9wtr3xjvrbqtk38obid/Hopf82.pdf?rlkey=x3my329oj9952er68sr28c7xc&dl=1)), neuronal activations were set to either 0 ("not firing") or 1 ("firing"). Modern Hopfield networks nearly always follow an updated implementation, first proposed by [Amit et al. (1985)](https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&dl=1). In their framing, neurons take on activation values of either –1 ("down state") or +1 ("up state"). This has three important benefits:
 
