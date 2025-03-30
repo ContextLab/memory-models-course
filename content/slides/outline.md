@@ -14,7 +14,7 @@ Note: papers that report on models we will be implementing in the assignments ar
       - [Amit et al. (1985)](https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de&dl=1)*
 
   - Discussion: Hopfield network simulations (storage capacity, cued recall, contextual drift)
-  - **Assignment 1**: [Explore Hopfield Networks](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%201%3A%20Hopfield%20Networks)
+  - **Assignment 1**: [Explore Hopfield Networks](https://contextlab.github.io/memory-models-course/assignments/Assignment_1%3AHopfield_Networks/README.html)
 
 
 ## Weeks 2--3: Free recall, Short Term and Long Term Memory
@@ -30,7 +30,7 @@ Note: papers that report on models we will be implementing in the assignments ar
     - Web scraping with [requests](https://pypi.org/project/requests/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/)
     - Data manipulation with [Pandas](https://pandas.pydata.org/)
     - Text analyses with [Scikit-learn](https://scikit-learn.org), [NLTK](https://www.nltk.org/), and [HuggingFace Transformers](https://huggingface.co/docs/transformers/en/index)
-  - **Assignment 2**: [Build the Search of Associative Memory Model](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%202%3A%20Search%20of%20Associative%20Memory%20Model)
+  - **Assignment 2**: [Build the Search of Associative Memory Model](https://contextlab.github.io/memory-models-course/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/README.html)
 
 
 ## Weeks 4--5: Temporal Context and Multi-Timescale Models
@@ -46,7 +46,7 @@ Note: papers that report on models we will be implementing in the assignments ar
   - [Zacks and Tversky (2001)](https://www.dropbox.com/scl/fi/28104fmu9kzk55znyxntd/ZackTver01.pdf?rlkey=2ytdz0e9agny4hmllcw7hvi8g&dl=1)
   - [Zwann and Radvansky (1998)](https://www.dropbox.com/scl/fi/iqp70crdmpd5m97zzv45c/ZwaaRadv98.pdf?rlkey=habx93aplwkkw829vj9vkv52a&dl=1)
   - [Brunec et al. (2018)](https://www.dropbox.com/scl/fi/1eu28rpwyp8eg2sn4fgau/BrunEtal18b.pdf?rlkey=64dnn3onc90o59fuv33peil6g&dl=1)
-- **Assignemnt 3**: [Build the Context Maintenance and Retrieval Model](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%203%3A%20Context%20Maintenance%20and%20Retrieval%20Model)
+- **Assignemnt 3**: [Build the Context Maintenance and Retrieval Model](https://contextlab.github.io/memory-models-course/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html)
 
 ## Week 6--7: Laplace Transforms
 - Discussion: is TCM *really* multi-timescale?
@@ -54,7 +54,7 @@ Note: papers that report on models we will be implementing in the assignments ar
 - Readings:
   - [Shankar and Howard (2012)](https://www.dropbox.com/scl/fi/cqh37rsdn11f6egdiskvf/ShanHowa12.pdf?rlkey=45qhdi5u2fmlxd4azq8is3j89&dl=1)*
   - [Manning (2024)](https://www.dropbox.com/scl/fi/9amk5mlgeop0srtpwqesg/Mann23.pdf?rlkey=lc785xhq1pcjqdtarn692e21k&dl=1)
-- **Assignment 4**: [Implement the Laplace Temporal Context Model](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Assignment%204%3Laplace%20Temporal%20Context%20Model)
+- **Assignment 4**: [Implement the Laplace Temporal Context Model](https://contextlab.github.io/memory-models-course/assignments/Assignment_4%3A_Laplace_Temporal_Context_Model/README.html)
 
 ## Week 8: Biologically Inspired Network Models
 - Discussion: what does "biologically inspired" mean in practice?
@@ -70,7 +70,7 @@ Note: papers that report on models we will be implementing in the assignments ar
   - [Hochreiter and Schmidhuber (1997)](https://deeplearning.cs.cmu.edu/S23/document/readings/LSTM.pdf)
   - [Radford et al. (2019)](https://insightcivic.s3.us-east-1.amazonaws.com/language-models.pdf)
     - Tutorial video: [Let's build GPT: from scratch, in code, spelled out](https://www.youtube.com/watch?v=kCc8FmEb1nY)
-- **Assignment 5**: [Final Project](https://github.com/ContextLab/memory-models-course/tree/main/assignments/Final%20Project)
+- **Assignment 5**: [Final Project](https://contextlab.github.io/memory-models-course/assignments/Final_Project/README.html)
 
 ## Week 10: Final project presentations
 - Discussion: ad-hoc discussions and demos of final projects
