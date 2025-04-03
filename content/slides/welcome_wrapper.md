@@ -2,9 +2,9 @@
 
 <iframe src="welcome.html"
         width="100%"
-        height="600px"
+        height="1000px"
         style="border:none; display:block; margin:auto;"
-        sandbox="allow-scripts allow-popups allow-downloads"
         loading="eager"
+        sandbox="allow-scripts allow-popups allow-downloads"
         allowfullscreen>
 </iframe>

@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: default
+theme: cdl-theme
 paginate: true
 class: invert
 ---
@@ -16,12 +16,10 @@ class: invert
 
 # What’s This Course About? 🤔
 
-We explore **how memory works**  
-by building **computational models** of:
-
-- Human memory  
-- Neural networks  
-- Biological systems  
+We explore **how memory works** by building **computational models** of:
+  - Human memory  
+  - Neural networks  
+  - Biological systems  
 
 🧪 Expect **hands-on coding**, **discussions**, and **projects**!
 
