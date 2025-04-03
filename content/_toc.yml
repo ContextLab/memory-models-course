@@ -26,9 +26,7 @@ parts:
       - file: themes/final_projects/placeholder.md
   - caption: Slides
     chapters:
-      - file: slides/links
-        sections:
-          - file: slides/welcome_wrapper
+      - file: slides/week_1
   - caption: Assignments
     chapters:
     - file: assignments/README

@@ -1,8 +1,9 @@
 ---
 marp: true
-theme: cdl-theme
-paginate: true
+theme: default
 class: invert
+math: katex
+author: Jeremy R. Manning
 ---
 
 # 🧠 Models of Memory  
@@ -17,9 +18,10 @@ class: invert
 # What’s This Course About? 🤔
 
 We explore **how memory works** by building **computational models** of:
-  - Human memory  
-  - Neural networks  
-  - Biological systems  
+
+- Human memory  
+- Neural networks  
+- Biological systems  
 
 🧪 Expect **hands-on coding**, **discussions**, and **projects**!
 
