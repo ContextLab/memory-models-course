@@ -1,3 +1,4 @@
 # Downloadable slides
 
-- April 3, 2025: [Welcome and overview](welcome.html)
+### April 3, 2025:
+  - [Welcome and Overview](welcome.html)
