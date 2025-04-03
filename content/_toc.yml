@@ -24,6 +24,11 @@ parts:
     - file: themes/final_projects/README
       sections:
       - file: themes/final_projects/placeholder.md
+  - caption: Slides
+    chapters:
+    - file: slides/links
+    sections:
+      - url: slides/welcome.html
   - caption: Assignments
     chapters:
     - file: assignments/README
