@@ -5,25 +5,25 @@ parts:
     chapters:
     - file: instructions
     - file: admin/syllabus
-    - file: slides/outline
-    - file: slides/themes/intro
-    - file: slides/themes/hopfield_networks
-    - file: slides/themes/free_recall
+    - file: outline
+    - file: themes/intro
+    - file: themes/hopfield_networks
+    - file: themes/free_recall
       sections:
-      - file: slides/themes/sam_model
-    - file: slides/themes/data_science_primer
-    - file: slides/themes/memory_timescales_i
+      - file: themes/sam_model
+    - file: themes/data_science_primer
+    - file: themes/memory_timescales_i
       sections:
-      - file: slides/themes/temporal_context_model
-    - file: slides/themes/memory_timescales_ii
+      - file: themes/temporal_context_model
+    - file: themes/memory_timescales_ii
       sections:
-      - file: slides/themes/laplace_transform
-      - file: slides/themes/laplace_tcm
-    - file: slides/themes/biologically_inspired_networks
-    - file: slides/themes/deep_networks
-    - file: slides/themes/final_projects/README
+      - file: themes/laplace_transform
+      - file: themes/laplace_tcm
+    - file: themes/biologically_inspired_networks
+    - file: themes/deep_networks
+    - file: themes/final_projects/README
       sections:
-      - file: slides/themes/final_projects/placeholder.md
+      - file: themes/final_projects/placeholder.md
   - caption: Assignments
     chapters:
     - file: assignments/README
