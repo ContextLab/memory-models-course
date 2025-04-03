@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Downloadable slides &#8212; Computational memory Models</title>
+    <title>🧠 What is a Memory Model? &#8212; Computational memory Models</title>
   
   
   
@@ -57,11 +57,9 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'slides/links';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'slides/intro_to_models';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Welcome and Overview" href="welcome_wrapper.html" />
-    <link rel="prev" title="Example Project 1" href="../themes/final_projects/placeholder.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,6 +121,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -208,11 +208,8 @@
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Slides</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Downloadable slides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="welcome_wrapper.html">Welcome and Overview</a></li>
-</ul>
-</details></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="week_1.html">Week 1</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -298,7 +295,7 @@
       
       
       
-      <li><a href="https://github.com/ContextLab/memory-models-course/issues/new?title=Issue%20on%20page%20%2Fslides/links.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ContextLab/memory-models-course/issues/new?title=Issue%20on%20page%20%2Fslides/intro_to_models.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -328,7 +325,7 @@
       
       
       
-      <li><a href="../_sources/slides/links.md" target="_blank"
+      <li><a href="../_sources/slides/intro_to_models.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -412,7 +409,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Downloadable slides</h1>
+    <h1>🧠 What is a Memory Model?</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -422,7 +419,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#april-3-2025">April 3, 2025:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models-of-memory-for-the-mind">Models of memory = 🤖 for the mind?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-input-to-a-model">What’s the <em>input</em> to a model? 🧩</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-output-from-a-model">What’s the <em>output</em> from a model? 🎬</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-kinds-of-models-will-we-see">🤔 What kinds of models will we see?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-evaluate-models">🔍 How do we evaluate models?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#all-models-are-approximations">🧱 All models are approximations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-when-using-models">🎯 Goals when using models</a></li>
 </ul>
             </nav>
         </div>
@@ -434,16 +437,87 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="downloadable-slides">
-<h1>Downloadable slides<a class="headerlink" href="#downloadable-slides" title="Link to this heading">#</a></h1>
-<section id="april-3-2025">
-<h2>April 3, 2025:<a class="headerlink" href="#april-3-2025" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="what-is-a-memory-model">
+<h1>🧠 What is a Memory Model?<a class="headerlink" href="#what-is-a-memory-model" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="models-of-memory-for-the-mind">
+<h2>Models of memory = 🤖 for the mind?<a class="headerlink" href="#models-of-memory-for-the-mind" title="Link to this heading">#</a></h2>
+<p>A <strong>memory model</strong> is like a <em>little machine</em> that:</p>
 <ul class="simple">
-<li><p><a class="reference download internal" download="" href="../_downloads/b2d84e6aef1cf7438c3360dacd360b14/welcome.html"><span class="xref download myst">Welcome and Overview</span></a></p></li>
+<li><p>Takes in <strong>sequences</strong> of inputs</p></li>
+<li><p>Stores <strong>representations</strong></p></li>
+<li><p>Produces <strong>memory behaviors</strong></p></li>
+</ul>
+<p>🎯 It lets us <em>simulate</em> what minds (and brains) do!</p>
+</section>
+<hr class="docutils" />
+<section id="what-s-the-input-to-a-model">
+<h2>What’s the <em>input</em> to a model? 🧩<a class="headerlink" href="#what-s-the-input-to-a-model" title="Link to this heading">#</a></h2>
+<p>Usually:</p>
+<ul class="simple">
+<li><p>A <strong>list or sequence</strong> of experiences</p></li>
+<li><p>Could be:</p>
+<ul>
+<li><p>📝 Words</p></li>
+<li><p>🧠 Concepts</p></li>
+<li><p>🌍 Sensory events</p></li>
+<li><p>🕰️ Time-varying contexts</p></li>
+</ul>
+</li>
 </ul>
 </section>
-<div class="toctree-wrapper compound">
-</div>
+<hr class="docutils" />
+<section id="what-s-the-output-from-a-model">
+<h2>What’s the <em>output</em> from a model? 🎬<a class="headerlink" href="#what-s-the-output-from-a-model" title="Link to this heading">#</a></h2>
+<p>Behaviors we can measure:</p>
+<ul class="simple">
+<li><p>🗣️ <strong>Free recall</strong>, <strong>recognition</strong>, etc.</p></li>
+<li><p>⌛ <strong>Timing</strong>, <strong>errors</strong>, <strong>response curves</strong></p></li>
+<li><p>🔄 How memory <em>changes</em> with new input</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="what-kinds-of-models-will-we-see">
+<h2>🤔 What kinds of models will we see?<a class="headerlink" href="#what-kinds-of-models-will-we-see" title="Link to this heading">#</a></h2>
+<p>From the <a class="reference external" href="https://contextlab.github.io/memory-models-course/outline.html">course outline</a>:</p>
+<ul class="simple">
+<li><p>🧠 <strong>Hopfield nets</strong> (attractor memory)</p></li>
+<li><p>🎯 <strong>Search &amp; recall</strong> processes</p></li>
+<li><p>🧩 <strong>Contextual encoding</strong> (e.g. retrieved context model)</p></li>
+<li><p>🧪 <strong>Laplace-transform–based</strong> systems</p></li>
+<li><p>🧬 <strong>Biological circuits</strong> for memory</p></li>
+<li><p>🤖 <strong>Modern deep nets</strong> (LSTMs, Transformers)</p></li>
+</ul>
+<p>📚 We’ll build, analyze, and compare them!</p>
+</section>
+<hr class="docutils" />
+<section id="how-do-we-evaluate-models">
+<h2>🔍 How do we evaluate models?<a class="headerlink" href="#how-do-we-evaluate-models" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>❓ <strong>Does it fit the data?</strong> (qualitatively or quantitatively?)</p></li>
+<li><p>🧪 <strong>Does it predict new behaviors?</strong></p></li>
+<li><p>🧠 <strong>Does it teach us something about cognition or the brain?</strong></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="all-models-are-approximations">
+<h2>🧱 All models are approximations<a class="headerlink" href="#all-models-are-approximations" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>“All models are wrong, but some are useful.”<br />
+— George E. P. Box (1976)</p>
+</div></blockquote>
+<p>We’re not trying to recreate a brain; we’re building <strong>simplified systems</strong> to <em>understand memory better</em>.</p>
+</section>
+<hr class="docutils" />
+<section id="goals-when-using-models">
+<h2>🎯 Goals when using models<a class="headerlink" href="#goals-when-using-models" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Break down <strong>complex behavior</strong> into understandable pieces</p></li>
+<li><p>Generate <strong>testable predictions</strong></p></li>
+<li><p>Build bridges between <strong>psychology</strong>, <strong>neuroscience</strong>, and <strong>machine learning</strong></p></li>
+</ul>
+<p>🛠️ Memory models are tools — let’s learn how to use them.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -476,24 +550,6 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../themes/final_projects/placeholder.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Example Project 1</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="welcome_wrapper.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Welcome and Overview</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -510,7 +566,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#april-3-2025">April 3, 2025:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models-of-memory-for-the-mind">Models of memory = 🤖 for the mind?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-input-to-a-model">What’s the <em>input</em> to a model? 🧩</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-output-from-a-model">What’s the <em>output</em> from a model? 🎬</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-kinds-of-models-will-we-see">🤔 What kinds of models will we see?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-evaluate-models">🔍 How do we evaluate models?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#all-models-are-approximations">🧱 All models are approximations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-when-using-models">🎯 Goals when using models</a></li>
 </ul>
   </nav></div>
 

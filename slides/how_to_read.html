@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome and Overview &#8212; Computational memory Models</title>
+    <title>📚 How to Read a Paper &#8212; Computational memory Models</title>
   
   
   
@@ -57,11 +57,9 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'slides/welcome_wrapper';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'slides/how_to_read';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Overview" href="../assignments/README.html" />
-    <link rel="prev" title="Downloadable slides" href="links.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,6 +121,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -208,11 +208,8 @@
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Slides</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="links.html">Downloadable slides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Welcome and Overview</a></li>
-</ul>
-</details></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="week_1.html">Week 1</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -298,7 +295,7 @@
       
       
       
-      <li><a href="https://github.com/ContextLab/memory-models-course/issues/new?title=Issue%20on%20page%20%2Fslides/welcome_wrapper.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ContextLab/memory-models-course/issues/new?title=Issue%20on%20page%20%2Fslides/how_to_read.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -328,7 +325,7 @@
       
       
       
-      <li><a href="../_sources/slides/welcome_wrapper.md" target="_blank"
+      <li><a href="../_sources/slides/how_to_read.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -399,7 +396,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -410,11 +409,29 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Welcome and Overview</h1>
+    <h1>📚 How to Read a Paper</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-you-re-building-a-model">(When You’re Building a Model)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-the-goal">What’s the goal?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-skim-first">Step 1: Skim first 🔍</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-zoom-in">Step 2: Zoom in 🔬</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-deep-dive">Step 3: Deep dive 🧠</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understand-everything">Understand everything</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-make-a-task-list">Step 4: Make a task list ✅</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-a-detail">Missing a detail?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-email-an-author">How to email an author 💌</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#be-kind-to-yourself">Be kind to yourself ❤️</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-tips">Final tips 🧠</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -424,16 +441,124 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="welcome-and-overview">
-<h1>Welcome and Overview<a class="headerlink" href="#welcome-and-overview" title="Link to this heading">#</a></h1>
-<iframe src="welcome.html"
-        width="100%"
-        height="1000px"
-        style="border:none; display:block; margin:auto;"
-        loading="eager"
-        sandbox="allow-scripts allow-popups allow-downloads"
-        allowfullscreen>
-</iframe></section>
+  <section class="tex2jax_ignore mathjax_ignore" id="how-to-read-a-paper">
+<h1>📚 How to Read a Paper<a class="headerlink" href="#how-to-read-a-paper" title="Link to this heading">#</a></h1>
+<section id="when-you-re-building-a-model">
+<h2>(When You’re Building a Model)<a class="headerlink" href="#when-you-re-building-a-model" title="Link to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="whats-the-goal">
+<h2>What’s the goal?<a class="headerlink" href="#whats-the-goal" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Extract what’s <strong>important</strong></p></li>
+<li><p>Figure out how to <strong>replicate core results</strong></p></li>
+<li><p>Build something that <strong>actually works</strong></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-1-skim-first">
+<h2>Step 1: Skim first 🔍<a class="headerlink" href="#step-1-skim-first" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Read the paper <strong>once</strong>, high-level only</p></li>
+<li><p>Focus on:</p>
+<ul>
+<li><p><strong>Abstract</strong></p></li>
+<li><p><strong>Intro</strong></p></li>
+<li><p><strong>Discussion</strong></p></li>
+</ul>
+</li>
+</ul>
+<p>🧠 Skip hard parts — it’s okay!</p>
+</section>
+<hr class="docutils" />
+<section id="step-2-zoom-in">
+<h2>Step 2: Zoom in 🔬<a class="headerlink" href="#step-2-zoom-in" title="Link to this heading">#</a></h2>
+<p>Re-read the paper:</p>
+<ul class="simple">
+<li><p>Focus on the <strong>Results</strong></p></li>
+<li><p>Find the <strong>core result(s)</strong> you’ll replicate</p></li>
+</ul>
+<p>🧪 Reproducing a figure is often enough!</p>
+</section>
+<hr class="docutils" />
+<section id="step-3-deep-dive">
+<h2>Step 3: Deep dive 🧠<a class="headerlink" href="#step-3-deep-dive" title="Link to this heading">#</a></h2>
+<p>Go <strong>sentence by sentence</strong> through Results + Methods<br />
+Highlight <em>anything</em> needed to reproduce results:</p>
+<ul class="simple">
+<li><p>Equations 🧮</p></li>
+<li><p>Algorithms ⚙️</p></li>
+<li><p>Diagrams 🧭</p></li>
+<li><p>Code snippets 💻</p></li>
+<li><p>Implementation notes 🧱</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="understand-everything">
+<h2>Understand everything<a class="headerlink" href="#understand-everything" title="Link to this heading">#</a></h2>
+<p>For each highlighted thing:</p>
+<ul class="simple">
+<li><p>Use AI (carefully!) 🧑‍💻</p></li>
+<li><p>Watch a video / read a blog 📺</p></li>
+<li><p>Try running shared code 🔁</p></li>
+<li><p>Ask someone 🗣️</p></li>
+<li><p>Take <strong>lots of notes</strong> 📝</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-4-make-a-task-list">
+<h2>Step 4: Make a task list ✅<a class="headerlink" href="#step-4-make-a-task-list" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>From your notes, write out a <strong>to-do list</strong></p></li>
+<li><p>Start high-level → break into sub-tasks</p></li>
+<li><p>Track your progress (Google Doc, GitHub Projects, etc.)</p></li>
+</ul>
+<p>💡 Tip: Write it out by hand if it helps you think</p>
+</section>
+<hr class="docutils" />
+<section id="missing-a-detail">
+<h2>Missing a detail?<a class="headerlink" href="#missing-a-detail" title="Link to this heading">#</a></h2>
+<p>Try this:</p>
+<ul class="simple">
+<li><p>Re-read carefully (look for footnotes!)</p></li>
+<li><p>Check <strong>supplemental materials</strong></p></li>
+<li><p>Look at <strong>shared code</strong></p></li>
+<li><p>Email the authors! 📬</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="how-to-email-an-author">
+<h2>How to email an author 💌<a class="headerlink" href="#how-to-email-an-author" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Be <strong>clear and concise</strong></p></li>
+<li><p>Ask <strong>all your questions up front</strong></p></li>
+<li><p>Be respectful of their time</p></li>
+<li><p>Say thank you 🙏</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="be-kind-to-yourself">
+<h2>Be kind to yourself ❤️<a class="headerlink" href="#be-kind-to-yourself" title="Link to this heading">#</a></h2>
+<p>This is hard!</p>
+<ul class="simple">
+<li><p>Take breaks 🧘</p></li>
+<li><p>Talk it out (even to yourself!) 🗯️</p></li>
+<li><p>Go for a walk 🚶</p></li>
+<li><p>Sleep on it 😴</p></li>
+<li><p>Keep chipping away 🔨</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="final-tips">
+<h2>Final tips 🧠<a class="headerlink" href="#final-tips" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Building from primary sources is <em>real science</em></p></li>
+<li><p>Confusion is part of the process</p></li>
+<li><p>Ask questions, keep notes, keep going!</p></li>
+</ul>
+<p>You got this 💪</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -465,30 +590,37 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="links.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Downloadable slides</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../assignments/README.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Overview</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-you-re-building-a-model">(When You’re Building a Model)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-the-goal">What’s the goal?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-skim-first">Step 1: Skim first 🔍</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-zoom-in">Step 2: Zoom in 🔬</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-deep-dive">Step 3: Deep dive 🧠</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understand-everything">Understand everything</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-make-a-task-list">Step 4: Make a task list ✅</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-a-detail">Missing a detail?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-email-an-author">How to email an author 💌</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#be-kind-to-yourself">Be kind to yourself ❤️</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-tips">Final tips 🧠</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
