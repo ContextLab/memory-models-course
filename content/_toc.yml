@@ -27,9 +27,9 @@ parts:
   - caption: Slides
     chapters:
     - file: slides/links
-    sections:
-      - url: slides/welcome.html
-        title: Welcome and overview
+      sections:
+        - url: slides/welcome.html
+          title: Welcome and overview
   - caption: Assignments
     chapters:
     - file: assignments/README
