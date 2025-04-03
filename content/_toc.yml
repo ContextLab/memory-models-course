@@ -29,6 +29,7 @@ parts:
     - file: slides/links
     sections:
       - url: slides/welcome.html
+        title: Welcome and overview
   - caption: Assignments
     chapters:
     - file: assignments/README
