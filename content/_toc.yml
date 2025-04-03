@@ -26,8 +26,9 @@ parts:
       - file: themes/final_projects/placeholder.md
   - caption: Slides
     chapters:
-      - url: slides/welcome.html
-        title: Welcome and overview
+      - file: links
+        sections:
+          - file: welcome_wrapper
   - caption: Assignments
     chapters:
     - file: assignments/README
