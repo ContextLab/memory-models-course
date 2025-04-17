@@ -111,25 +111,16 @@ Create a heatmap:
 
 #### Visualization 2
 
-Plot the expected number of accurately retrieved memories vs. network size.
-
-Let:
-
-- $P[m, N] \in [0, 1]$: proportion of $m$ memories accurately retrieved in a network of size $N$
-- $\mathbb{E}[R_N]$: expected number of successfully retrieved memories
-
-Then:
-
-$$
-\mathbb{E}[R_N] = \sum_{m=1}^{M} m \cdot P[m, N]
-$$
-
-Where $M$ is the maximum number of memories tested.
+Plot the estimated number of accurately retrieved memories as a function of network size.
+You can use the heatmap you made above to estimate the number of accurately retrieved memories:
+  - Choose a target proportion (e.g., $p = 0.8$ or similar)
+  - For each network size you tested to make your heatmap, compute the maximum number of memories for which at least proportion $p$ were successfully retrieved
 
 #### Follow-Up
 
 - What relationship (if any) emerges between network size and capacity?
 - Can you develop rules or intuitions that help predict a network’s capacity?
+- Hint: see page 3 of [Amit et al. (1985)](https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de)
 
 ---
 
@@ -211,7 +202,7 @@ $$
 Context drift:
 
 - Set $\text{context}^1$ randomly
-- For each subsequent $\text{context}^{t+1}$, copy $\text{context}^t$ and flip ~5% of the bits
+- For each subsequent $\text{context}^{t+1}$, copy $\text{context}^t$ and flip ~10% of the bits
 
 #### Simulation Procedure
 
@@ -221,12 +212,12 @@ Context drift:
    - Set item neurons to 0
    - Run until convergence
    - For each stored memory $j$, compare recovered item to $\text{item}^j$
-   - If ≥99% of bits match, record $j$ as retrieved
+   - If ≥75% of bits match, record $j$ as retrieved
    - Record $\Delta = j - i$ (relative offset)
 
 #### Analysis
 
-- Repeat the procedure (e.g., 100 trials)
+- Repeat the procedure (e.g., 100 trials).  Note that you will need to "reset" the network (i.e., start with an empty weight matrix and re-encode the 10 memories) each time you repeat the simulation.
 - For each $\Delta \in [-9, +9]$, compute:
   - Probability of retrieval
   - 95% confidence interval
