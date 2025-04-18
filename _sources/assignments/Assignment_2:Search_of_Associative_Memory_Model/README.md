@@ -1,7 +1,7 @@
 # Assignment 2: Search of Associative Memory (SAM) Model
 
 ## Overview
-In this assignment, you will implement the **Search of Associative Memory (SAM) model** as described in [Atkinson & Shiffrin (1968)](https://www.dropbox.com/scl/fi/rpllozjcv704okckjdy5k/AtkiShif68.pdf?rlkey=i0azhj9mqxws7bxocbl65j88d&dl=1). The SAM model is a probabilistic model of free recall that assumes items are stored in **short-term memory (STS)** and **long-term memory (LTS)**, with retrieval governed by associative processes. You will fit your implementation to [Murdock (1962)](https://www.dropbox.com/scl/fi/k7jc1b6uua4m915maglpl/Murd62.pdf?rlkey=i5nc7lzb2pw8dxc6xc72r5r5i&dl=1) free recall data and evaluate how well the model explains the observed recall patterns.
+In this assignment, you will implement the **Search of Associative Memory (SAM) model** as described in [Kahana (2012), Chapter 7](https://www.dropbox.com/scl/fi/ujl8yvxqzcb1gf32to4zb/Kaha12_SAM_model_excerpt.pdf?rlkey=254wtw4fm7xnpzelno2ykrxzu). The SAM model is a probabilistic model of free recall that assumes items are stored in **short-term memory (STS)** and **long-term memory (LTS)**, with retrieval governed by associative processes. You will fit your implementation to [Murdock (1962)](https://www.dropbox.com/scl/fi/k7jc1b6uua4m915maglpl/Murd62.pdf?rlkey=i5nc7lzb2pw8dxc6xc72r5r5i&dl=1) free recall data and evaluate how well the model explains the observed recall patterns.
 
 ## Data Format and Preprocessing
 The dataset consists of sequences of recalled items from multiple trials of a free recall experiment. Each row represents a participant’s recall sequence from a single list presentation.
@@ -19,6 +19,8 @@ The dataset consists of sequences of recalled items from multiple trials of a fr
   This represents three recall trials. Each row contains the order in which items were recalled for one list.
 
 ## Model Description
+
+*NOTE: NEED TO UPDATE THIS!!!  Don't start this assignment quite yet...*
 
 You will implement and fit a **Search of Associative Memory (SAM)** model that consists of:
 
@@ -140,7 +142,7 @@ Each plot should include:
   - Identifies strengths and weaknesses of SAM.
 
 ## Submission Instructions
-- Submit a **Google Colaboratory notebook** (or similar) that includes:
+- [Submit](https://canvas.dartmouth.edu/courses/71051/assignments/517354) a **Google Colaboratory notebook** (or similar) that includes:
   - Your **full implementation** of the SAM model.
   - **Markdown cells** explaining your code, methodology, and results.
   - **All required plots** comparing model predictions to observed data.

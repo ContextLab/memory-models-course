@@ -579,24 +579,19 @@ S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \righ
 </section>
 <section id="visualization-2">
 <h4>Visualization 2<a class="headerlink" href="#visualization-2" title="Link to this heading">#</a></h4>
-<p>Plot the expected number of accurately retrieved memories vs. network size.</p>
-<p>Let:</p>
+<p>Plot the estimated number of accurately retrieved memories as a function of network size.
+You can use the heatmap you made above to estimate the number of accurately retrieved memories:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P[m, N] \in [0, 1]\)</span>: proportion of <span class="math notranslate nohighlight">\(m\)</span> memories accurately retrieved in a network of size <span class="math notranslate nohighlight">\(N\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbb{E}[R_N]\)</span>: expected number of successfully retrieved memories</p></li>
+<li><p>Choose a target proportion (e.g., <span class="math notranslate nohighlight">\(p = 0.8\)</span> or similar)</p></li>
+<li><p>For each network size you tested to make your heatmap, compute the maximum number of memories for which at least proportion <span class="math notranslate nohighlight">\(p\)</span> were successfully retrieved</p></li>
 </ul>
-<p>Then:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathbb{E}[R_N] = \sum_{m=1}^{M} m \cdot P[m, N]
-\]</div>
-<p>Where <span class="math notranslate nohighlight">\(M\)</span> is the maximum number of memories tested.</p>
 </section>
 <section id="follow-up">
 <h4>Follow-Up<a class="headerlink" href="#follow-up" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>What relationship (if any) emerges between network size and capacity?</p></li>
 <li><p>Can you develop rules or intuitions that help predict a network’s capacity?</p></li>
+<li><p>Hint: see page 3 of <a class="reference external" href="https://www.dropbox.com/scl/fi/3a3adwqf70afb9kmieezn/AmitEtal85.pdf?rlkey=78fckvuuvk9t3o9fbpjrmn6de">Amit et al. (1985)</a></p></li>
 </ul>
 </section>
 </section>
@@ -702,7 +697,7 @@ S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \righ
 <p>Context drift:</p>
 <ul class="simple">
 <li><p>Set <span class="math notranslate nohighlight">\(\text{context}^1\)</span> randomly</p></li>
-<li><p>For each subsequent <span class="math notranslate nohighlight">\(\text{context}^{t+1}\)</span>, copy <span class="math notranslate nohighlight">\(\text{context}^t\)</span> and flip ~5% of the bits</p></li>
+<li><p>For each subsequent <span class="math notranslate nohighlight">\(\text{context}^{t+1}\)</span>, copy <span class="math notranslate nohighlight">\(\text{context}^t\)</span> and flip ~10% of the bits</p></li>
 </ul>
 </section>
 <section id="id4">
@@ -715,7 +710,7 @@ S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \righ
 <li><p>Set item neurons to 0</p></li>
 <li><p>Run until convergence</p></li>
 <li><p>For each stored memory <span class="math notranslate nohighlight">\(j\)</span>, compare recovered item to <span class="math notranslate nohighlight">\(\text{item}^j\)</span></p></li>
-<li><p>If ≥99% of bits match, record <span class="math notranslate nohighlight">\(j\)</span> as retrieved</p></li>
+<li><p>If ≥75% of bits match, record <span class="math notranslate nohighlight">\(j\)</span> as retrieved</p></li>
 <li><p>Record <span class="math notranslate nohighlight">\(\Delta = j - i\)</span> (relative offset)</p></li>
 </ul>
 </li>
@@ -724,7 +719,7 @@ S_i(t+1) = \text{sign}(h_i(t)) = \text{sign} \left( \sum_{j} J_{ij} S_j(t) \righ
 <section id="id5">
 <h4>Analysis<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Repeat the procedure (e.g., 100 trials)</p></li>
+<li><p>Repeat the procedure (e.g., 100 trials).  Note that you will need to “reset” the network (i.e., start with an empty weight matrix and re-encode the 10 memories) each time you repeat the simulation.</p></li>
 <li><p>For each <span class="math notranslate nohighlight">\(\Delta \in [-9, +9]\)</span>, compute:</p>
 <ul>
 <li><p>Probability of retrieval</p></li>
