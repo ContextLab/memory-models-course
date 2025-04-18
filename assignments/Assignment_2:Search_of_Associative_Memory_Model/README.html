@@ -516,7 +516,7 @@ document.write(`
 <li><p><strong>Recall from STS</strong>: while items remain in STS, they are selected at random, recalled, and then removed from STS.  Item selection may either be uniform, or may be set to be inversely proportional to each item’s age, <span class="math notranslate nohighlight">\(t_{\text{rel}}\)</span>, relative to the youngest item still in STS (and assuming that <span class="math notranslate nohighlight">\(k\)</span> items remain in STS):</p>
 <div class="math notranslate nohighlight">
 \[
-  p(\text{recall of item with relative age }t_{\text{rel}}) = \frac{1 - (1 - q)^k}{q (1 - q)^{t_{\text{rel}} - 1}}
+  p(\text{recall of item with relative age }t_{\text{rel}}) \propto \frac{1 - (1 - q)^k}{q (1 - q)^{t_{\text{rel}} - 1}}
   \]</div>
 </li>
 <li><p>After STS has been emptied, we begin to retrieve items from LTS through two pathways: either associations with <strong>context</strong> or associations between <em>both</em> <strong>context and other items</strong>.  In addition, all retrievals happen in a two-part process (until either the process is halted as described below, or until all studied items have been recalled):</p>
