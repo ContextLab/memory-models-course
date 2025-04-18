@@ -49,7 +49,7 @@ The retrieval process happens in several stages, first involving **STS** and the
 - **Recall from STS**: while items remain in STS, they are selected at random, recalled, and then removed from STS.  Item selection may either be uniform, or may be set to be inversely proportional to each item's age, $t_{\text{rel}}$, relative to the youngest item still in STS (and assuming that $k$ items remain in STS):
 
   $$
-  p(\text{recall of item with relative age }t_{\text{rel}}) = \frac{1 - (1 - q)^k}{q (1 - q)^{t_{\text{rel}} - 1}}
+  p(\text{recall of item with relative age }t_{\text{rel}}) \propto \frac{1 - (1 - q)^k}{q (1 - q)^{t_{\text{rel}} - 1}}
   $$
 - After STS has been emptied, we begin to retrieve items from LTS through two pathways: either associations with **context** or associations between *both* **context and other items**.  In addition, all retrievals happen in a two-part process (until either the process is halted as described below, or until all studied items have been recalled):
   - First, an item is *sampled*.  This is how an item is "chosen" for consideration as a recall candidate.
