@@ -493,7 +493,7 @@ document.write(`
 <li><p><strong>STS (Short-Term Store)</strong>: Holds a <strong>limited</strong> number of items (size <span class="math notranslate nohighlight">\(r\)</span>), with older items <strong>displaced</strong> as new ones enter.  The probability of being displaced is goverened by a displacement parameter, <span class="math notranslate nohighlight">\(q\)</span>, along with the item’s age in short term memory (i.e., the number of timesteps elapsed since it entered the STS; <span class="math notranslate nohighlight">\(t\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[
-  p(\text{displacement of item with age~}t) = \frac{q (1 - q)^{t - 1}}{1 - (1 - q)^r}
+  p(\text{displacement of item with age }t) = \frac{q (1 - q)^{t - 1}}{1 - (1 - q)^r}
   \]</div>
 </li>
 <li><p><strong>LTS (Long-Term Store)</strong>: Holds an (effectively) <strong>unlimited number of associations</strong> between (a) <strong>pairs of items</strong> and (b) <strong>items and context</strong>.  In this model, “context” acts like an “item” that is ever-present in the STS (and can never be recalled).  The association strength between items <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> is denoted <span class="math notranslate nohighlight">\(S(i, j)\)</span> and the association strength between item <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(context\)</span> is denoted <span class="math notranslate nohighlight">\(S(i, context)\)</span>.  With each new item presentation, <span class="math notranslate nohighlight">\(S(i, j)\)</span> is incremented by <span class="math notranslate nohighlight">\(a\)</span> for every pair if items <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> that occupy STS at the same time:</p>
@@ -516,7 +516,7 @@ document.write(`
 <li><p><strong>Recall from STS</strong>: while items remain in STS, they are selected at random, recalled, and then removed from STS.  Item selection may either be uniform, or may be set to be inversely proportional to each item’s age, <span class="math notranslate nohighlight">\(t_{\text{rel}}\)</span>, relative to the youngest item still in STS (and assuming that <span class="math notranslate nohighlight">\(k\)</span> items remain in STS):</p>
 <div class="math notranslate nohighlight">
 \[
-  p(\text{recall of item with relative age~}t_{\text{rel}}) = \frac{1 - (1 - q)^k}{q (1 - q)^{t_{\text{rel}} - 1}}
+  p(\text{recall of item with relative age }t_{\text{rel}}) = \frac{1 - (1 - q)^k}{q (1 - q)^{t_{\text{rel}} - 1}}
   \]</div>
 </li>
 <li><p>After STS has been emptied, we begin to retrieve items from LTS through two pathways: either associations with <strong>context</strong> or associations between <em>both</em> <strong>context and other items</strong>.  In addition, all retrievals happen in a two-part process (until either the process is halted as described below, or until all studied items have been recalled):</p>
@@ -584,7 +584,7 @@ document.write(`
 </section>
 <section id="implementation-tasks">
 <h2>Implementation Tasks<a class="headerlink" href="#implementation-tasks" title="Link to this heading">#</a></h2>
-<p>You can use the <a class="reference internal" href="#"><span class="xref myst">example notebook</span></a> to help get you started with implementing the SAM model.</p>
+<p>You can use the <a class="reference external" href="https://contextlab.github.io/memory-models-course/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/sam_assignment_template.html">example notebook</a> to help get you started with implementing the SAM model.</p>
 <section id="step-1-implement-memory-encoding">
 <h3><strong>Step 1: Implement Memory Encoding</strong><a class="headerlink" href="#step-1-implement-memory-encoding" title="Link to this heading">#</a></h3>
 <ul class="simple">
