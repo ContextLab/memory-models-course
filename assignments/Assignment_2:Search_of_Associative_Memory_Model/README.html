@@ -424,13 +424,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-and-preprocessing">Data Format and Preprocessing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-description">Model Description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-stage-memory-storage">1. <strong>Encoding Stage: Memory Storage</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-rules"><strong>Encoding Rules</strong></a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-stage-memory-storage">1. <strong>Encoding Stage: Memory Storage</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-stage-memory-search">2. <strong>Retrieval Stage: Memory Search</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-probability"><strong>Retrieval Probability</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#search-dynamics"><strong>Search Dynamics</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">Recall</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-failures">Recall failures</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model">3. <strong>Fitting the Model</strong></a></li>
@@ -440,17 +438,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-implement-memory-encoding"><strong>Step 1: Implement Memory Encoding</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-implement-retrieval-process"><strong>Step 2: Implement Retrieval Process</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-load-and-process-data"><strong>Step 3: Load and Process Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-generate-behavioral-curves"><strong>Step 4: Generate Behavioral Curves</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-fit-model-parameters"><strong>Step 4: Fit Model Parameters</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-key-plots"><strong>Step 5: Generate Key Plots</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-1-probability-of-first-recall-as-a-function-of-serial-position"><strong>Plot 1: Probability of First Recall as a Function of Serial Position</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-2-conditional-recall-probability-as-a-function-of-lag"><strong>Plot 2: Conditional Recall Probability as a Function of Lag</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-3-overall-probability-of-recall-as-a-function-of-serial-position"><strong>Plot 3: Overall Probability of Recall as a Function of Serial Position</strong></a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-key-plots"><strong>Step 5: Generate Key Plots</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-evaluate-the-model"><strong>Step 6: Evaluate the Model</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-criteria">Grading Criteria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extensions">Optional extensions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission Instructions</a></li>
 </ul>
             </nav>
@@ -467,7 +461,7 @@ document.write(`
 <h1>Assignment 2: Search of Associative Memory (SAM) Model<a class="headerlink" href="#assignment-2-search-of-associative-memory-sam-model" title="Link to this heading">#</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>In this assignment, you will implement the <strong>Search of Associative Memory (SAM) model</strong> as described in <a class="reference external" href="https://www.dropbox.com/scl/fi/ujl8yvxqzcb1gf32to4zb/Kaha12_SAM_model_excerpt.pdf?rlkey=254wtw4fm7xnpzelno2ykrxzu">Kahana (2012), Chapter 7</a>. The SAM model is a probabilistic model of free recall that assumes items are stored in <strong>short-term memory (STS)</strong> and <strong>long-term memory (LTS)</strong>, with retrieval governed by associative processes. You will fit your implementation to <a class="reference external" href="https://www.dropbox.com/scl/fi/k7jc1b6uua4m915maglpl/Murd62.pdf?rlkey=i5nc7lzb2pw8dxc6xc72r5r5i&amp;amp;dl=1">Murdock (1962)</a> free recall data and evaluate how well the model explains the observed recall patterns.</p>
+<p>In this assignment, you will implement the <strong>Search of Associative Memory (SAM) model</strong> as described in <a class="reference external" href="https://www.dropbox.com/scl/fi/ujl8yvxqzcb1gf32to4zb/Kaha12_SAM_model_excerpt.pdf?rlkey=254wtw4fm7xnpzelno2ykrxzu">Kahana (2012), Chapter 7</a> (which is, in turn, adapted from <a class="reference external" href="https://www.dropbox.com/scl/fi/rpllozjcv704okckjdy5k/AtkiShif68.pdf?rlkey=i0azhj9mqxws7bxocbl65j88d">Atkinson and Shiffrin, 1968</a>). The SAM model is a probabilistic model of free recall that assumes items are encoded into a <strong>short-term store (STS)</strong> and <strong>long-term store (LTS)</strong>, with retrieval governed by associative processes. You will fit your implementation to <a class="reference external" href="https://www.dropbox.com/scl/fi/k7jc1b6uua4m915maglpl/Murd62.pdf?rlkey=i5nc7lzb2pw8dxc6xc72r5r5i&amp;amp;dl=1">Murdock (1962)</a> free recall data and evaluate how well the model explains the observed recall patterns.</p>
 </section>
 <section id="data-format-and-preprocessing">
 <h2>Data Format and Preprocessing<a class="headerlink" href="#data-format-and-preprocessing" title="Link to this heading">#</a></h2>
@@ -482,154 +476,161 @@ document.write(`
 </pre></div>
 </div>
 <p>This represents three recall trials. Each row contains the order in which items were recalled for one list.</p>
+<p>The file names (e.g., <code class="docutils literal notranslate"><span class="pre">fr10-2.txt</span></code>) denote the list length (first number) and presentation rate, in seconds (second number), respectively.</p>
 </li>
 </ul>
 </section>
 <section id="model-description">
 <h2>Model Description<a class="headerlink" href="#model-description" title="Link to this heading">#</a></h2>
-<p><em>NOTE: NEED TO UPDATE THIS!!!  Don’t start this assignment quite yet…</em></p>
-<p>You will implement and fit a <strong>Search of Associative Memory (SAM)</strong> model that consists of:</p>
+<p>The SAM model defines how memories are <strong>encoded</strong> and <strong>retrieved</strong>, as follows:</p>
 <section id="encoding-stage-memory-storage">
 <h3>1. <strong>Encoding Stage: Memory Storage</strong><a class="headerlink" href="#encoding-stage-memory-storage" title="Link to this heading">#</a></h3>
 <p>When an item is presented, it is stored in <strong>both STS and LTS</strong>:</p>
-<ul class="simple">
-<li><p><strong>STS (Short-Term Store)</strong>: Holds a <strong>limited</strong> number of items (size <span class="math notranslate nohighlight">\(S\)</span>), with older items <strong>displaced</strong> as new ones enter.</p></li>
-<li><p><strong>LTS (Long-Term Store)</strong>: Each item is encoded with a <strong>strength</strong> <span class="math notranslate nohighlight">\(S_i\)</span> that depends on:</p>
 <ul>
-<li><p>The <strong>number of times it was rehearsed in STS</strong>.</p></li>
-<li><p>A decay function over time.</p></li>
-</ul>
-</li>
-</ul>
-<section id="encoding-rules">
-<h4><strong>Encoding Rules</strong><a class="headerlink" href="#encoding-rules" title="Link to this heading">#</a></h4>
-<ul>
-<li><p><strong>Rehearsal Buffer Size (<span class="math notranslate nohighlight">\(S\)</span>)</strong>: At any time, only <strong><span class="math notranslate nohighlight">\(S\)</span> most recent items</strong> are actively rehearsed.</p></li>
-<li><p><strong>Probability of Rehearsal (<span class="math notranslate nohighlight">\(P_r\)</span>)</strong>: Given by:</p>
+<li><p><strong>STS (Short-Term Store)</strong>: Holds a <strong>limited</strong> number of items (size <span class="math notranslate nohighlight">\(r\)</span>), with older items <strong>displaced</strong> as new ones enter.  The probability of being displaced is goverened by a displacement parameter, <span class="math notranslate nohighlight">\(q\)</span>, along with the item’s age in short term memory (i.e., the number of timesteps elapsed since it entered the STS; <span class="math notranslate nohighlight">\(t\)</span>):</p>
 <div class="math notranslate nohighlight">
-\[P_r(i) = \frac{R_i}{\sum_j R_j}\]</div>
-<p>where <span class="math notranslate nohighlight">\(R_i\)</span> is the number of times item <span class="math notranslate nohighlight">\(i\)</span> was rehearsed.</p>
+\[
+  p(\text{displacement of item with age~}t) = \frac{q (1 - q)^{t - 1}}{1 - (1 - q)^r}
+  \]</div>
 </li>
-<li><p><strong>Strength in LTS (<span class="math notranslate nohighlight">\(S_i\)</span>)</strong>: Memory strength decays with time and interference:</p>
+<li><p><strong>LTS (Long-Term Store)</strong>: Holds an (effectively) <strong>unlimited number of associations</strong> between (a) <strong>pairs of items</strong> and (b) <strong>items and context</strong>.  In this model, “context” acts like an “item” that is ever-present in the STS (and can never be recalled).  The association strength between items <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> is denoted <span class="math notranslate nohighlight">\(S(i, j)\)</span> and the association strength between item <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(context\)</span> is denoted <span class="math notranslate nohighlight">\(S(i, context)\)</span>.  With each new item presentation, <span class="math notranslate nohighlight">\(S(i, j)\)</span> is incremented by <span class="math notranslate nohighlight">\(a\)</span> for every pair if items <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> that occupy STS at the same time:</p>
 <div class="math notranslate nohighlight">
-\[S_i = \alpha \cdot R_i \cdot e^{-\beta (T - t_i)}\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is the <strong>encoding rate parameter</strong> (controls how well rehearsed items are stored).</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the <strong>decay rate</strong> (how quickly memory strength fades over time).</p></li>
-<li><p><span class="math notranslate nohighlight">\(T\)</span> is the time since the start of the list, and <span class="math notranslate nohighlight">\(t_i\)</span> is when the item was last rehearsed.</p></li>
-</ul>
+\[\begin{split}
+  a =
+    \begin{cases}
+    a_{\text{forward}}, &amp; \text{if } t(i) \geq t(j) \\
+    a_{\text{backward}}, &amp; \text{if } t(i) &lt; t(j)
+    \end{cases},
+  \end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(t(i)\)</span> and <span class="math notranslate nohighlight">\(t(j)\)</span> denote the ages of items <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in the STS, respectively.  In addition, <span class="math notranslate nohighlight">\(S(i, context)\)</span> is also incremented by <span class="math notranslate nohighlight">\(a_{\text{forward}}\)</span> for each item in STS at a given timestep.  In other words, after studying a given list, the associations <span class="math notranslate nohighlight">\(S(i, context)\)</span> for each item <span class="math notranslate nohighlight">\(i\)</span> will be proportional to the number of timesteps that each item remained in STS.</p>
 </li>
 </ul>
-</section>
 </section>
 <section id="retrieval-stage-memory-search">
 <h3>2. <strong>Retrieval Stage: Memory Search</strong><a class="headerlink" href="#retrieval-stage-memory-search" title="Link to this heading">#</a></h3>
-<p>The recall process is modeled as a <strong>probabilistic search</strong> through LTS.</p>
-<section id="retrieval-probability">
-<h4><strong>Retrieval Probability</strong><a class="headerlink" href="#retrieval-probability" title="Link to this heading">#</a></h4>
-<p>Each item’s <strong>retrievability</strong> depends on its memory strength:</p>
-<div class="math notranslate nohighlight">
-\[P_{\text{recall}}(i) = \frac{S_i}{\sum_j S_j}\]</div>
-<ul class="simple">
-<li><p>Items with higher <strong><span class="math notranslate nohighlight">\(S_i\)</span></strong> are <strong>more likely</strong> to be retrieved.</p></li>
-<li><p>Retrieval <strong>stochasticity</strong> is modeled via a <strong>retrieval threshold</strong>—if an item’s strength is too low, recall terminates.</p></li>
-</ul>
-</section>
-<section id="search-dynamics">
-<h4><strong>Search Dynamics</strong><a class="headerlink" href="#search-dynamics" title="Link to this heading">#</a></h4>
+<p>The retrieval process happens in several stages, first involving <strong>STS</strong> and then involving <strong>LTS</strong>:</p>
 <ul>
-<li><p>Recall <strong>starts with a high-probability item</strong> (often first or last presented).</p></li>
-<li><p><strong>Associative transitions</strong> determine what item comes next:</p>
-<ul class="simple">
-<li><p>If item <span class="math notranslate nohighlight">\(i\)</span> was just recalled, the next recall follows a probability based on the similarity (lag) between memories.</p></li>
-</ul>
+<li><p><strong>Recall from STS</strong>: while items remain in STS, they are selected at random, recalled, and then removed from STS.  Item selection may either be uniform, or may be set to be inversely proportional to each item’s age, <span class="math notranslate nohighlight">\(t_{\text{rel}}\)</span>, relative to the youngest item still in STS (and assuming that <span class="math notranslate nohighlight">\(k\)</span> items remain in STS):</p>
 <div class="math notranslate nohighlight">
-\[P(l) = \frac{S_{i+l}}{\sum_j S_j}\]</div>
-<p>where:</p>
+\[
+  p(\text{recall of item with relative age~}t_{\text{rel}}) = \frac{1 - (1 - q)^k}{q (1 - q)^{t_{\text{rel}} - 1}}
+  \]</div>
+</li>
+<li><p>After STS has been emptied, we begin to retrieve items from LTS through two pathways: either associations with <strong>context</strong> or associations between <em>both</em> <strong>context and other items</strong>.  In addition, all retrievals happen in a two-part process (until either the process is halted as described below, or until all studied items have been recalled):</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(l\)</span> is the <strong>lag</strong> (distance in serial position from the previously recalled item).</p></li>
-<li><p><span class="math notranslate nohighlight">\(S_{i+l}\)</span> represents memory strength at that position.</p></li>
+<li><p>First, an item is <em>sampled</em>.  This is how an item is “chosen” for consideration as a recall candidate.</p></li>
+<li><p>Second, the sampled item is <em>potentially recalled</em>.  Recall is a probabilistic process (i.e., not guaranteed to happen for every sampled item).</p></li>
 </ul>
 </li>
-<li><p>Recall <strong>continues</strong> until a failure occurs (e.g., no item surpasses a retrieval threshold).</p></li>
 </ul>
+<section id="sampling">
+<h4>Sampling<a class="headerlink" href="#sampling" title="Link to this heading">#</a></h4>
+<p>The probability of sampling item <span class="math notranslate nohighlight">\(i\)</span> through its associations with context is given by</p>
+<div class="math notranslate nohighlight">
+\[
+  p(\text{sampling item }i | context) = \frac{S(i, context)^{W_c}}{\sum_n^N S(n, context)^{W_c}},
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(W_c\)</span> is a scalar parameter that governs the “contextual” cueing process.  Similarly, the probability of sampling item <span class="math notranslate nohighlight">\(i\)</span> through its associations with <em>both</em> item <span class="math notranslate nohighlight">\(j\)</span> <em>and</em> context is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+  p(\text{sampling item }i | j, context) = \frac{S(i, j)^{W_e}S(i, context)^{W_c}}{\sum_n^N S(n, j)^{W_e}S(n, context)^{W_c}},
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(W_e\)</span> is an analogous scalar parameter that governs the “episodic” cueing process.</p>
+<p>We also place an additional constraint on the sampling procedure to prevent repeated recalls: if the sampled item has already been recalled, we re-run the sampling procedure.  This occurs as many times as needed to sample a not-yet-recalled item.</p>
+</section>
+<section id="recall">
+<h4>Recall<a class="headerlink" href="#recall" title="Link to this heading">#</a></h4>
+<p>If an item <span class="math notranslate nohighlight">\(i\)</span> is sampled through its associations with <em>context</em>, then it is <em>recalled</em> with probability given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ p(\text{recall item }i | context) = 1 - \exp{\\( -W_c S(i, context)\\)}.
+ \end{split}\]</div>
+<p>Alternatively, if an item <span class="math notranslate nohighlight">\(i\)</span> is sampled through its associations with both item <span class="math notranslate nohighlight">\(j\)</span> and context, then:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ p(\text{recall item }i | j, context) = 1 - \exp{\\( -W_e S(i, j) - W_c S(i, context)\\)}.
+ \end{split}\]</div>
+<p>To decide whether a given recall (of item <span class="math notranslate nohighlight">\(i\)</span>) occurs, draw a random number <span class="math notranslate nohighlight">\(\theta\)</span> uniformly from the interval <span class="math notranslate nohighlight">\([0, 1]\)</span>.  If <span class="math notranslate nohighlight">\(\theta &lt; p(\text{recall item }i)\)</span> then the item is recalled (and two “counter” parameters, <span class="math notranslate nohighlight">\(m_1\)</span> and <span class="math notranslate nohighlight">\(m_2\)</span>, are both reset to 0).  Otherwise the recall failure procedure is called next.</p>
+</section>
+<section id="recall-failures">
+<h4>Recall failures<a class="headerlink" href="#recall-failures" title="Link to this heading">#</a></h4>
+<p>In the event that an item is sampled but <em>not</em> recalled, the model edges closer to a stop condition by incrementing a counter.  If the item was sampled via <em>context alone</em>, then we increment <span class="math notranslate nohighlight">\(m_1\)</span>.  If <span class="math notranslate nohighlight">\(m_1 &gt; m_{1_{\text{max}}}\)</span>, the recall procedure is halted.  Alternatively, if the item was sampled via <em>context and its associations with another item</em>, then we instead increment <span class="math notranslate nohighlight">\(m_2\)</span>.  If <span class="math notranslate nohighlight">\(m_2 &gt; m_{2_{\text{max}}}\)</span>, the recall procedure is halted.  In either scenario, if the relevant threshold has not yet been reached, the next candidate item is sampled using <em>context alone</em> as a retrieval cue.</p>
 </section>
 </section>
 <section id="fitting-the-model">
 <h3>3. <strong>Fitting the Model</strong><a class="headerlink" href="#fitting-the-model" title="Link to this heading">#</a></h3>
-<p>You will fit <strong>three key parameters</strong> to optimize the match to human recall data:</p>
+<p>You will fit <strong>eight parameters</strong> to optimize the match to human recall data:</p>
 <ol class="arabic simple">
-<li><p><strong>Rehearsal Buffer Size <span class="math notranslate nohighlight">\(S\)</span></strong>: Number of items actively rehearsed in STS.</p></li>
-<li><p><strong>Encoding Rate <span class="math notranslate nohighlight">\(\alpha\)</span></strong>: Governs how well rehearsed items are stored in LTS.</p></li>
-<li><p><strong>Decay Rate <span class="math notranslate nohighlight">\(\beta\)</span></strong>: Controls how quickly memory traces degrade over time.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r\)</span>: number of items that can fit in STS</p></li>
+<li><p><span class="math notranslate nohighlight">\(q\)</span>: STS displacement parameter</p></li>
+<li><p><span class="math notranslate nohighlight">\(a_{\text{forward}}\)</span>: LTS memory strength increment in the <em>forward</em> direction</p></li>
+<li><p><span class="math notranslate nohighlight">\(a_{\text{backward}}\)</span>: LTS memory strength increment in the <em>backward</em> direction</p></li>
+<li><p><span class="math notranslate nohighlight">\(W_c\)</span>: contextual association parameter</p></li>
+<li><p><span class="math notranslate nohighlight">\(W_e\)</span>: episodic association parameter</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_{1_{\text{max}}}\)</span>: maximum number of <em>contextual</em> association cueing failures</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_{2_{\text{max}}}\)</span>: maximum number of <em>episodic</em> association cueing failures</p></li>
 </ol>
+<p>You can choose any approach you wish to fit these parameters.  My “recommended” approach is to use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">scipy.optimize.minimize</a> to minimize the mean squared error between the point-by-point observed vs. model-predicted values for the following behavioral curves:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p(\text{first recall})\)</span>: probability of recalling each item <strong>first</strong> as a function of its <em>presentation position</em></p></li>
+<li><p><span class="math notranslate nohighlight">\(p(\textit{recall})\)</span>: probability of recalling each item at <em>any</em> output position as a function of its presentation position</p></li>
+<li><p>lag-CRP: probability of recalling item <span class="math notranslate nohighlight">\(i\)</span> given that item <span class="math notranslate nohighlight">\(j\)</span> was the previous recall, as a function of <span class="math notranslate nohighlight">\(lag = i - j\)</span>.</p></li>
+</ul>
+<p>The “right” way to do this is to use a subset of the data to estimate the parameters (i.e., training data), and then plot the observed and predicted results for the remaining (held-out)  test data.  You’ll need to do some experimenting to determine an appropriate proportion of the data to assign to the training vs. test datasets.  (Randomly assigning half of the data to each group is a good place to start.)</p>
 </section>
 </section>
 <section id="implementation-tasks">
 <h2>Implementation Tasks<a class="headerlink" href="#implementation-tasks" title="Link to this heading">#</a></h2>
+<p>You can use the <a class="reference internal" href="#"><span class="xref myst">example notebook</span></a> to help get you started with implementing the SAM model.</p>
 <section id="step-1-implement-memory-encoding">
 <h3><strong>Step 1: Implement Memory Encoding</strong><a class="headerlink" href="#step-1-implement-memory-encoding" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Create an STS buffer of size <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
-<li><p>Assign memory strengths <span class="math notranslate nohighlight">\(S_i\)</span> to each item based on rehearsal frequency.</p></li>
-<li><p>Implement the decay function for LTS.</p></li>
+<li><p>Fill in the missing code for the <code class="docutils literal notranslate"><span class="pre">present</span></code> method in the <code class="docutils literal notranslate"><span class="pre">STS</span></code> class</p></li>
+<li><p>Fill in the missing code for the <code class="docutils literal notranslate"><span class="pre">update</span></code> method in the <code class="docutils literal notranslate"><span class="pre">LTS</span></code> class</p></li>
 </ul>
 </section>
 <section id="step-2-implement-retrieval-process">
 <h3><strong>Step 2: Implement Retrieval Process</strong><a class="headerlink" href="#step-2-implement-retrieval-process" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Use probabilistic sampling to simulate recall.</p></li>
-<li><p>Implement stopping rules for retrieval failures.</p></li>
-<li><p>Simulate <strong>associative transitions</strong> in recall.</p></li>
+<li><p>Fill in the missing code for the <code class="docutils literal notranslate"><span class="pre">retrieve</span></code> method in the <code class="docutils literal notranslate"><span class="pre">SAM</span></code> class</p></li>
 </ul>
 </section>
 <section id="step-3-load-and-process-data">
 <h3><strong>Step 3: Load and Process Data</strong><a class="headerlink" href="#step-3-load-and-process-data" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Read in the recall dataset and parse trials correctly.</p></li>
-<li><p>Compute observed recall probabilities.</p></li>
+<li><p>Read in the recall dataset</p></li>
+<li><p>Write functions for assigning trials to the training and test datasets</p></li>
+</ul>
+</section>
+<section id="step-4-generate-behavioral-curves">
+<h3><strong>Step 4: Generate Behavioral Curves</strong><a class="headerlink" href="#step-4-generate-behavioral-curves" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Generate the following averaged curves, for each list length and presentation rate:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(p(\text{first recall})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p(\textit{recall})\)</span></p></li>
+<li><p>lag-CRP</p></li>
+</ul>
+</li>
+<li><p>To help with computing mean squared error, it will be useful to have a function that takes in a dataset as input and returns a vector comprising each of these curves, for each list length and presentation rate, concatenated together into a single vector.</p></li>
 </ul>
 </section>
 <section id="step-4-fit-model-parameters">
 <h3><strong>Step 4: Fit Model Parameters</strong><a class="headerlink" href="#step-4-fit-model-parameters" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Adjust <span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(\alpha\)</span>, and <span class="math notranslate nohighlight">\(\beta\)</span> to optimize match to observed data.</p></li>
+<li><p>To compute mean squared error for a given set of model parameters, use the function you wrote above to compute the concatenated behavioral curves for the <em>observed recalls</em> and the <em>model-predicted recalls</em>.  The average squared point-by-point difference between the vectors is the mean squared error.  You’ll want to set up <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">scipy.optimize.minimize</a> to find the set of model parameters that minimizes the mean squared error between the observed and predicted curves, using only the training dataset.</p></li>
+<li><p>Importantly, you should use the same parameters across all trials and experimental conditions.  You’re fitting the <em>average</em> performance, not data from individual trials or participants.</p></li>
 </ul>
 </section>
 <section id="step-5-generate-key-plots">
 <h3><strong>Step 5: Generate Key Plots</strong><a class="headerlink" href="#step-5-generate-key-plots" title="Link to this heading">#</a></h3>
-<p>For each combination of <strong>list length</strong> and <strong>presentation rate</strong>, generate the following plots:</p>
-<section id="plot-1-probability-of-first-recall-as-a-function-of-serial-position">
-<h4><strong>Plot 1: Probability of First Recall as a Function of Serial Position</strong><a class="headerlink" href="#plot-1-probability-of-first-recall-as-a-function-of-serial-position" title="Link to this heading">#</a></h4>
+<p>For each combination of <strong>list length</strong> and <strong>presentation rate</strong>, plot the <em>observed</em> and <em>model-predicted</em> behavioral curves for the <em>test</em> data:</p>
 <ul class="simple">
-<li><p><strong>X-axis:</strong> Serial position in the presented list.</p></li>
-<li><p><strong>Y-axis:</strong> Probability that the item is the <strong>first item</strong> recalled.</p></li>
-<li><p>Overlay <strong>model predictions</strong> on observed data.</p></li>
+<li><p><span class="math notranslate nohighlight">\(p(\text{first recall})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p(\textit{recall})\)</span></p></li>
+<li><p>lag-CRP</p></li>
 </ul>
-</section>
-<section id="plot-2-conditional-recall-probability-as-a-function-of-lag">
-<h4><strong>Plot 2: Conditional Recall Probability as a Function of Lag</strong><a class="headerlink" href="#plot-2-conditional-recall-probability-as-a-function-of-lag" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>X-axis:</strong> Lag (<span class="math notranslate nohighlight">\(l\)</span>) (distance between successive recalls).</p></li>
-<li><p><strong>Y-axis:</strong> Probability of recalling an item at position <span class="math notranslate nohighlight">\(i+l\)</span> after recalling <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
-<li><p>Overlay <strong>model predictions</strong> on observed data.</p></li>
-</ul>
-</section>
-<section id="plot-3-overall-probability-of-recall-as-a-function-of-serial-position">
-<h4><strong>Plot 3: Overall Probability of Recall as a Function of Serial Position</strong><a class="headerlink" href="#plot-3-overall-probability-of-recall-as-a-function-of-serial-position" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>X-axis:</strong> Serial position in the presented list.</p></li>
-<li><p><strong>Y-axis:</strong> Probability of recall at <strong>any output position</strong>.</p></li>
-<li><p>Overlay <strong>model predictions</strong> on observed data.</p></li>
-</ul>
-<p>Each plot should include:</p>
-<ul class="simple">
-<li><p><strong>Observed human recall data</strong> (solid line).</p></li>
-<li><p><strong>Model predictions</strong> (dashed line).</p></li>
-<li><p><strong>Error bars</strong> (95% confidence intervals).</p></li>
-</ul>
-</section>
+<p>Use dotted lines for the observed curves and solid lines for the model-predicted curves.  Each metric should get its own figure (or sub-figure).  You can either plot the curves for different list lengths and presentation rates on the same axes (e.g., using different colors for each experimental condition) or on different axes (one per experimental condition).</p>
 </section>
 <section id="step-6-evaluate-the-model">
 <h3><strong>Step 6: Evaluate the Model</strong><a class="headerlink" href="#step-6-evaluate-the-model" title="Link to this heading">#</a></h3>
@@ -645,28 +646,11 @@ document.write(`
 </ul>
 </section>
 </section>
-<section id="grading-criteria">
-<h2>Grading Criteria<a class="headerlink" href="#grading-criteria" title="Link to this heading">#</a></h2>
+<section id="optional-extensions">
+<h2>Optional extensions<a class="headerlink" href="#optional-extensions" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Model Implementation (50%)</strong>:</p>
-<ul>
-<li><p>Correct encoding, retrieval, and stopping rule logic.</p></li>
-<li><p>Accurate probability calculations.</p></li>
-<li><p>Clear and well-documented code.</p></li>
-</ul>
-</li>
-<li><p><strong>Plot Accuracy (45%)</strong>:</p>
-<ul>
-<li><p><strong>15%</strong> for each of the three required plots.</p></li>
-<li><p>Must correctly overlay observed data and model predictions.</p></li>
-</ul>
-</li>
-<li><p><strong>Interpretation and Discussion (5%)</strong>:</p>
-<ul>
-<li><p>Thoughtful analysis of model fit.</p></li>
-<li><p>Identifies strengths and weaknesses of SAM.</p></li>
-</ul>
-</li>
+<li><p>Pick a behavioral curve and a parameter.  Holding all of the other parameters fixed to their best-fitting values, vary the given parameter.  How does the predicted behavioral curve change?  Which predictions are sensitive to which parameters?</p></li>
+<li><p>Can you figure out a way to generate <em>distributions</em> of parameter estimates?  For example, what happens if you fit the model to individual trials (or small subsets of trials)?  Extra challenge: explore the covariance structure between different combinations of parameters.  Describe any interesting relationships between parameters that you observe.</p></li>
 </ul>
 </section>
 <section id="submission-instructions">
@@ -752,13 +736,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-and-preprocessing">Data Format and Preprocessing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-description">Model Description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-stage-memory-storage">1. <strong>Encoding Stage: Memory Storage</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-rules"><strong>Encoding Rules</strong></a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-stage-memory-storage">1. <strong>Encoding Stage: Memory Storage</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-stage-memory-search">2. <strong>Retrieval Stage: Memory Search</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-probability"><strong>Retrieval Probability</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#search-dynamics"><strong>Search Dynamics</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">Recall</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-failures">Recall failures</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model">3. <strong>Fitting the Model</strong></a></li>
@@ -768,17 +750,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-implement-memory-encoding"><strong>Step 1: Implement Memory Encoding</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-implement-retrieval-process"><strong>Step 2: Implement Retrieval Process</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-load-and-process-data"><strong>Step 3: Load and Process Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-generate-behavioral-curves"><strong>Step 4: Generate Behavioral Curves</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-fit-model-parameters"><strong>Step 4: Fit Model Parameters</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-key-plots"><strong>Step 5: Generate Key Plots</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-1-probability-of-first-recall-as-a-function-of-serial-position"><strong>Plot 1: Probability of First Recall as a Function of Serial Position</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-2-conditional-recall-probability-as-a-function-of-lag"><strong>Plot 2: Conditional Recall Probability as a Function of Lag</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-3-overall-probability-of-recall-as-a-function-of-serial-position"><strong>Plot 3: Overall Probability of Recall as a Function of Serial Position</strong></a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-key-plots"><strong>Step 5: Generate Key Plots</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-evaluate-the-model"><strong>Step 6: Evaluate the Model</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-criteria">Grading Criteria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extensions">Optional extensions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission Instructions</a></li>
 </ul>
   </nav></div>
