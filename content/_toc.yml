@@ -35,6 +35,8 @@ parts:
         sections:
         - file: assignments/Assignment_1:Hopfield_Networks/hopfield_assignment_template
       - file: assignments/Assignment_2:Search_of_Associative_Memory_Model/README
+        sections:
+        - file: assignments/Assignment_2:Search_of_Associative_Memory_Model/sam_assignment_template
       - file: assignments/Assignment_3:Context_Maintenance_and_Retrieval_Model/README
       - file: assignments/Assignment_4:_Laplace_Temporal_Context_Model/README
       - file: assignments/Final_Project/README
