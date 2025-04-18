@@ -23,7 +23,7 @@ Note: papers that report on models we will be implementing in the assignments ar
     - naturalistic memory tasks
   - Readings:
     - [Atkinson and Shiffrin (1968)](https://www.dropbox.com/scl/fi/rpllozjcv704okckjdy5k/AtkiShif68.pdf?rlkey=i0azhj9mqxws7bxocbl65j88d)
-    - [Kahana (2012), excerpt from Chapter 7](https://www.dropbox.com/scl/fi/ujl8yvxqzcb1gf32to4zb/Kaha12_SAM_model_excerpt.pdf?rlkey=254wtw4fm7xnpzelno2ykrxzu)*
+    - [Kahana (2012)](https://www.dropbox.com/scl/fi/ujl8yvxqzcb1gf32to4zb/Kaha12_SAM_model_excerpt.pdf?rlkey=254wtw4fm7xnpzelno2ykrxzu) (excerpt from Chapter 7)*
     - [Chen et al. (2016)](https://www.dropbox.com/scl/fi/wg6fledn7g88ig5mk3kob/ChenEtal16.pdf?rlkey=9jqu7y2apqv2hrj8qepn4alwa)
     - [Heusser et al. (2021)](https://www.dropbox.com/scl/fi/w7z2yvdfzmhowh5hvg53e/HeusEtal21.pdf?rlkey=omad9klqeiu2kc71w7guc5xxq)
   - Data science primer:
