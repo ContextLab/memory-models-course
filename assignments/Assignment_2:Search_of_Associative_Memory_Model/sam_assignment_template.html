@@ -436,6 +436,69 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tempfile</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTemporaryFile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Download dataset and store as <code class="docutils literal notranslate"><span class="pre">sequence</span></code> objects containing the <code class="docutils literal notranslate"><span class="pre">presented</span></code> and <code class="docutils literal notranslate"><span class="pre">recalled</span></code> items for each trial.  The sequences are stored in nested dictionaries in the form</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">[</span><span class="nb">list</span> <span class="n">length</span><span class="p">][</span><span class="n">presentation</span> <span class="n">rate</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">item</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">idx</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">val</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">sequence</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">items</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_recall_data</span><span class="p">():</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/Murd62</span><span class="si">%20d</span><span class="s2">ata/&quot;</span>
+    <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fr10-2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr15-2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr20-1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr20-2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr30-1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr40-1.txt&quot;</span><span class="p">]</span>
+
+    <span class="n">presented</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">recalled</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+        <span class="n">list_len</span><span class="p">,</span> <span class="n">pres_rate</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;fr&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">list_len</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">presented</span><span class="p">:</span>
+            <span class="n">presented</span><span class="p">[</span><span class="n">list_len</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">recalled</span><span class="p">[</span><span class="n">list_len</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">pres_rate</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">presented</span><span class="p">[</span><span class="n">list_len</span><span class="p">]:</span>
+            <span class="n">presented</span><span class="p">[</span><span class="n">list_len</span><span class="p">][</span><span class="n">pres_rate</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">recalled</span><span class="p">[</span><span class="n">list_len</span><span class="p">][</span><span class="n">pres_rate</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Download the file</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">filename</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="n">recall_ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">88</span><span class="p">]</span>
+            <span class="n">recall_seq</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">([</span><span class="n">item</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">recall_ids</span><span class="p">])</span>
+            <span class="n">presented_seq</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">([</span><span class="n">item</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">list_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+
+            <span class="n">presented</span><span class="p">[</span><span class="n">list_len</span><span class="p">][</span><span class="n">pres_rate</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">presented_seq</span><span class="p">)</span>
+            <span class="n">recalled</span><span class="p">[</span><span class="n">list_len</span><span class="p">][</span><span class="n">pres_rate</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recall_seq</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">presented</span><span class="p">,</span> <span class="n">recalled</span>
+
+<span class="n">presented</span><span class="p">,</span> <span class="n">recalled</span> <span class="o">=</span> <span class="n">load_recall_data</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -443,20 +506,7 @@ document.write(`
 <p>Basic skeleton for the SAM model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">item</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-  <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-
-  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">count</span>
-    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">sequence</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">items</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">STS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">STS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
   <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">s_f</span><span class="p">,</span> <span class="n">s_b</span><span class="p">,</span> <span class="n">max_items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lts</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">r</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
@@ -521,9 +571,9 @@ document.write(`
 </div>
 <p>Other tasks:</p>
 <ul class="simple">
-<li><p>Fit params to <a class="reference external" href="https://github.com/ContextLab/memory-models-course/tree/main/content/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/Murd62%20data">Murdock (1962) dataset</a></p>
+<li><p>Fit params to <a class="reference external" href="https://github.com/ContextLab/memory-models-course/tree/main/content/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/Murd62%20data">Murdock (1962) dataset</a> that you downloaded with the <code class="docutils literal notranslate"><span class="pre">load_data</span></code> function.</p>
 <ul>
-<li><p>Need to define a “loss” function.  I suggest computing MSE for one or more behavioral curves, computed for a subset of the Murdock (1962) participants/lists</p></li>
+<li><p>You’ll need to define a “loss” function.  I suggest computing MSE for one or more behavioral curves, computed for a subset of the Murdock (1962) participants/lists</p></li>
 <li><p>I suggest using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">scipy.optimize.minimize</a> to estimate the model parameters.</p></li>
 </ul>
 </li>
