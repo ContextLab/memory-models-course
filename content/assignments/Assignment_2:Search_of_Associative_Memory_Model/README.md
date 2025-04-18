@@ -29,7 +29,7 @@ When an item is presented, it is stored in **both STS and LTS**:
 - **STS (Short-Term Store)**: Holds a **limited** number of items (size $r$), with older items **displaced** as new ones enter.  The probability of being displaced is goverened by a displacement parameter, $q$, along with the item's age in short term memory (i.e., the number of timesteps elapsed since it entered the STS; $t$):
 
   $$
-  p(\text{displacement of item with age~}t) = \frac{q (1 - q)^{t - 1}}{1 - (1 - q)^r}
+  p(\text{displacement of item with age }t) = \frac{q (1 - q)^{t - 1}}{1 - (1 - q)^r}
   $$
 
 - **LTS (Long-Term Store)**: Holds an (effectively) **unlimited number of associations** between (a) **pairs of items** and (b) **items and context**.  In this model, "context" acts like an "item" that is ever-present in the STS (and can never be recalled).  The association strength between items $i$ and $j$ is denoted $S(i, j)$ and the association strength between item $i$ and $context$ is denoted $S(i, context)$.  With each new item presentation, $S(i, j)$ is incremented by $a$ for every pair if items $i$ and $j$ that occupy STS at the same time:
@@ -49,7 +49,7 @@ The retrieval process happens in several stages, first involving **STS** and the
 - **Recall from STS**: while items remain in STS, they are selected at random, recalled, and then removed from STS.  Item selection may either be uniform, or may be set to be inversely proportional to each item's age, $t_{\text{rel}}$, relative to the youngest item still in STS (and assuming that $k$ items remain in STS):
 
   $$
-  p(\text{recall of item with relative age~}t_{\text{rel}}) = \frac{1 - (1 - q)^k}{q (1 - q)^{t_{\text{rel}} - 1}}
+  p(\text{recall of item with relative age }t_{\text{rel}}) = \frac{1 - (1 - q)^k}{q (1 - q)^{t_{\text{rel}} - 1}}
   $$
 - After STS has been emptied, we begin to retrieve items from LTS through two pathways: either associations with **context** or associations between *both* **context and other items**.  In addition, all retrievals happen in a two-part process (until either the process is halted as described below, or until all studied items have been recalled):
   - First, an item is *sampled*.  This is how an item is "chosen" for consideration as a recall candidate.
@@ -113,7 +113,7 @@ You can choose any approach you wish to fit these parameters.  My "recommended" 
 The "right" way to do this is to use a subset of the data to estimate the parameters (i.e., training data), and then plot the observed and predicted results for the remaining (held-out)  test data.  You'll need to do some experimenting to determine an appropriate proportion of the data to assign to the training vs. test datasets.  (Randomly assigning half of the data to each group is a good place to start.)
 
 ## Implementation Tasks
-You can use the [example notebook]() to help get you started with implementing the SAM model.
+You can use the [example notebook](https://contextlab.github.io/memory-models-course/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/sam_assignment_template.html) to help get you started with implementing the SAM model.
 
 ### **Step 1: Implement Memory Encoding**
 - Fill in the missing code for the `present` method in the `STS` class
