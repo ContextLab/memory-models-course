@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Overview &#8212; Computational memory Models</title>
+    <title>Recommended approach for implementing models directly from original sources &#8212; Computational memory Models</title>
   
   
   
@@ -57,13 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'assignments/README';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Assignment 1: Hopfield Networks" href="Assignment_1%3AHopfield_Networks/README.html" />
-    <link rel="prev" title="Week 1" href="../slides/week_1.html" />
+    <link rel="prev" title="Annotated Course Schedule and Outline" href="../outline.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -187,26 +185,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../admin/syllabus.html">Course Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../outline.html">Annotated Course Schedule and Outline</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Slides</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../slides/week_1.html">Week 1</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Overview</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="Assignment_1%3AHopfield_Networks/README.html">Assignment 1: Hopfield Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="Assignment_1%3AHopfield_Networks/hopfield_assignment_template.html">Submission Template</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Recommended approach for implementing models directly from original sources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Assignment_1%3AHopfield_Networks/README.html">Assignment 1: Hopfield Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Assignment_1%3AHopfield_Networks/hopfield_assignment_template.html">Submission Template</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="Assignment_2%3ASearch_of_Associative_Memory_Model/README.html">Assignment 2: Search of Associative Memory (SAM) Model</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="Assignment_2%3ASearch_of_Associative_Memory_Model/sam_assignment_template.html">Submission Template</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Assignment_2%3ASearch_of_Associative_Memory_Model/README.html">Assignment 2: Search of Associative Memory (SAM) Model</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Assignment_2%3ASearch_of_Associative_Memory_Model/sam_assignment_template.html">Submission Template</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Assignment_4%3A_Laplace_Temporal_Context_Model/README.html">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Final_Project/README.html">Final Project: Open-Ended Exploration of Memory Models</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Assignment_4%3A_Laplace_Temporal_Context_Model/README.html">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_Project/README.html">Final Project: Open-Ended Exploration of Memory Models</a></li>
 </ul>
 
     </div>
@@ -392,7 +384,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Overview</h1>
+    <h1>Recommended approach for implementing models directly from original sources</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -402,8 +394,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-approach-to-all-assignments">Recommended approach to all assignments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#be-kind-to-yourself-and-your-brain">Be kind to yourself (and your brain)!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reminder-be-kind-to-yourself-and-your-brain">Reminder: be kind to yourself (and your brain)!</a></li>
 </ul>
             </nav>
         </div>
@@ -415,11 +406,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
-<p>Assignments are intended to strengthen your understanding of the material, and to develop your ability to implement, explore, and rigorously test computational models using primary sources and real datasets.</p>
-<section id="recommended-approach-to-all-assignments">
-<h2>Recommended approach to all assignments<a class="headerlink" href="#recommended-approach-to-all-assignments" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="recommended-approach-for-implementing-models-directly-from-original-sources">
+<h1>Recommended approach for implementing models directly from original sources<a class="headerlink" href="#recommended-approach-for-implementing-models-directly-from-original-sources" title="Link to this heading">#</a></h1>
 <ol class="arabic simple">
 <li><p>Read the original paper.  In your first pass, skip over any sections that you find confusing or difficult to parse; your goal is to get a high-level understanding.  You can also use tools like <a class="reference external" href="https://notebooklm.google.com/">NotebookLM</a> or <a class="reference external" href="https://chatgpt.com/">ChatGPT</a> to help you summarize the material or present it in an easily digestible format.  If there are additional “background” papers, read those (for a high-level understanding) too.  Focus on the Abstract, Introduction, and Discussion sections.</p></li>
 <li><p>Read the primary paper again.  Focus on the Results section and identify the most important results.  Decide what it would mean to “replicate” the core findings in the paper.  Usually this means reproducing one or more of the figures.  Or sometimes it can mean generating new figures that evaluate, test, or examine the content in a new way.  Sometimes this could entail running one or more statistical tests.  Sketch out (in a notebook, or wherever you) what your target figures or analyses are.  In assignments for this course, the “core results” will generally be given to you in the assignment instructions.  But in the general case (i.e., in “real life”) you’ll need to figure this out yourself.</p></li>
@@ -447,14 +435,11 @@ document.write(`
 </ul>
 </li>
 </ul>
-</section>
-<section id="be-kind-to-yourself-and-your-brain">
-<h2>Be kind to yourself (and your brain)!<a class="headerlink" href="#be-kind-to-yourself-and-your-brain" title="Link to this heading">#</a></h2>
+<section id="reminder-be-kind-to-yourself-and-your-brain">
+<h2>Reminder: be kind to yourself (and your brain)!<a class="headerlink" href="#reminder-be-kind-to-yourself-and-your-brain" title="Link to this heading">#</a></h2>
 <p>Implementing models from scratch, and piecing research together directly from primary sources, is hard!  It’s helpful to give yourself plenty of time, maintain a positive attitude, ask for help when you need it, and just keep pushing it forward one tiny step at a time.  If you find yourself completely stuck, try doing some sort of mindless exercise (walks are great!), meditate, take a nap (or go to sleep), have a snack, or anything else that will give your mind a break.  Then, when you’re feeling fresher, re-review your notes and see if you can push forward a tiny bit more.</p>
 <p>When I am <em>really</em> stuck, my other often-used trick is to explain (usually to my wife, or even just talking out loud to myself!) what is so confusion, or why I’m stuck.  The act of forcing yourself to talk through the nitty gritty details of how something “should” work vs. how it “does” work can sometimes be enough to uncover where the blocks are.</p>
 </section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -488,12 +473,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../slides/week_1.html"
+       href="../outline.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 1</p>
+        <p class="prev-next-title">Annotated Course Schedule and Outline</p>
       </div>
     </a>
     <a class="right-next"
@@ -521,8 +506,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-approach-to-all-assignments">Recommended approach to all assignments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#be-kind-to-yourself-and-your-brain">Be kind to yourself (and your brain)!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reminder-be-kind-to-yourself-and-your-brain">Reminder: be kind to yourself (and your brain)!</a></li>
 </ul>
   </nav></div>
 

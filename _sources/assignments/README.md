@@ -1,8 +1,4 @@
-# Overview
-
-Assignments are intended to strengthen your understanding of the material, and to develop your ability to implement, explore, and rigorously test computational models using primary sources and real datasets.
-
-## Recommended approach to all assignments
+# Recommended approach for implementing models directly from original sources
 
 1. Read the original paper.  In your first pass, skip over any sections that you find confusing or difficult to parse; your goal is to get a high-level understanding.  You can also use tools like [NotebookLM](https://notebooklm.google.com/) or [ChatGPT](https://chatgpt.com/) to help you summarize the material or present it in an easily digestible format.  If there are additional "background" papers, read those (for a high-level understanding) too.  Focus on the Abstract, Introduction, and Discussion sections.
 2. Read the primary paper again.  Focus on the Results section and identify the most important results.  Decide what it would mean to "replicate" the core findings in the paper.  Usually this means reproducing one or more of the figures.  Or sometimes it can mean generating new figures that evaluate, test, or examine the content in a new way.  Sometimes this could entail running one or more statistical tests.  Sketch out (in a notebook, or wherever you) what your target figures or analyses are.  In assignments for this course, the "core results" will generally be given to you in the assignment instructions.  But in the general case (i.e., in "real life") you'll need to figure this out yourself.
@@ -26,7 +22,7 @@ You may also find that there's some detail that is *missing* from the paper.  Un
     - Organize your thoughts and ask all of your questions up front (it's fine to have follow-up questions, but it can be off-putting if you send a flurry of partially thought through emails in rapid succession).
     - Keep your email as brief as possible.  If you absolutely must write out a detailed explanation, then also include an initial paragraph to orient the recipient (e.g., tell them that you have some questions about their paper, and say that details are included below).
 
-## Be kind to yourself (and your brain)!
+## Reminder: be kind to yourself (and your brain)!
 
 Implementing models from scratch, and piecing research together directly from primary sources, is hard!  It's helpful to give yourself plenty of time, maintain a positive attitude, ask for help when you need it, and just keep pushing it forward one tiny step at a time.  If you find yourself completely stuck, try doing some sort of mindless exercise (walks are great!), meditate, take a nap (or go to sleep), have a snack, or anything else that will give your mind a break.  Then, when you're feeling fresher, re-review your notes and see if you can push forward a tiny bit more.
 
