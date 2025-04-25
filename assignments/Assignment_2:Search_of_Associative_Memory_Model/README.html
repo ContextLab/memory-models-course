@@ -525,7 +525,13 @@ document.write(`
 \[\begin{split}
  p(\text{recall item }i | j, context) = 1 - \exp{\\( -W_e S(i, j) - W_c S(i, context)\\)}.
  \end{split}\]</div>
-<p>To decide whether a given recall (of item <span class="math notranslate nohighlight">\(i\)</span>) occurs, draw a random number <span class="math notranslate nohighlight">\(\theta\)</span> uniformly from the interval <span class="math notranslate nohighlight">\([0, 1]\)</span>.  If <span class="math notranslate nohighlight">\(\theta &lt; p(\text{recall item }i)\)</span> then the item is recalled (and two “counter” parameters, <span class="math notranslate nohighlight">\(m_1\)</span> and <span class="math notranslate nohighlight">\(m_2\)</span>, are both reset to 0).  Otherwise the recall failure procedure is called next.</p>
+<p>To decide whether a given recall (of item <span class="math notranslate nohighlight">\(i\)</span>) occurs, draw a random number <span class="math notranslate nohighlight">\(\theta\)</span> uniformly from the interval <span class="math notranslate nohighlight">\([0, 1]\)</span>.  If <span class="math notranslate nohighlight">\(\theta &lt; p(\text{recall item }i)\)</span> then:</p>
+<ul class="simple">
+<li><p>the two “counter” parameters, <span class="math notranslate nohighlight">\(m_1\)</span> and <span class="math notranslate nohighlight">\(m_2\)</span>, are both reset to 0</p></li>
+<li><p><span class="math notranslate nohighlight">\(S(i, context)\)</span> is incremented by <span class="math notranslate nohighlight">\(a_\text{forward}\)</span></p></li>
+<li><p>item <span class="math notranslate nohighlight">\(i\)</span> is recalled</p></li>
+</ul>
+<p>Otherwise the recall failure procedure is called next.</p>
 </section>
 <section id="recall-failures">
 <h4>Recall failures<a class="headerlink" href="#recall-failures" title="Link to this heading">#</a></h4>

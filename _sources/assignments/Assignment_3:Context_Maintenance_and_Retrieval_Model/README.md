@@ -1,7 +1,7 @@
 # Assignment 3: Context Maintenance and Retrieval (CMR)
 
 ## Overview
-In this assignment, you will implement the **Context Maintenance and Retrieval (CMR) model** as described in [Polyn, Norman, & Kahana (2009)](https://www.dropbox.com/scl/fi/98pui63j3o62xu96ciwhy/PolyEtal09.pdf?rlkey=42sc17ll573sm83g4q8q9x9nq&dl=1). CMR is a **context-based model of memory search**, extending the **Temporal Context Model (TCM)** to explain how **temporal, semantic, and source context** jointly influence recall. You will fit your implementation to [Murdock (1962)](https://www.dropbox.com/scl/fi/k7jc1b6uua4m915maglpl/Murd62.pdf?rlkey=i5nc7lzb2pw8dxc6xc72r5r5i&dl=1) free recall data and evaluate how well the model explains the observed recall patterns.
+In this assignment, you will implement the **Context Maintenance and Retrieval (CMR) model** as described in [Polyn, Norman, & Kahana (2009)](https://www.dropbox.com/scl/fi/98pui63j3o62xu96ciwhy/PolyEtal09.pdf?rlkey=42sc17ll573sm83g4q8q9x9nq&dl=1). CMR is a **context-based model of memory search**, extending the **Temporal Context Model (TCM)** to explain how **temporal, semantic, and source context** jointly influence recall. You will fit your implementation to Polyn et al. (2009)'s task-switching free recall data and evaluate how well the model explains the observed recall patterns.
 
 ## Data Format and Preprocessing
 The dataset consists of sequences of recalled items from multiple trials of a free recall experiment. Each row represents a participant’s recall sequence from a single list presentation.

@@ -87,7 +87,12 @@ Alternatively, if an item $i$ is sampled through its associations with both item
  p(\text{recall item }i | j, context) = 1 - \exp{\\( -W_e S(i, j) - W_c S(i, context)\\)}.
  $$
 
-To decide whether a given recall (of item $i$) occurs, draw a random number $\theta$ uniformly from the interval $[0, 1]$.  If $\theta < p(\text{recall item }i)$ then the item is recalled (and two "counter" parameters, $m_1$ and $m_2$, are both reset to 0).  Otherwise the recall failure procedure is called next.
+To decide whether a given recall (of item $i$) occurs, draw a random number $\theta$ uniformly from the interval $[0, 1]$.  If $\theta < p(\text{recall item }i)$ then:
+  - the two "counter" parameters, $m_1$ and $m_2$, are both reset to 0
+  - $S(i, context)$ is incremented by $a_\text{forward}$
+  - item $i$ is recalled
+
+Otherwise the recall failure procedure is called next.
 
 #### Recall failures
 

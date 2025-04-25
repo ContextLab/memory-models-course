@@ -57,11 +57,9 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'assignments/Assignment_2:Search_of_Associative_Memory_Model/sam_assignment_template';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'assignments/Assignment_3:Context_Maintenance_and_Retrieval_Model/cmr_assignment_template';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Assignment 3: Context Maintenance and Retrieval (CMR)" href="../Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html" />
-    <link rel="prev" title="Assignment 2: Search of Associative Memory (SAM) Model" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,6 +121,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -186,17 +186,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../../outline.html">Annotated Course Schedule and Outline</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Recommended approach for implementing models directly from original sources</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Assignment_1%3AHopfield_Networks/README.html">Assignment 1: Hopfield Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Assignment_1%3AHopfield_Networks/hopfield_assignment_template.html">Submission Template</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Assignment 2: Search of Associative Memory (SAM) Model</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Submission Template</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignment_2%3ASearch_of_Associative_Memory_Model/README.html">Assignment 2: Search of Associative Memory (SAM) Model</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignment_2%3ASearch_of_Associative_Memory_Model/sam_assignment_template.html">Submission Template</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Assignment_4%3A_Laplace_Temporal_Context_Model/README.html">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Final_Project/README.html">Final Project: Open-Ended Exploration of Memory Models</a></li>
 </ul>
@@ -270,7 +270,7 @@
       
       
       
-      <li><a href="https://github.com/ContextLab/memory-models-course/issues/new?title=Issue%20on%20page%20%2Fassignments/Assignment_2:Search_of_Associative_Memory_Model/sam_assignment_template.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ContextLab/memory-models-course/issues/new?title=Issue%20on%20page%20%2Fassignments/Assignment_3:Context_Maintenance_and_Retrieval_Model/cmr_assignment_template.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +300,7 @@
       
       
       
-      <li><a href="../../_sources/assignments/Assignment_2:Search_of_Associative_Memory_Model/sam_assignment_template.ipynb" target="_blank"
+      <li><a href="../../_sources/assignments/Assignment_3:Context_Maintenance_and_Retrieval_Model/cmr_assignment_template.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -396,12 +396,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/ContextLab/memory-models-course/blob/main/content/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/sam_assignment_template.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="submission-template">
+  <section class="tex2jax_ignore mathjax_ignore" id="submission-template">
 <h1>Submission Template<a class="headerlink" href="#submission-template" title="Link to this heading">#</a></h1>
-<p>This notebook provides a suggested starter template for completing the <a class="reference external" href="https://contextlab.github.io/memory-models-course/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/README.html">SAM model assignment</a>.</p>
-<p>You should submit your assignment by uploading your completed notebook to <a class="reference external" href="https://canvas.dartmouth.edu/courses/71051/assignments/517354">Canvas</a>.  Please ensure that your notebook runs without errors in <a class="reference external" href="https://colab.research.google.com/">Google Colaboratory</a>.</p>
-<p>Imports</p>
+<p>This notebook provides a suggested starter template for completing the <a class="reference external" href="https://contextlab.github.io/memory-models-course/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html">CMR model assignment</a>.</p>
+<p>You should submit your assignment by uploading your completed notebook to <a class="reference external" href="https://canvas.dartmouth.edu/courses/71051/assignments/517355">Canvas</a>.  Please ensure that your notebook runs without errors in <a class="reference external" href="https://colab.research.google.com/">Google Colaboratory</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -411,36 +409,18 @@ document.write(`
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">loadmat</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tempfile</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTemporaryFile</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Download dataset and store as <code class="docutils literal notranslate"><span class="pre">sequence</span></code> objects containing the <code class="docutils literal notranslate"><span class="pre">presented</span></code> and <code class="docutils literal notranslate"><span class="pre">recalled</span></code> items for each trial.  The sequences are stored in nested dictionaries in the form</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">[</span><span class="nb">list</span> <span class="n">length</span><span class="p">][</span><span class="n">presentation</span> <span class="n">rate</span><span class="p">]</span>
-</pre></div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">item</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">idx</span> <span class="o">=</span> <span class="mi">1</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">idx</span>
-            <span class="n">item</span><span class="o">.</span><span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">val</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">sequence</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">items</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">load_recall_data</span><span class="p">():</span>
-    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/Murd62</span><span class="si">%20d</span><span class="s2">ata/&quot;</span>
-    <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fr10-2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr15-2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr20-1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr20-2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr30-1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fr40-1.txt&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_recall_data</span><span class="p">():</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/PolyEtal09</span><span class="si">%20d</span><span class="s2">ata/&quot;</span>
+    <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stimuli.mat&quot;</span><span class="p">,</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">]</span>
 
     <span class="n">presented</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">recalled</span> <span class="o">=</span> <span class="p">{}</span>
@@ -475,89 +455,49 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Basic skeleton for the SAM model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">STS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">s_f</span><span class="p">,</span> <span class="n">s_b</span><span class="p">,</span> <span class="n">max_items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lts</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">r</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
-    <span class="k">if</span> <span class="n">lts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">LTS</span> <span class="o">=</span> <span class="n">LTS</span><span class="p">(</span><span class="n">max_items</span><span class="p">,</span> <span class="n">s_f</span><span class="p">,</span> <span class="n">s_b</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">LTS</span> <span class="o">=</span> <span class="n">lts</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">entry_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/PolyEtal09</span><span class="si">%20d</span><span class="s2">ata/&quot;</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stimuli.mat&quot;</span><span class="p">,</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">]</span>
 
-  <span class="k">def</span><span class="w"> </span><span class="nf">present</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="c1"># p(displacement) = q(q - q)^(i - 1) / (1 - (1 - q))^r</span>
-    <span class="c1">#     i: relative age of item</span>
-    <span class="c1">#  q, r: model params</span>
-    <span class="c1">#</span>
-    <span class="c1"># check current capacity; if available capacity, add item to STS.  else displace items.</span>
-    <span class="k">pass</span>
+<span class="n">stimuli</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;stimuli.mat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="n">behavior</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/PolyEtal09</span><span class="si">%20d</span><span class="s2">ata/&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stimuli.mat&quot;</span><span class="p">,</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">stimuli</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;stimuli.mat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">behavior</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 
+<span class="nn">File ~/memory-models-course/memory-course/lib/python3.11/site-packages/requests/models.py:1024,</span> in <span class="ni">Response.raise_for_status</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1019</span>     <span class="n">http_error_msg</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1020</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> Server Error: </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2"> for url: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1021</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="k">if</span> <span class="n">http_error_msg</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1024</span>     <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">http_error_msg</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">LTS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_items</span><span class="p">,</span> <span class="n">s_f</span><span class="p">,</span> <span class="n">s_b</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">max_items</span> <span class="o">=</span> <span class="n">max_items</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">s_f</span> <span class="o">=</span> <span class="n">s_f</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">s_b</span> <span class="o">=</span> <span class="n">s_b</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">max_items</span><span class="p">,</span> <span class="n">max_items</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_items</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">previous_recall</span> <span class="o">=</span> <span class="kc">None</span>
-
-  <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
-    <span class="c1"># update self.S and self.context</span>
-    <span class="k">pass</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">SAM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">W_c</span><span class="p">,</span> <span class="n">W_e</span><span class="p">,</span> <span class="n">M_1</span><span class="p">,</span> <span class="n">M_2</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">max_items</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">W_c</span> <span class="o">=</span> <span class="n">W_c</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">W_e</span> <span class="o">=</span> <span class="n">W_e</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">M_1</span> <span class="o">=</span> <span class="n">M_1</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">M_2</span> <span class="o">=</span> <span class="n">M_2</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">m1_count</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">m2_count</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">r</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">STS</span> <span class="o">=</span> <span class="n">STS</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">max_items</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">LTS</span> <span class="o">=</span> <span class="n">LTS</span><span class="p">(</span><span class="n">max_items</span><span class="p">)</span>
-
-  <span class="k">def</span><span class="w"> </span><span class="nf">present</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">STS</span><span class="o">.</span><span class="n">present</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">LTS</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">STS</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
-
-  <span class="k">def</span><span class="w"> </span><span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># retrieve a *single item*</span>
-    <span class="c1"># if there&#39;s anything in STS, retrieve and remove it</span>
-    <span class="c1"># else:</span>
-    <span class="c1">#    - sample (from context and/or context + prev item) until we get something other than the previous_recall.</span>
-    <span class="c1">#             (if previous_recall is the only item left, return None)</span>
-    <span class="c1">#    - recall (given cue strength):</span>
-    <span class="c1">#       - if successful, reset m1_count and m2_count, set previous_recall to item, return sampled item</span>
-    <span class="c1">#       - otherwise increment m1_count or m2_count.  if either exceed M_1/M2, return None</span>
-    <span class="k">pass</span>
+<span class="ne">HTTPError</span>: 404 Client Error: Not Found for url: https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/PolyEtal09%20data/stimuli.mat
 </pre></div>
 </div>
 </div>
 </div>
-<p>Other tasks:</p>
-<ul class="simple">
-<li><p>Fit params to <a class="reference external" href="https://github.com/ContextLab/memory-models-course/tree/main/content/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/Murd62%20data">Murdock (1962) dataset</a> that you downloaded with the <code class="docutils literal notranslate"><span class="pre">load_data</span></code> function.</p>
-<ul>
-<li><p>You’ll need to define a “loss” function.  I suggest computing MSE for one or more behavioral curves, computed for a subset of the Murdock (1962) participants/lists</p></li>
-<li><p>I suggest using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">scipy.optimize.minimize</a> to estimate the model parameters.</p></li>
-</ul>
-</li>
-<li><p>Create observed/predicted plots for held-out data:</p>
-<ul>
-<li><p>p(first recall)</p></li>
-<li><p>p(recall)</p></li>
-<li><p>lag-CRP</p></li>
-</ul>
-</li>
-</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stimuli</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Response [404]&gt;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -573,7 +513,7 @@ document.write(`
         },
         kernelOptions: {
             name: "memory-course",
-            path: "./assignments/Assignment_2:Search_of_Associative_Memory_Model"
+            path: "./assignments/Assignment_3:Context_Maintenance_and_Retrieval_Model"
         },
         predefinedOutput: true
     }
@@ -590,24 +530,6 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="README.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Assignment 2: Search of Associative Memory (SAM) Model</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../Assignment_3%3AContext_Maintenance_and_Retrieval_Model/README.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assignment 3: Context Maintenance and Retrieval (CMR)</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
