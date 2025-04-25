@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'assignments/Assignment_3:Context_Maintenance_and_Retrieval_Model/README';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Assignment 4: Laplace Temporal Context Model (Laplace TCM)" href="../Assignment_4%3A_Laplace_Temporal_Context_Model/README.html" />
+    <link rel="next" title="Submission Template" href="cmr_assignment_template.html" />
     <link rel="prev" title="Submission Template" href="../Assignment_2%3ASearch_of_Associative_Memory_Model/sam_assignment_template.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -198,7 +198,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../Assignment_2%3ASearch_of_Associative_Memory_Model/sam_assignment_template.html">Submission Template</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Assignment 3: Context Maintenance and Retrieval (CMR)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cmr_assignment_template.html">Submission Template</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Assignment_4%3A_Laplace_Temporal_Context_Model/README.html">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Final_Project/README.html">Final Project: Open-Ended Exploration of Memory Models</a></li>
 </ul>
@@ -442,19 +445,8 @@ document.write(`
 </section>
 <section id="data-format-and-preprocessing">
 <h2>Data Format and Preprocessing<a class="headerlink" href="#data-format-and-preprocessing" title="Link to this heading">#</a></h2>
-<p>The dataset consists of sequences of recalled items from multiple trials of a free recall experiment. Each row represents a participant’s recall sequence from a single list presentation.</p>
-<ul>
-<li><p><strong>Numbers (1, 2, …, N)</strong>: Serial position of recalled items.</p></li>
-<li><p><strong>88</strong>: Denotes errors (recalls of items that were never presented)</p></li>
-<li><p><strong>Example:</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">7</span> <span class="mi">10</span> <span class="mi">2</span> <span class="mi">8</span>  
-<span class="mi">10</span> <span class="mi">9</span> <span class="mi">6</span> <span class="mi">8</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">88</span>  
-<span class="mi">10</span> <span class="mi">7</span> <span class="mi">9</span> <span class="mi">8</span> <span class="mi">1</span>  
-</pre></div>
-</div>
-<p>This represents three recall trials. Each row contains the order in which items were recalled for one list.</p>
-</li>
-</ul>
+<p>The dataset comprises sequences of presented and recalled words (concrete nouns) from multiple trials of a free recall experiment. As they were studying each word, participants were either asked to judge the referent’s <em>size</em> (would it fit in a shoebox?) or <em>animacy</em> (does it refer to a living thing?).  The dataset also includes information about the similarities in meaning between all of the stimuli (semantic similarities).</p>
+<p>Code for downloading and loading the dataset into Python, along with a more detailed description of its contents, may be found in the <a class="reference external" href="https://github.com/ContextLab/memory-models-course/blob/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/cmr_assignment_template.ipynb">template notebook for this assignment</a>.</p>
 </section>
 <section id="model-description">
 <h2>Model Description<a class="headerlink" href="#model-description" title="Link to this heading">#</a></h2>
@@ -638,6 +630,8 @@ document.write(`
 </ul>
 <p>Good luck, and happy modeling!</p>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -680,11 +674,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../Assignment_4%3A_Laplace_Temporal_Context_Model/README.html"
+       href="cmr_assignment_template.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</p>
+        <p class="prev-next-title">Submission Template</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

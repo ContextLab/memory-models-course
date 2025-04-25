@@ -60,6 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'assignments/Assignment_3:Context_Maintenance_and_Retrieval_Model/cmr_assignment_template';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Assignment 4: Laplace Temporal Context Model (Laplace TCM)" href="../Assignment_4%3A_Laplace_Temporal_Context_Model/README.html" />
+    <link rel="prev" title="Assignment 3: Context Maintenance and Retrieval (CMR)" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +123,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -186,7 +186,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../outline.html">Annotated Course Schedule and Outline</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Recommended approach for implementing models directly from original sources</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Assignment_1%3AHopfield_Networks/README.html">Assignment 1: Hopfield Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Assignment_1%3AHopfield_Networks/hopfield_assignment_template.html">Submission Template</a></li>
@@ -196,7 +196,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../Assignment_2%3ASearch_of_Associative_Memory_Model/sam_assignment_template.html">Submission Template</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Assignment 3: Context Maintenance and Retrieval (CMR)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Submission Template</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Assignment_4%3A_Laplace_Temporal_Context_Model/README.html">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Final_Project/README.html">Final Project: Open-Ended Exploration of Memory Models</a></li>
 </ul>
@@ -416,84 +419,59 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Download the stimuli and behavioral data, returned as a dictionary with the following fields:</p>
+<ul class="simple">
+<li><p>‘words’: a list of 1297 strings (one per word in the stimulus pool)</p></li>
+<li><p>‘sem_mat’: a 1297 x 1297 NumPy array of semantic similarities (range: -1 to 1) between every pair of words in the stimulus pool</p></li>
+<li><p>‘presented_items’: a number-of-trials by list-length array of items for each presented list (represented using 0-indexed indices in the word pool)</p></li>
+<li><p>‘recalled_items’: a number-of-trials by max-number-of-recalled-items array of recalled items from each list (represented using 0-indexed indices in the word pool).  -1s correspond to extra-list intrusions.  Trials are right-padded with nans as needed.</p></li>
+<li><p>‘task’: a number-of-trials by list-length array of task labels for each presented item (0: size task; 1: animacy task)</p></li>
+<li><p>‘session’: session labels for each trial (a NumPy array of length number-of-trials)</p></li>
+<li><p>‘subject’: subject labels for each trial (a NumPy array of length number-of-trials)</p></li>
+<li><p>‘list_type’: list type labels for each trial (a NumPy array of length number-of-trials; 0: all items studied using the size task; 1: all items studied using the animacy task; 2: task-shift list)</p></li>
+<li><p>‘list_length’: a scalar value containing the list length (an integer)</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_recall_data</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">():</span>
+    <span class="c1"># Download the files</span>
     <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/PolyEtal09</span><span class="si">%20d</span><span class="s2">ata/&quot;</span>
-    <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stimuli.mat&quot;</span><span class="p">,</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">]</span>
 
-    <span class="n">presented</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">recalled</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># download the stimuli</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;stimuli.mat&quot;</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">temp_file</span><span class="p">:</span>
+        <span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">stimuli_data</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="n">temp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">stimuli_data</span><span class="p">[</span><span class="s1">&#39;tfr_wp&#39;</span><span class="p">]]</span>
+        <span class="n">sem_mat</span> <span class="o">=</span> <span class="n">stimuli_data</span><span class="p">[</span><span class="s1">&#39;sem_mat&#39;</span><span class="p">]</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">temp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-        <span class="n">list_len</span><span class="p">,</span> <span class="n">pres_rate</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;fr&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">list_len</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">presented</span><span class="p">:</span>
-            <span class="n">presented</span><span class="p">[</span><span class="n">list_len</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">recalled</span><span class="p">[</span><span class="n">list_len</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="n">pres_rate</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">presented</span><span class="p">[</span><span class="n">list_len</span><span class="p">]:</span>
-            <span class="n">presented</span><span class="p">[</span><span class="n">list_len</span><span class="p">][</span><span class="n">pres_rate</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">recalled</span><span class="p">[</span><span class="n">list_len</span><span class="p">][</span><span class="n">pres_rate</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># download the behavioral data</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">temp_file</span><span class="p">:</span>
+        <span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">behavioral_data</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="n">temp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">presented_items</span> <span class="o">=</span> <span class="n">behavioral_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;pres_itemnos&#39;</span><span class="p">]</span>
+        <span class="n">recalled_items</span> <span class="o">=</span> <span class="n">behavioral_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;rec_itemnos&#39;</span><span class="p">]</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">behavioral_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;pres_task&#39;</span><span class="p">]</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">behavioral_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;session&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">subject</span> <span class="o">=</span> <span class="n">behavioral_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">list_type</span> <span class="o">=</span> <span class="n">behavioral_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;listType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>    
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">temp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-        <span class="c1"># Download the file</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">filename</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-        <span class="n">lines</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;words&#39;</span><span class="p">:</span> <span class="n">words</span><span class="p">,</span>
+            <span class="s1">&#39;sem_mat&#39;</span><span class="p">:</span> <span class="n">sem_mat</span><span class="p">,</span>
+            <span class="s1">&#39;presented_items&#39;</span><span class="p">:</span> <span class="n">presented_items</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;recalled_items&#39;</span><span class="p">:</span> <span class="n">recalled_items</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;task&#39;</span><span class="p">:</span> <span class="n">task</span><span class="p">,</span>
+            <span class="s1">&#39;session&#39;</span><span class="p">:</span> <span class="n">session</span><span class="p">,</span>
+            <span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="n">subject</span><span class="p">,</span>
+            <span class="s1">&#39;list_type&#39;</span><span class="p">:</span> <span class="n">list_type</span><span class="p">,</span>
+            <span class="s1">&#39;list_length&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">behavioral_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;listLength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="mi">0</span><span class="p">])}</span>
 
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-            <span class="n">recall_ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">88</span><span class="p">]</span>
-            <span class="n">recall_seq</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">([</span><span class="n">item</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">recall_ids</span><span class="p">])</span>
-            <span class="n">presented_seq</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">([</span><span class="n">item</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">list_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
-
-            <span class="n">presented</span><span class="p">[</span><span class="n">list_len</span><span class="p">][</span><span class="n">pres_rate</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">presented_seq</span><span class="p">)</span>
-            <span class="n">recalled</span><span class="p">[</span><span class="n">list_len</span><span class="p">][</span><span class="n">pres_rate</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recall_seq</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">presented</span><span class="p">,</span> <span class="n">recalled</span>
-
-<span class="n">presented</span><span class="p">,</span> <span class="n">recalled</span> <span class="o">=</span> <span class="n">load_recall_data</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/PolyEtal09</span><span class="si">%20d</span><span class="s2">ata/&quot;</span>
-<span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stimuli.mat&quot;</span><span class="p">,</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">]</span>
-
-<span class="n">stimuli</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;stimuli.mat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-<span class="n">behavior</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/PolyEtal09</span><span class="si">%20d</span><span class="s2">ata/&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stimuli.mat&quot;</span><span class="p">,</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">]</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">stimuli</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;stimuli.mat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">behavior</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;behavior.mat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-
-<span class="nn">File ~/memory-models-course/memory-course/lib/python3.11/site-packages/requests/models.py:1024,</span> in <span class="ni">Response.raise_for_status</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1019</span>     <span class="n">http_error_msg</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1020</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> Server Error: </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2"> for url: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1021</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="k">if</span> <span class="n">http_error_msg</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1024</span>     <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">http_error_msg</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-
-<span class="ne">HTTPError</span>: 404 Client Error: Not Found for url: https://raw.githubusercontent.com/ContextLab/memory-models-course/refs/heads/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/PolyEtal09%20data/stimuli.mat
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stimuli</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Response [404]&gt;
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -530,6 +508,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Assignment 3: Context Maintenance and Retrieval (CMR)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Assignment_4%3A_Laplace_Temporal_Context_Model/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Assignment 4: Laplace Temporal Context Model (Laplace TCM)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
