@@ -4,19 +4,9 @@
 In this assignment, you will implement the **Context Maintenance and Retrieval (CMR) model** as described in [Polyn, Norman, & Kahana (2009)](https://www.dropbox.com/scl/fi/98pui63j3o62xu96ciwhy/PolyEtal09.pdf?rlkey=42sc17ll573sm83g4q8q9x9nq&dl=1). CMR is a **context-based model of memory search**, extending the **Temporal Context Model (TCM)** to explain how **temporal, semantic, and source context** jointly influence recall. You will fit your implementation to Polyn et al. (2009)'s task-switching free recall data and evaluate how well the model explains the observed recall patterns.
 
 ## Data Format and Preprocessing
-The dataset consists of sequences of recalled items from multiple trials of a free recall experiment. Each row represents a participant’s recall sequence from a single list presentation.
+The dataset comprises sequences of presented and recalled words (concrete nouns) from multiple trials of a free recall experiment. As they were studying each word, participants were either asked to judge the referent's *size* (would it fit in a shoebox?) or *animacy* (does it refer to a living thing?).  The dataset also includes information about the similarities in meaning between all of the stimuli (semantic similarities).
 
-- **Numbers (1, 2, ..., N)**: Serial position of recalled items.
-- **88**: Denotes errors (recalls of items that were never presented)
-- **Example:**
-  
-  ```
-  6 1 4 7 10 2 8  
-  10 9 6 8 2 1 88  
-  10 7 9 8 1  
-  ```
-
-  This represents three recall trials. Each row contains the order in which items were recalled for one list.
+Code for downloading and loading the dataset into Python, along with a more detailed description of its contents, may be found in the [template notebook for this assignment](https://github.com/ContextLab/memory-models-course/blob/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/cmr_assignment_template.ipynb).
 
 ## Model Description
 
