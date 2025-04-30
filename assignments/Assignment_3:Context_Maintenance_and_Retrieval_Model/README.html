@@ -401,30 +401,19 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-and-preprocessing">Data Format and Preprocessing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-description">Model Description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-stage-context-representation">1. <strong>Encoding Stage: Context Representation</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-stage-memory-search">2. <strong>Retrieval Stage: Memory Search</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#activation-of-memory-traces"><strong>Activation of Memory Traces</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-model-description">High-level Model Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-layer-f">1. <strong>Feature layer (<span class="math notranslate nohighlight">\(F\)</span>)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context-layer-c">2. <strong>Context layer (<span class="math notranslate nohighlight">\(C\)</span>)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#association-matrices">3. <strong>Association matrices</strong></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model">3. <strong>Fitting the Model</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dynamics">Model dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding">Encoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval">Retrieval</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-tasks">Implementation Tasks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-implement-context-evolution"><strong>Step 1: Implement Context Evolution</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-implement-the-recall-process"><strong>Step 2: Implement the Recall Process</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-load-and-process-data"><strong>Step 3: Load and Process Data</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-fit-model-parameters"><strong>Step 4: Fit Model Parameters</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-key-plots"><strong>Step 5: Generate Key Plots</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-1-probability-of-first-recall-as-a-function-of-serial-position"><strong>Plot 1: Probability of First Recall as a Function of Serial Position</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-2-conditional-recall-probability-as-a-function-of-lag"><strong>Plot 2: Conditional Recall Probability as a Function of Lag</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-3-overall-probability-of-recall-as-a-function-of-serial-position"><strong>Plot 3: Overall Probability of Recall as a Function of Serial Position</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-evaluate-the-model"><strong>Step 6: Evaluate the Model</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-criteria">Grading Criteria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model"><strong>Fitting the Model</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-implementation-tasks">Summary of Implementation Tasks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission Instructions</a></li>
 </ul>
             </nav>
@@ -441,185 +430,182 @@ document.write(`
 <h1>Assignment 3: Context Maintenance and Retrieval (CMR)<a class="headerlink" href="#assignment-3-context-maintenance-and-retrieval-cmr" title="Link to this heading">#</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>In this assignment, you will implement the <strong>Context Maintenance and Retrieval (CMR) model</strong> as described in <a class="reference external" href="https://www.dropbox.com/scl/fi/98pui63j3o62xu96ciwhy/PolyEtal09.pdf?rlkey=42sc17ll573sm83g4q8q9x9nq&amp;amp;dl=1">Polyn, Norman, &amp; Kahana (2009)</a>. CMR is a <strong>context-based model of memory search</strong>, extending the <strong>Temporal Context Model (TCM)</strong> to explain how <strong>temporal, semantic, and source context</strong> jointly influence recall. You will fit your implementation to Polyn et al. (2009)’s task-switching free recall data and evaluate how well the model explains the observed recall patterns.</p>
+<p>In this assignment, you will implement the <strong>Context Maintenance and Retrieval (CMR) model</strong> as described in <a class="reference external" href="https://www.dropbox.com/scl/fi/98pui63j3o62xu96ciwhy/PolyEtal09.pdf?rlkey=42sc17ll573sm83g4q8q9x9nq">Polyn, Norman, &amp; Kahana (2009)</a>. CMR is a <strong>context-based model of memory search</strong>, extending the <strong>Temporal Context Model (TCM)</strong> to explain how <strong>temporal, semantic, and source context</strong> jointly influence recall. You will fit your implementation to Polyn et al. (2009)’s task-switching free recall data and evaluate how well the model explains the observed recall patterns.</p>
 </section>
 <section id="data-format-and-preprocessing">
 <h2>Data Format and Preprocessing<a class="headerlink" href="#data-format-and-preprocessing" title="Link to this heading">#</a></h2>
 <p>The dataset comprises sequences of presented and recalled words (concrete nouns) from multiple trials of a free recall experiment. As they were studying each word, participants were either asked to judge the referent’s <em>size</em> (would it fit in a shoebox?) or <em>animacy</em> (does it refer to a living thing?).  The dataset also includes information about the similarities in meaning between all of the stimuli (semantic similarities).</p>
 <p>Code for downloading and loading the dataset into Python, along with a more detailed description of its contents, may be found in the <a class="reference external" href="https://github.com/ContextLab/memory-models-course/blob/main/content/assignments/Assignment_3%3AContext_Maintenance_and_Retrieval_Model/cmr_assignment_template.ipynb">template notebook for this assignment</a>.</p>
 </section>
-<section id="model-description">
-<h2>Model Description<a class="headerlink" href="#model-description" title="Link to this heading">#</a></h2>
-<p>You will implement and fit a <strong>Context Maintenance and Retrieval (CMR)</strong> model that consists of:</p>
-<section id="encoding-stage-context-representation">
-<h3>1. <strong>Encoding Stage: Context Representation</strong><a class="headerlink" href="#encoding-stage-context-representation" title="Link to this heading">#</a></h3>
-<ul>
-<li><p>Each studied item is <strong>associated with a context representation</strong> composed of:</p>
+<section id="high-level-model-description">
+<h2>High-level Model Description<a class="headerlink" href="#high-level-model-description" title="Link to this heading">#</a></h2>
+<p>The Context Maintenance and Retrieval (CMR) model comprises three main components:</p>
+<section id="feature-layer-f">
+<h3>1. <strong>Feature layer (<span class="math notranslate nohighlight">\(F\)</span>)</strong><a class="headerlink" href="#feature-layer-f" title="Link to this heading">#</a></h3>
+<p>The feature layer represents the experience of the <em>current moment</em>.  It comprises a representation of the item being studied (an indicator vector of length number-of-items + 1) concatenated with a representation of the current “source context” (also an indicator vector, of length number-of-sources).</p>
+</section>
+<section id="context-layer-c">
+<h3>2. <strong>Context layer (<span class="math notranslate nohighlight">\(C\)</span>)</strong><a class="headerlink" href="#context-layer-c" title="Link to this heading">#</a></h3>
+<p>The context layer represents a <em>recency-weighted average</em> of experiences up to now.  Analogous to the feature layer, the context layer comprises a representation of temporal context (a vector of length number-of-items + 1, representing a transformed version of the item history) concatenated with a representation of the source context (a vector of length number-of-sources, representing a transformed version of the history of sources).</p>
+</section>
+<section id="association-matrices">
+<h3>3. <strong>Association matrices</strong><a class="headerlink" href="#association-matrices" title="Link to this heading">#</a></h3>
+<p>The feature and context layers of the model interact through a pair of association matrices:</p>
 <ul class="simple">
-<li><p><strong>Temporal context</strong> (slowly drifting across time).</p></li>
-<li><p><strong>Semantic context</strong> (pre-existing associative relations).</p></li>
-<li><p><strong>Source context</strong> (internal or external cues such as task or modality).</p></li>
-</ul>
-</li>
-<li><p>When an item is presented, its <strong>item features</strong> interact with the <strong>current context</strong>. Context is <strong>gradually updated</strong> via:</p>
-<div class="math notranslate nohighlight">
-\[ c_i = \rho_i c_{i-1} + \beta c_{in} \]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(c_i\)</span> is the context at position <span class="math notranslate nohighlight">\(i\)</span>,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\rho_i\)</span> scales how much prior context persists,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta\)</span> controls the <strong>drift rate</strong> of context,</p></li>
-<li><p><span class="math notranslate nohighlight">\(c_{in}\)</span> represents the new item-driven input.</p></li>
-</ul>
-</li>
-<li><p><strong>Semantic context</strong> is pre-defined by prior associations, while <strong>temporal and source contexts evolve dynamically</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(M^{FC}\)</span> controls how activations in <span class="math notranslate nohighlight">\(F\)</span> affect activity in <span class="math notranslate nohighlight">\(C\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(M^{CF}\)</span> controls how activations in <span class="math notranslate nohighlight">\(C\)</span> affect activity in <span class="math notranslate nohighlight">\(F\)</span></p></li>
 </ul>
 </section>
-<section id="retrieval-stage-memory-search">
-<h3>2. <strong>Retrieval Stage: Memory Search</strong><a class="headerlink" href="#retrieval-stage-memory-search" title="Link to this heading">#</a></h3>
-<p>Recall is modeled as a <strong>probabilistic competition</strong> where <strong>activated context cues</strong> retrieve stored items:</p>
-<section id="activation-of-memory-traces">
-<h4><strong>Activation of Memory Traces</strong><a class="headerlink" href="#activation-of-memory-traces" title="Link to this heading">#</a></h4>
+</section>
+<section id="model-dynamics">
+<h2>Model dynamics<a class="headerlink" href="#model-dynamics" title="Link to this heading">#</a></h2>
+<section id="encoding">
+<h3>Encoding<a class="headerlink" href="#encoding" title="Link to this heading">#</a></h3>
+<p>Items are presented one at a time in succession; all of the steps in this section are run for each new item.  As described below, following a task shift an “extra” (non-recallable) item is “presented,” causing <span class="math notranslate nohighlight">\(c_i\)</span>, <span class="math notranslate nohighlight">\(M^{FC}\)</span>, and <span class="math notranslate nohighlight">\(M^{CF}\)</span> to update.</p>
+<ol class="arabic simple">
+<li><p>As each new item (indexed by <span class="math notranslate nohighlight">\(i\)</span>) is presented, the feature layer <span class="math notranslate nohighlight">\(F\)</span> is set to <span class="math notranslate nohighlight">\(f_i = f_{item} \oplus f_{source}\)</span>, where:</p></li>
+</ol>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f_{item}\)</span> is an indicator vector of length number-of-items + 1.  Each item is assigned a unique position, along with an additional “dummy” item that is used to represent non-recallable items.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_{source}\)</span> is an indicator vector of length number-of-sources.  Each possible “source” (i.e., unique situation or task experienced alongside each item) gets one index.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\oplus\)</span> is the concatenation operator.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Next, the feature activations project onto the context layer:</p></li>
+</ol>
+<ul class="simple">
+<li><p>We compute <span class="math notranslate nohighlight">\(c^{IN} = M^{FC} f_i\)</span></p></li>
+<li><p>Then we evolve context using <span class="math notranslate nohighlight">\(c_i = \rho_i c_{i - 1} + \beta c^{IN}\)</span>, where</p>
 <ul>
-<li><p>Each item has an <strong>activation score</strong> based on how well it matches the current context:</p>
-<div class="math notranslate nohighlight">
-\[ f_{in} = M_{CF} c_i \]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(M_{CF}\)</span> represents learned <strong>context-to-item</strong> associations.</p></li>
-<li><p>Higher <span class="math notranslate nohighlight">\(f_{in}\)</span> means a greater probability of recall.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_i = \sqrt{1 + \beta^2\left[ \left( c_{i - 1} \cdot c^{IN}\right)^2 \right]} - \beta \left( c_{i - 1} \cdot c^{IN}\right)\)</span>.</p></li>
+<li><p>In setting <span class="math notranslate nohighlight">\(\rho_i\)</span>, the computations are performed separately for the “item” and “source” parts of context, where <span class="math notranslate nohighlight">\(\beta_{enc}^{temp}\)</span> is used to evolve context for the item features and <span class="math notranslate nohighlight">\(\beta_{source}\)</span> is used to evolve context for the source features.</p></li>
+<li><p>After a task shift, a “placeholder” item is “presented”, and a fourth drift rate parameter (<span class="math notranslate nohighlight">\(d\)</span>) is used in place of <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
 </ul>
 </li>
-<li><p><strong>Items compete</strong> for recall through a <strong>leaky, competitive accumulation process</strong>:</p>
-<div class="math notranslate nohighlight">
-\[ x_s = (1 - \tau \kappa - \tau \lambda N) x_{s-1} + \tau f_{in} + \epsilon \]</div>
-<p>where:</p>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Next, we update <span class="math notranslate nohighlight">\(M^{FC}\)</span> (initialized to all zeros):</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\kappa\)</span> controls <strong>memory decay</strong>,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> determines <strong>inhibition between competing items</strong>,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\tau\)</span> sets the <strong>speed of evidence accumulation</strong>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(\Delta M^{FC}_{exp} = c_i f_i^T\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(M^{FC} = (1 - \gamma^{FC}) M^{FC}_{pre} + \gamma^{FC} \Delta M^{FC}_{exp}\)</span></p></li>
 </ul>
 </li>
-<li><p>Once an item <strong>crosses a recall threshold</strong>, it is <strong>recalled and updates context</strong>, influencing <strong>subsequent recalls</strong>.</p></li>
+<li><p>Also update <span class="math notranslate nohighlight">\(M^{CF}\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(M^{CF}_{pre}\)</span> is fixed at the matrix of LSA <span class="math notranslate nohighlight">\(\cos \theta\)</span> across words, multiplied by <span class="math notranslate nohighlight">\(s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(M^{CF}_{exp}\)</span> is initialized to all zeros</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(\Delta M^{CF}_{exp} = \phi_i L^{CF} f_i c_i^T\)</span>, where</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(L^{\text{CF}} = 
+\left[
+\begin{array}{cc}
+L_{tw}^{\text{CF}} &amp; L_{ts}^{\text{CF}} \\
+L_{sw}^{\text{CF}} &amp; L_{ss}^{\text{CF}}
+\end{array}
+\right]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(t\)</span> represents temporal context</p></li>
+<li><p><span class="math notranslate nohighlight">\(s\)</span> represents source <em>context</em> if listed first, or source <em>features</em> if listed second</p></li>
+<li><p><span class="math notranslate nohighlight">\(w\)</span> represents item features</p></li>
+<li><p><span class="math notranslate nohighlight">\(L^{CF}_{sw}\)</span> is a parameter of the model (all set to the same value– size is number-of-sources by (number-of-items + 1))</p></li>
+<li><p><span class="math notranslate nohighlight">\(L^{CF}_{ts}\)</span> is set to all zeros; size: (number-of-items + 1) by number-of-sources</p></li>
+<li><p><span class="math notranslate nohighlight">\(L^{CF}_{ss}\)</span> is set to all zeros; size: number-of-sources by number-of-sources</p></li>
+<li><p><span class="math notranslate nohighlight">\(L^{CF}_{tw}\)</span> is set to all ones; size: (number-of-items + 1) by (number-of-items + 1)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi_i = \phi_s \exp\{-\phi_d (i - 1\}\)</span> + 1, where <span class="math notranslate nohighlight">\(i\)</span> is the serial position of the current item</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(M^{CF} = M^{CF}_{pre} + M^{CF}_{exp}\)</span></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="retrieval">
+<h3>Retrieval<a class="headerlink" href="#retrieval" title="Link to this heading">#</a></h3>
+<p>Recall is guided by <em>context</em> using a <em>leaky accumulator</em>.  Given the current context, the leaky accumulator process runs until either (a) any item crosses a threshold value of 1 (at which point the item is recalled, its features are reinstated in <span class="math notranslate nohighlight">\(F\)</span>, context is updated as described below, and the retrieval process restarts), <strong>or</strong> (b) more than 9000 time steps elapse without any item crossing the threshold (1 timestep is roughly equivalent to 1 ms).</p>
+<ol class="arabic simple">
+<li><p>First compute <span class="math notranslate nohighlight">\(f^{IN} = M^{CF} c_i\)</span>, where <span class="math notranslate nohighlight">\(c_i\)</span> is the current context</p></li>
+<li><p>Next, use <span class="math notranslate nohighlight">\(f^{IN}\)</span> to guide the leaky accumulator:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Initialize <span class="math notranslate nohighlight">\(x_s\)</span> to a vector of number-of-items zeros (<span class="math notranslate nohighlight">\(s\)</span> indexes the number of steps in the accumulation process)</p></li>
+<li><p>While no not-yet-recalled element (also ignoring the last “unrecallable” item) of <span class="math notranslate nohighlight">\(x_s\)</span> is greater than or equal to 1:</p>
+<ul>
+<li><p>Set <span class="math notranslate nohighlight">\(x_s = x_{s - 1} + \left( f^{IN} - \kappa x_{s - 1} - \lambda N x_{s - 1} \right) d \tau + \epsilon \sqrt{d \tau}\)</span>, where</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(dt = 100\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d \tau = \frac{dt}{\tau}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(N_{ij} = 0\)</span> if <span class="math notranslate nohighlight">\(i = j\)</span> and <span class="math notranslate nohighlight">\(1\)</span> otherwise.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon \sim \mathcal{N}\left(0, \eta \right)\)</span></p></li>
+</ul>
+</li>
+<li><p>If any <em>already recalled</em> item crosses the threshold, reset its value to 0.95 (this simulates “<a class="reference external" href="https://en.wikipedia.org/wiki/Inhibition_of_return">inhibition of return</a>”).</p></li>
+<li><p>If any elements of <span class="math notranslate nohighlight">\(x_s\)</span> drops below 0, reset those values to 0.</p></li>
+</ul>
+</li>
+<li><p>When an item “wins” the recall competition:</p>
+<ul>
+<li><p>Reinstate its features in <span class="math notranslate nohighlight">\(F\)</span> (as though we were presenting that item as the next <span class="math notranslate nohighlight">\(f_i\)</span>)</p></li>
+<li><p>Update context from <span class="math notranslate nohighlight">\(f_i\)</span> using the same equation for <span class="math notranslate nohighlight">\(c_i\)</span> as during presentation.</p></li>
+<li><p>Don’t update <span class="math notranslate nohighlight">\(M^{CF}\)</span> or <span class="math notranslate nohighlight">\(M^{FC}\)</span>.</p></li>
+<li><p>Recall the item.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 </section>
 <section id="fitting-the-model">
-<h3>3. <strong>Fitting the Model</strong><a class="headerlink" href="#fitting-the-model" title="Link to this heading">#</a></h3>
-<p>The following <strong>three key parameters</strong> should be optimized to best match human recall data:</p>
+<h2><strong>Fitting the Model</strong><a class="headerlink" href="#fitting-the-model" title="Link to this heading">#</a></h2>
+<p>In total, there are 13 to-be-learned parameters of CMR (each is a scalar):</p>
 <ol class="arabic simple">
-<li><p><strong>Context Drift Rate (<span class="math notranslate nohighlight">\(\beta\)</span>)</strong>: How quickly temporal and source context updates.</p></li>
-<li><p><strong>Memory Decay (<span class="math notranslate nohighlight">\(\kappa\)</span>)</strong>: Governs how quickly items lose activation.</p></li>
-<li><p><strong>Inhibition (<span class="math notranslate nohighlight">\(\lambda\)</span>)</strong>: Controls competition between retrieved items.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_{enc}^{temp}\)</span>: drift rate of temporal context during encoding</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_{rec}^{temp}\)</span>: drift rate of temporal context during recall</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta^{source}\)</span>: drift rate of source context (during encoding)</p></li>
+<li><p><span class="math notranslate nohighlight">\(d\)</span>: temporary contextual drift rate during “placeholder item” presentations after source changes</p></li>
+<li><p><span class="math notranslate nohighlight">\(L_{sw}^{CF}\)</span>: scale of associative connections between source context and item features</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma^{FC}\)</span>: relative contribution of <span class="math notranslate nohighlight">\(\Delta M_{exp}^FC\)</span> vs. <span class="math notranslate nohighlight">\(M_{pre}^{FC}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(s\)</span>: scale factor applied to semantic similarities when computing <span class="math notranslate nohighlight">\(M_{pre}^{CF}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi_s\)</span>: primacy effect scaling parameter</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi_d\)</span>: primacy effect decay parameter</p></li>
+<li><p><span class="math notranslate nohighlight">\(\kappa\)</span>: decay rate of leaky accumulator</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span>: lateral inhibition parameter of leaky accumulator</p></li>
+<li><p><span class="math notranslate nohighlight">\(\eta\)</span>: noise standard deviation in leaky accumulator</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau\)</span>: time constant for leaky accumulator</p></li>
+</ol>
+<p>Fit the model to the following curves and measures from the Polyn et al. (2009) dataset (provided in the template notebook):</p>
+<ul class="simple">
+<li><p>Probability of first recall</p></li>
+<li><p>Serial position curve</p></li>
+<li><p>Lag-CRP</p></li>
+<li><p>Temporal clustering factor</p></li>
+<li><p>Source clustering factor</p></li>
+</ul>
+<p>There are several possible ways to accomplish this.  My recommended approach is:</p>
+<ol class="arabic simple">
+<li><p>Split the dataset into a training set and a test set</p></li>
+<li><p>Compute the above curves/measures for the training set and concatenate them into a single vector</p></li>
+<li><p>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">scipy.optimize.minimize</a> to find the set of model parameters that minimizes the mean squared error between the observed curves and the CMR-estimated curves (using the given parameters).</p></li>
+<li><p>Compare the observed performance vs. CMR-estimated performance (using the best-fitting parameters) for the test data</p></li>
 </ol>
 </section>
-</section>
-<section id="implementation-tasks">
-<h2>Implementation Tasks<a class="headerlink" href="#implementation-tasks" title="Link to this heading">#</a></h2>
-<section id="step-1-implement-context-evolution">
-<h3><strong>Step 1: Implement Context Evolution</strong><a class="headerlink" href="#step-1-implement-context-evolution" title="Link to this heading">#</a></h3>
+<section id="summary-of-implementation-tasks">
+<h2>Summary of Implementation Tasks<a class="headerlink" href="#summary-of-implementation-tasks" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Use the descriptions above to implement CMR in Python</p></li>
+<li><p>Write code for constructing the behavioral curves/measures listed above</p></li>
+<li><p>Fit CMR’s parameters to the dataset provided in the template notebook (compare with Table 1 in Polyn et al., 2009)</p></li>
+<li><p>Plot the observed vs. CMR-estimated curves/measures</p></li>
+<li><p>Write a <strong>brief discussion</strong> (3-5 sentences) addressing:</p></li>
+</ol>
 <ul class="simple">
-<li><p>Implement <strong>temporal and source context updates</strong> during study.</p></li>
-<li><p>Encode <strong>semantic relations</strong> using a <strong>fixed association matrix</strong>.</p></li>
-</ul>
-</section>
-<section id="step-2-implement-the-recall-process">
-<h3><strong>Step 2: Implement the Recall Process</strong><a class="headerlink" href="#step-2-implement-the-recall-process" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Compute <strong>retrieval strengths</strong> using <strong>context-to-item activation</strong>.</p></li>
-<li><p>Implement the <strong>competitive accumulation</strong> process.</p></li>
-<li><p>Simulate <strong>context reinstatement</strong> from retrieved items.</p></li>
-</ul>
-</section>
-<section id="step-3-load-and-process-data">
-<h3><strong>Step 3: Load and Process Data</strong><a class="headerlink" href="#step-3-load-and-process-data" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Read in the <strong>recall dataset</strong> and parse trials correctly.</p></li>
-<li><p>Compute <strong>observed recall probabilities</strong> for comparison.</p></li>
-</ul>
-</section>
-<section id="step-4-fit-model-parameters">
-<h3><strong>Step 4: Fit Model Parameters</strong><a class="headerlink" href="#step-4-fit-model-parameters" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Optimize <strong><span class="math notranslate nohighlight">\(\beta\)</span> (context drift)</strong>, <strong><span class="math notranslate nohighlight">\(\kappa\)</span> (memory decay)</strong>, and <strong><span class="math notranslate nohighlight">\(\lambda\)</span> (inhibition)</strong> to best match recall patterns.</p></li>
-</ul>
-</section>
-<section id="step-5-generate-key-plots">
-<h3><strong>Step 5: Generate Key Plots</strong><a class="headerlink" href="#step-5-generate-key-plots" title="Link to this heading">#</a></h3>
-<p>For each combination of <strong>list length</strong> and <strong>presentation rate</strong>, generate the following plots:</p>
-<section id="plot-1-probability-of-first-recall-as-a-function-of-serial-position">
-<h4><strong>Plot 1: Probability of First Recall as a Function of Serial Position</strong><a class="headerlink" href="#plot-1-probability-of-first-recall-as-a-function-of-serial-position" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>X-axis:</strong> Serial position in the presented list.</p></li>
-<li><p><strong>Y-axis:</strong> Probability that the item is the <strong>first item</strong> recalled.</p></li>
-<li><p>Overlay <strong>model predictions</strong> on observed data.</p></li>
-</ul>
-</section>
-<section id="plot-2-conditional-recall-probability-as-a-function-of-lag">
-<h4><strong>Plot 2: Conditional Recall Probability as a Function of Lag</strong><a class="headerlink" href="#plot-2-conditional-recall-probability-as-a-function-of-lag" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>X-axis:</strong> Lag (<span class="math notranslate nohighlight">\(l\)</span>) (distance between successive recalls).</p></li>
-<li><p><strong>Y-axis:</strong> Probability of recalling an item at position <span class="math notranslate nohighlight">\(i+l\)</span> after recalling <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
-<li><p>Overlay <strong>model predictions</strong> on observed data.</p></li>
-</ul>
-</section>
-<section id="plot-3-overall-probability-of-recall-as-a-function-of-serial-position">
-<h4><strong>Plot 3: Overall Probability of Recall as a Function of Serial Position</strong><a class="headerlink" href="#plot-3-overall-probability-of-recall-as-a-function-of-serial-position" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>X-axis:</strong> Serial position in the presented list.</p></li>
-<li><p><strong>Y-axis:</strong> Probability of recall at <strong>any output position</strong>.</p></li>
-<li><p>Overlay <strong>model predictions</strong> on observed data.</p></li>
-</ul>
-<p>Each plot should include:</p>
-<ul class="simple">
-<li><p><strong>Observed human recall data</strong> (solid line).</p></li>
-<li><p><strong>Model predictions</strong> (dashed line).</p></li>
-<li><p><strong>Error bars</strong> (95% confidence intervals).</p></li>
-</ul>
-</section>
-</section>
-<section id="step-6-evaluate-the-model">
-<h3><strong>Step 6: Evaluate the Model</strong><a class="headerlink" href="#step-6-evaluate-the-model" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Write a <strong>brief discussion</strong> (3-5 sentences) addressing:</p>
-<ul>
 <li><p><strong>Does the model explain the data well?</strong></p></li>
 <li><p><strong>Which patterns are well captured?</strong></p></li>
 <li><p><strong>Where does the model fail, and why?</strong></p></li>
 <li><p><strong>Potential improvements or limitations of CMR.</strong></p></li>
 </ul>
-</li>
-</ul>
-</section>
-</section>
-<section id="grading-criteria">
-<h2>Grading Criteria<a class="headerlink" href="#grading-criteria" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Model Implementation (50%)</strong>:</p>
-<ul>
-<li><p>Correct encoding, retrieval, and stopping rule logic.</p></li>
-<li><p>Accurate probability calculations.</p></li>
-<li><p>Clear and well-documented code.</p></li>
-</ul>
-</li>
-<li><p><strong>Plot Accuracy (45%)</strong>:</p>
-<ul>
-<li><p><strong>15%</strong> for each of the three required plots.</p></li>
-<li><p>Must correctly overlay observed data and model predictions.</p></li>
-</ul>
-</li>
-<li><p><strong>Interpretation and Discussion (5%)</strong>:</p>
-<ul>
-<li><p>Thoughtful analysis of model fit.</p></li>
-<li><p>Identifies strengths and weaknesses of CMR.</p></li>
-</ul>
-</li>
-</ul>
 </section>
 <section id="submission-instructions">
 <h2>Submission Instructions<a class="headerlink" href="#submission-instructions" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Submit a <strong>Google Colaboratory notebook</strong> (or similar) that includes:</p>
+<li><p>Submit (on <a class="reference external" href="https://canvas.dartmouth.edu/courses/71051/assignments/517355">canvas</a>) a <strong>Google Colaboratory notebook</strong> (or similar) that includes:</p>
 <ul>
 <li><p>Your <strong>full implementation</strong> of the CMR model.</p></li>
 <li><p><strong>Markdown cells</strong> explaining your code, methodology, and results.</p></li>
@@ -700,30 +686,19 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-and-preprocessing">Data Format and Preprocessing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-description">Model Description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-stage-context-representation">1. <strong>Encoding Stage: Context Representation</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-stage-memory-search">2. <strong>Retrieval Stage: Memory Search</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#activation-of-memory-traces"><strong>Activation of Memory Traces</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-model-description">High-level Model Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-layer-f">1. <strong>Feature layer (<span class="math notranslate nohighlight">\(F\)</span>)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context-layer-c">2. <strong>Context layer (<span class="math notranslate nohighlight">\(C\)</span>)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#association-matrices">3. <strong>Association matrices</strong></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model">3. <strong>Fitting the Model</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dynamics">Model dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding">Encoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval">Retrieval</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-tasks">Implementation Tasks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-implement-context-evolution"><strong>Step 1: Implement Context Evolution</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-implement-the-recall-process"><strong>Step 2: Implement the Recall Process</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-load-and-process-data"><strong>Step 3: Load and Process Data</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-fit-model-parameters"><strong>Step 4: Fit Model Parameters</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-key-plots"><strong>Step 5: Generate Key Plots</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-1-probability-of-first-recall-as-a-function-of-serial-position"><strong>Plot 1: Probability of First Recall as a Function of Serial Position</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-2-conditional-recall-probability-as-a-function-of-lag"><strong>Plot 2: Conditional Recall Probability as a Function of Lag</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-3-overall-probability-of-recall-as-a-function-of-serial-position"><strong>Plot 3: Overall Probability of Recall as a Function of Serial Position</strong></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-evaluate-the-model"><strong>Step 6: Evaluate the Model</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-criteria">Grading Criteria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model"><strong>Fitting the Model</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-implementation-tasks">Summary of Implementation Tasks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission Instructions</a></li>
 </ul>
   </nav></div>
