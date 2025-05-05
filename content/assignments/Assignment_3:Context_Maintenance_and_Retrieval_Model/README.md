@@ -120,7 +120,7 @@ Fit the model to the following curves and measures from the Polyn et al. (2009) 
 There are several possible ways to accomplish this.  My recommended approach is:
 1. Split the dataset into a training set and a test set
 2. Compute the above curves/measures for the training set and concatenate them into a single vector
-3. Use [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize) to find the set of model parameters that minimizes the mean squared error between the observed curves and the CMR-estimated curves (using the given parameters).
+3. Use [skopt.optimizer.gp_minimize](https://scikit-optimize.github.io/stable/modules/generated/skopt.optimizer.gp_minimize.html#skopt.optimizer.gp_minimize) to find the set of model parameters that minimizes the mean squared error between the observed curves and the CMR-estimated curves (using the given parameters).
 4. Compare the observed performance vs. CMR-estimated performance (using the best-fitting parameters) for the test data
 
 

@@ -110,7 +110,7 @@ You will fit **eight parameters** to optimize the match to human recall data:
 7. $m_{1_{\text{max}}}$: maximum number of *contextual* association cueing failures
 8. $m_{2_{\text{max}}}$: maximum number of *episodic* association cueing failures
 
-You can choose any approach you wish to fit these parameters.  My "recommended" approach is to use [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html) to minimize the mean squared error between the point-by-point observed vs. model-predicted values for the following behavioral curves:
+You can choose any approach you wish to fit these parameters.  My "recommended" approach is to use [skopt.optimizer.gp_minimize](https://scikit-optimize.github.io/stable/modules/generated/skopt.optimizer.gp_minimize.html#skopt.optimizer.gp_minimize) to minimize the mean squared error between the point-by-point observed vs. model-predicted values for the following behavioral curves:
   - $p(\text{first recall})$: probability of recalling each item **first** as a function of its *presentation position*
   - $p(\textit{recall})$: probability of recalling each item at *any* output position as a function of its presentation position
   - lag-CRP: probability of recalling item $i$ given that item $j$ was the previous recall, as a function of $lag = i - j$.
@@ -139,7 +139,7 @@ You can use the [example notebook](https://contextlab.github.io/memory-models-co
 - To help with computing mean squared error, it will be useful to have a function that takes in a dataset as input and returns a vector comprising each of these curves, for each list length and presentation rate, concatenated together into a single vector.
 
 ### **Step 4: Fit Model Parameters**
-- To compute mean squared error for a given set of model parameters, use the function you wrote above to compute the concatenated behavioral curves for the *observed recalls* and the *model-predicted recalls*.  The average squared point-by-point difference between the vectors is the mean squared error.  You'll want to set up [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html) to find the set of model parameters that minimizes the mean squared error between the observed and predicted curves, using only the training dataset.
+- To compute mean squared error for a given set of model parameters, use the function you wrote above to compute the concatenated behavioral curves for the *observed recalls* and the *model-predicted recalls*.  The average squared point-by-point difference between the vectors is the mean squared error.  You'll want to set up [skopt.optimizer.gp_minimize](https://scikit-optimize.github.io/stable/modules/generated/skopt.optimizer.gp_minimize.html#skopt.optimizer.gp_minimize) to find the set of model parameters that minimizes the mean squared error between the observed and predicted curves, using only the training dataset.
 - Importantly, you should use the same parameters across all trials and experimental conditions.  You're fitting the *average* performance, not data from individual trials or participants.
 
 ### **Step 5: Generate Key Plots**
