@@ -550,7 +550,7 @@ document.write(`
 <li><p>Fit params to <a class="reference external" href="https://github.com/ContextLab/memory-models-course/tree/main/content/assignments/Assignment_2%3ASearch_of_Associative_Memory_Model/Murd62%20data">Murdock (1962) dataset</a> that you downloaded with the <code class="docutils literal notranslate"><span class="pre">load_data</span></code> function.</p>
 <ul>
 <li><p>You’ll need to define a “loss” function.  I suggest computing MSE for one or more behavioral curves, computed for a subset of the Murdock (1962) participants/lists</p></li>
-<li><p>I suggest using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">scipy.optimize.minimize</a> to estimate the model parameters.</p></li>
+<li><p>I suggest using <a class="reference external" href="https://scikit-optimize.github.io/stable/modules/generated/skopt.optimizer.gp_minimize.html#skopt.optimizer.gp_minimize">skopt.optimizer.gp_minimize</a> to estimate the model parameters.</p></li>
 </ul>
 </li>
 <li><p>Create observed/predicted plots for held-out data:</p>

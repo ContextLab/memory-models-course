@@ -582,7 +582,7 @@ L_{sw}^{\text{CF}} &amp; L_{ss}^{\text{CF}}
 <ol class="arabic simple">
 <li><p>Split the dataset into a training set and a test set</p></li>
 <li><p>Compute the above curves/measures for the training set and concatenate them into a single vector</p></li>
-<li><p>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">scipy.optimize.minimize</a> to find the set of model parameters that minimizes the mean squared error between the observed curves and the CMR-estimated curves (using the given parameters).</p></li>
+<li><p>Use <a class="reference external" href="https://scikit-optimize.github.io/stable/modules/generated/skopt.optimizer.gp_minimize.html#skopt.optimizer.gp_minimize">skopt.optimizer.gp_minimize</a> to find the set of model parameters that minimizes the mean squared error between the observed curves and the CMR-estimated curves (using the given parameters).</p></li>
 <li><p>Compare the observed performance vs. CMR-estimated performance (using the best-fitting parameters) for the test data</p></li>
 </ol>
 </section>

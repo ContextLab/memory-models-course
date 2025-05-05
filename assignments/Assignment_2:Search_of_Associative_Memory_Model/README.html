@@ -554,7 +554,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(m_{1_{\text{max}}}\)</span>: maximum number of <em>contextual</em> association cueing failures</p></li>
 <li><p><span class="math notranslate nohighlight">\(m_{2_{\text{max}}}\)</span>: maximum number of <em>episodic</em> association cueing failures</p></li>
 </ol>
-<p>You can choose any approach you wish to fit these parameters.  My “recommended” approach is to use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">scipy.optimize.minimize</a> to minimize the mean squared error between the point-by-point observed vs. model-predicted values for the following behavioral curves:</p>
+<p>You can choose any approach you wish to fit these parameters.  My “recommended” approach is to use <a class="reference external" href="https://scikit-optimize.github.io/stable/modules/generated/skopt.optimizer.gp_minimize.html#skopt.optimizer.gp_minimize">skopt.optimizer.gp_minimize</a> to minimize the mean squared error between the point-by-point observed vs. model-predicted values for the following behavioral curves:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(p(\text{first recall})\)</span>: probability of recalling each item <strong>first</strong> as a function of its <em>presentation position</em></p></li>
 <li><p><span class="math notranslate nohighlight">\(p(\textit{recall})\)</span>: probability of recalling each item at <em>any</em> output position as a function of its presentation position</p></li>
@@ -602,7 +602,7 @@ document.write(`
 <section id="step-4-fit-model-parameters">
 <h3><strong>Step 4: Fit Model Parameters</strong><a class="headerlink" href="#step-4-fit-model-parameters" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>To compute mean squared error for a given set of model parameters, use the function you wrote above to compute the concatenated behavioral curves for the <em>observed recalls</em> and the <em>model-predicted recalls</em>.  The average squared point-by-point difference between the vectors is the mean squared error.  You’ll want to set up <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">scipy.optimize.minimize</a> to find the set of model parameters that minimizes the mean squared error between the observed and predicted curves, using only the training dataset.</p></li>
+<li><p>To compute mean squared error for a given set of model parameters, use the function you wrote above to compute the concatenated behavioral curves for the <em>observed recalls</em> and the <em>model-predicted recalls</em>.  The average squared point-by-point difference between the vectors is the mean squared error.  You’ll want to set up <a class="reference external" href="https://scikit-optimize.github.io/stable/modules/generated/skopt.optimizer.gp_minimize.html#skopt.optimizer.gp_minimize">skopt.optimizer.gp_minimize</a> to find the set of model parameters that minimizes the mean squared error between the observed and predicted curves, using only the training dataset.</p></li>
 <li><p>Importantly, you should use the same parameters across all trials and experimental conditions.  You’re fitting the <em>average</em> performance, not data from individual trials or participants.</p></li>
 </ul>
 </section>
